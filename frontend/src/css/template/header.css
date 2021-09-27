@@ -1,0 +1,43 @@
+.nav {
+  background-color: #7053e3;
+  padding: 1rem 1rem;
+}
+
+.input-group {
+  width: 90%;
+  margin-right: 35%;
+}
+
+#search_field {
+  height: 2.4rem;
+  padding: 1rem;
+}
+
+#login_btn {
+  padding: 0.4rem 1.8rem;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+#login_btn:hover {
+  transform: scale(0.95);
+}
+
+#cart {
+  font-size: 1rem;
+  color: white;
+}
+
+#cart_count {
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Header User Profile */
+.avatar-nav {
+  margin-right: 0.6rem;
+  height: 2.2rem;
+  width: 2.2rem;
+}

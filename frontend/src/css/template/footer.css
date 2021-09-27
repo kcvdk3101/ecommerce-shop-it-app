@@ -1,0 +1,21 @@
+/* Footer */
+footer {
+  background-color: #7053e3;
+}
+
+footer .link_social {
+  font-size: 22px;
+}
+
+footer .link_social:hover {
+  border: 1px solid #fdc10a;
+  background-color: #fdc10a;
+}
+
+footer .line {
+  width: 120px;
+  height: 5px;
+  border-radius: 50px;
+  background-color: white;
+  margin: 10px 0px;
+}

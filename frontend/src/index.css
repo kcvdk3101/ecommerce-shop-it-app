@@ -1,0 +1,55 @@
+/* Header & Footer */
+@import url("./css/template/header.css");
+@import url("./css/template/footer.css");
+
+/* Pages */
+@import url("./css/pages/admin.css");
+@import url("./css/pages/home.css");
+@import url("./css/pages/productDetail.css");
+@import url("./css/pages/cart.css");
+@import url("./css/pages/checkout.css");
+@import url("./css/pages/profile.css");
+
+/* Common */
+@import url("./css/components/loader.css");
+@import url("./css/components/rating.css");
+@import url("./css/components/scrollbar.css");
+@import url("./css/components/avatar.css");
+@import url("./css/components/pagination.css");
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Confirm Order */
+.order-confirm p,
+.order-details p {
+  margin-left: 1.5rem;
+}
+
+.update-btn {
+  background-color: #fa9c23;
+  border-color: #fa9c23;
+  color: white;
+}
+
+.update-btn:hover {
+  color: white;
+}
