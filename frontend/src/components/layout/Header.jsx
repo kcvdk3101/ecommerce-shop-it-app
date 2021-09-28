@@ -12,7 +12,7 @@ import {
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import userActions from "../../actions/userActions";
-import SearchInput from "./SearchInput";
+import SearchInput from "../common/SearchInput";
 
 const Header = ({ logout, auth, cart }) => {
   const alert = useAlert();

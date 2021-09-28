@@ -1,20 +1,24 @@
 import React, { Fragment, useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { allOrders } from "../../actions/orderActions";
+import orderActions from "../../actions/orderActions";
 import productActions from "../../actions/productActions";
+import userActions from "../../actions/userActions";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
 
-const Dashboard = ({ productsDB, allUsers, getAdminProducts }) => {
-  const dispatch = useDispatch();
-
+const Dashboard = ({
+  productsDB,
+  allUsers,
+  allOrders,
+  getAdminProducts,
+  getAllOrders,
+  getAllUsers,
+}) => {
   const { products } = productsDB;
-  const { users } = useSelector((state) => state.allUsers);
-  const { orders, totalAmount, loading } = useSelector(
-    (state) => state.allOrders
-  );
+  const { users } = allUsers;
+  const { orders, totalAmount, loading } = allOrders;
 
   let outOfStock = 0;
   products.forEach((product) => {
@@ -24,10 +28,10 @@ const Dashboard = ({ productsDB, allUsers, getAdminProducts }) => {
   });
 
   useEffect(() => {
-    dispatch(getAdminProducts());
-    dispatch(allOrders());
-    dispatch(allUsers());
-  }, [allUsers, dispatch, getAdminProducts]);
+    getAdminProducts();
+    getAllOrders();
+    getAllUsers();
+  }, [allUsers, getAdminProducts, getAllOrders, getAllUsers]);
 
   return (
     <Fragment>
@@ -137,15 +141,19 @@ const Dashboard = ({ productsDB, allUsers, getAdminProducts }) => {
     </Fragment>
   );
 };
+
 function mapStateToProps(state) {
   return {
     productsDB: state.products,
     allUsers: state.allUsers,
+    allOrders: state.allOrders,
   };
 }
 
 const mapDispatchToProps = {
   getAdminProducts: productActions.getAdminProducts,
+  getAllOrders: orderActions.allOrders,
+  getAllUsers: userActions.allUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

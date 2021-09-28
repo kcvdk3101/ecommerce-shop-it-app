@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Button, Col, Container, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const socials = [
@@ -99,28 +99,22 @@ const Footer = () => {
                 </Col>
               </Row>
               <Row className="my-3">
-                <Col xs={12} md={7}>
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="email"
-                      placeholder="Enter email"
-                    />
-                  </div>
+                <Col xs={12} md={7} className="form-group">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="Enter email"
+                  />
                 </Col>
-                <Col
-                  xs={12}
-                  md={5}
-                  className="d-flex justify-content-center align-items-end"
-                >
-                  <button type="submit" className="btn btn-outline-light">
+                <Col xs={12} md={5}>
+                  <Button color="warning" className=" text-white">
                     Subscribe
-                  </button>
+                  </Button>
                 </Col>
               </Row>
               <Row>
-                <Col className="my-2">
+                <Col>
                   {socials.map((s, i) => (
                     <a
                       key={i}
@@ -137,7 +131,6 @@ const Footer = () => {
             </form>
           </Col>
         </Row>
-        <div className="text-center p-3 text-warning">© Shopping Cart 2020</div>
       </Container>
     </footer>
   );

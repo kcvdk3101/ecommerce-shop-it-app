@@ -91,6 +91,24 @@ const register = (userData) => async (dispatch) => {
   }
 }
 
+// Logout user
+const logout = () => async (dispatch) => {
+  try {
+
+    await axios.get('/api/v1/logout')
+
+    dispatch({
+      type: LOGOUT_SUCCESS,
+    })
+
+  } catch (error) {
+    dispatch({
+      type: LOGOUT_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
+
 // Load user
 const loadUser = () => async (dispatch) => {
   try {
@@ -215,24 +233,6 @@ const resetPassword = (token, passwords) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: NEW_PASSWORD_FAIL,
-      payload: error.response.data.message
-    })
-  }
-}
-
-// Logout user
-const logout = () => async (dispatch) => {
-  try {
-
-    await axios.get('/api/v1/logout')
-
-    dispatch({
-      type: LOGOUT_SUCCESS,
-    })
-
-  } catch (error) {
-    dispatch({
-      type: LOGOUT_FAIL,
       payload: error.response.data.message
     })
   }

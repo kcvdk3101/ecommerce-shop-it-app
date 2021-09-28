@@ -62,10 +62,22 @@ const Profile = () => {
               </Col>
               <Col xs={12}>
                 <Button color="danger" className="me-2">
-                  My Orders
+                  <Link
+                    to="/orders/me"
+                    className="text-white text-decoration-none"
+                  >
+                    My orders
+                  </Link>
                 </Button>
 
-                <Button color="primary">Change Password</Button>
+                <Button color="primary">
+                  <Link
+                    to="/password/update"
+                    className="text-white text-decoration-none"
+                  >
+                    Change Password
+                  </Link>
+                </Button>
               </Col>
             </Row>
           </Col>

@@ -50,6 +50,7 @@ const ProductReviews = ({
     isDeleted,
     deleteError,
     getProductReviews,
+    clearErrors,
   ]);
 
   const deleteReviewHandler = (id) => {

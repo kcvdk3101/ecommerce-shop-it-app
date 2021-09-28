@@ -154,7 +154,11 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const isMatched = await user.comparePassword(req.body.oldPassword)
   if (!isMatched) return next(new ErrorHandler('Old password is incorrect'));
 
-  user.password = req.body.password;
+  //Hash password
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(newPassword, salt)
+
+  user.password = hashedPassword;
   await user.save();
 
   sendToken(user, 200, res)

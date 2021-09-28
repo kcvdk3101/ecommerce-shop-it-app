@@ -4,6 +4,7 @@ import { connect, useDispatch } from "react-redux";
 import { clearErrors } from "../../actions/clearErrors";
 import userActions from "../../actions/userActions";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
+import putFormDataInUpdatePassword from "../../utils/putFormDataInUpdatePassword";
 import MetaData from "../layout/MetaData";
 
 const UpdatePassword = ({ user, history, clearErrors, updatePassword }) => {
@@ -13,7 +14,7 @@ const UpdatePassword = ({ user, history, clearErrors, updatePassword }) => {
   const dispatch = useDispatch();
 
   const [oldPassword, setOldPassword] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
     if (error) {
@@ -32,12 +33,7 @@ const UpdatePassword = ({ user, history, clearErrors, updatePassword }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.set("oldPassword", oldPassword);
-    formData.set("password", password);
-
-    updatePassword(formData);
+    updatePassword(putFormDataInUpdatePassword(oldPassword, newPassword));
   };
 
   return (
@@ -65,8 +61,8 @@ const UpdatePassword = ({ user, history, clearErrors, updatePassword }) => {
                 type="password"
                 id="new_password_field"
                 className="form-control"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
               />
             </div>
 

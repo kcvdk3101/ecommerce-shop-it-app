@@ -73,6 +73,7 @@ const UpdateProduct = ({
     product,
     productId,
     getProductDetails,
+    clearErrors,
   ]);
 
   const submitHandler = (e) => {
