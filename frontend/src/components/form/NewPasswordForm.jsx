@@ -1,18 +1,28 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { connect } from "react-redux";
+import {
+  Button,
+  Col,
+  Row,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Spinner,
+} from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import userActions from "../../actions/userActions";
 import MetaData from "../layout/MetaData";
 
-const NewPassword = ({
+const NewPasswordForm = ({
   history,
   match,
   clearErrors,
   resetPassword,
   forgotPassword,
 }) => {
-  const { error, success } = forgotPassword;
+  const { error, success, loading } = forgotPassword;
 
   const alert = useAlert();
 
@@ -38,58 +48,59 @@ const NewPassword = ({
     formData.set("password", password);
     formData.set("confirmPassword", confirmPassword);
 
+    // match.params.token is reset password token
     resetPassword(match.params.token, formData);
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title={"New Password Reset"} />
 
-      <div className="row wrapper">
-        <div className="col-10 col-lg-5">
-          <form className="shadow-lg" onSubmit={submitHandler}>
+      <Row className="d-flex justify-content-center align-items-center">
+        <Col xs={12} lg={5}>
+          <Form onSubmit={submitHandler}>
             <h1 className="mb-3">New Password</h1>
 
-            <div className="form-group">
-              <label htmlFor="password_field">Password</label>
-              <input
+            <FormGroup>
+              <Label htmlFor="password_field">Password</Label>
+              <Input
                 type="password"
                 id="password_field"
-                className="form-control"
                 value={password}
+                disabled={loading ? true : false}
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
+            </FormGroup>
 
-            <div className="form-group">
-              <label htmlFor="confirm_password_field">Confirm Password</label>
-              <input
+            <FormGroup>
+              <Label htmlFor="confirm_password_field">Confirm Password</Label>
+              <Input
                 type="password"
                 id="confirm_password_field"
-                className="form-control"
                 value={confirmPassword}
+                disabled={loading ? true : false}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-            </div>
+            </FormGroup>
 
-            <button
-              id="new_password_button"
-              type="submit"
-              className="btn btn-block py-3"
+            <Button
+              color="warning"
+              block
+              className="text-white py-2 text-uppercase"
+              disabled={loading ? true : false}
             >
-              Set Password
-            </button>
-          </form>
-        </div>
-      </div>
-    </Fragment>
+              {loading ? <Spinner color="light" /> : "Set Password"}
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </>
   );
 };
 
 function mapStateToProps(state) {
   return {
     forgotPassword: state.forgotPassword,
-    auth: state.auth,
   };
 }
 
@@ -99,4 +110,4 @@ const mapDispatchToProps = {
   clearErrors: clearErrors,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPassword);
+export default connect(mapStateToProps, mapDispatchToProps)(NewPasswordForm);

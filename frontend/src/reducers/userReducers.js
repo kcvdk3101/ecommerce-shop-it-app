@@ -1,3 +1,4 @@
+import { CLEAR_ERRORS } from '../constants/clearErrorConstant'
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -38,7 +39,6 @@ import {
   DELETE_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
-  CLEAR_ERRORS
 } from '../constants/userConstants'
 
 export const authReducer = (state = { user: {} }, action) => {
@@ -188,6 +188,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
     case NEW_PASSWORD_SUCCESS:
       return {
         ...state,
+        loading: false,
         success: action.payload
       }
 

@@ -20,7 +20,7 @@ const Profile = () => {
       ) : (
         <Row className="justify-content-around mt-5">
           <Col xs={12} md={6} className="d-flex flex-column align-items-center">
-            <figure className="avatar-profile shadow-sm">
+            <figure className="avatar-profile">
               <img
                 className="rounded-circle w-100"
                 src={user.avatar.url}

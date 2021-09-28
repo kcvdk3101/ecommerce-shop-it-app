@@ -39,24 +39,32 @@ const Header = ({ logout, auth, cart }) => {
             </Link>
           </Col>
           <Col xs={12} sm={12} md={6}>
-            <Route
-              render={({ history }) => <SearchInput history={history} />}
-            />
+            {user && user.role === "admin" ? (
+              <div className="w-100"></div>
+            ) : (
+              <Route
+                render={({ history }) => <SearchInput history={history} />}
+              />
+            )}
           </Col>
           <Col xs={12} sm={12} md={3}>
             <div className="mt-4 mt-md-0 d-flex justify-content-end align-items-center">
-              <Link
-                to="/cart"
-                className="me-3 flex-shrink-0"
-                style={{ textDecoration: "none" }}
-              >
-                <span id="cart">
-                  Cart
-                  <span className="ms-1 bg-warning" id="cart_count">
-                    {cartItems.length}
+              {user && user.role === "admin" ? (
+                <div></div>
+              ) : (
+                <Link
+                  to="/cart"
+                  className="me-3 flex-shrink-0"
+                  style={{ textDecoration: "none" }}
+                >
+                  <span id="cart">
+                    Cart
+                    <span className="ms-1 bg-warning" id="cart_count">
+                      {cartItems.length}
+                    </span>
                   </span>
-                </span>
-              </Link>
+                </Link>
+              )}
 
               {user ? (
                 <Dropdown isOpen={dropdownOpen} toggle={toggle}>

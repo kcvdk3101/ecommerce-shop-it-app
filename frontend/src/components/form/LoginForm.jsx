@@ -1,7 +1,17 @@
-import React from "react";
-import LoginInput from "../common/LoginInput";
-import { Button, Col, Form, Row, Spinner } from "reactstrap";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  Col,
+  Form,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Row,
+  Spinner,
+} from "reactstrap";
+import LoginInput from "../common/LoginInput";
+import ForgotPassword from "./ForgotPasswordForm";
 
 const LoginForm = ({
   submitHandler,
@@ -11,13 +21,14 @@ const LoginForm = ({
   password,
   setPassword,
 }) => {
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
   return (
     <Row className="d-flex justify-content-center align-items-center">
       <Col xs={5}>
         <Form className="p-5" onSubmit={submitHandler}>
-          <h1 className="mb-3" style={{ fontFamily: "'Pacifico', cursive" }}>
-            Enjoy !
-          </h1>
+          <h1 className="mb-3">Enjoy !</h1>
           <LoginInput
             loading={loading}
             id="email_field"
@@ -37,10 +48,7 @@ const LoginForm = ({
             setChangeInput={setPassword}
           />
           <div className="w-100 d-flex justify-content-between mb-3">
-            <Link
-              to={loading ? "#!" : "/password/forgot"}
-              className="text-dark"
-            >
+            <Link to="#!" style={{ textDecoration: "none" }} onClick={toggle}>
               Forgot Password?
             </Link>
             <Link to={loading ? "#!" : "/register"} className="text-warning">
@@ -56,6 +64,12 @@ const LoginForm = ({
           </Button>
         </Form>
       </Col>
+      <Modal isOpen={modal} toggle={toggle} backdrop>
+        <ModalHeader toggle={toggle}>Forget Password</ModalHeader>
+        <ModalBody>
+          <ForgotPassword />
+        </ModalBody>
+      </Modal>
     </Row>
   );
 };

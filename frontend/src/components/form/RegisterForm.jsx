@@ -23,9 +23,7 @@ const RegisterForm = ({
           onSubmit={submitHandler}
           encType="multipart/form-data"
         >
-          <h1 className="mb-3" style={{ fontFamily: "'Pacifico', cursive" }}>
-            Let's join with us
-          </h1>
+          <h1 className="mb-3">Let's join with us</h1>
           <RegisterInput
             id="firstName_field"
             loading={loading}
