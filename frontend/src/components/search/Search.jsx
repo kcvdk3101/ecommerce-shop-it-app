@@ -184,6 +184,7 @@ export const Search = ({ productsDB, match, getProducts }) => {
 };
 
 function mapStateToProps(state) {
+  console.log(state.products);
   return {
     productsDB: state.products,
   };

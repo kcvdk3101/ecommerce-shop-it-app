@@ -4,13 +4,15 @@ import {
   Button,
   Col,
   Form,
+  FormGroup,
+  Input,
+  Label,
   Modal,
   ModalBody,
   ModalHeader,
   Row,
   Spinner,
 } from "reactstrap";
-import LoginInput from "../common/LoginInput";
 import ForgotPassword from "./ForgotPasswordForm";
 
 const LoginForm = ({
@@ -29,24 +31,28 @@ const LoginForm = ({
       <Col xs={5}>
         <Form className="p-5" onSubmit={submitHandler}>
           <h1 className="mb-3">Enjoy !</h1>
-          <LoginInput
-            loading={loading}
-            id="email_field"
-            title="Email"
-            inputName="email"
-            type="email"
-            value={email}
-            setChangeInput={setEmail}
-          />
-          <LoginInput
-            loading={loading}
-            id="password_field"
-            title="Password"
-            inputName="password"
-            type="password"
-            value={password}
-            setChangeInput={setPassword}
-          />
+          <FormGroup className="my-4">
+            <Label htmlFor="email_field">Email</Label>
+            <Input
+              id="email_field"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={loading ? true : false}
+            />
+          </FormGroup>
+          <FormGroup className="my-4">
+            <Label htmlFor="password_field">Password</Label>
+            <Input
+              id="password_field"
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={loading ? true : false}
+            />
+          </FormGroup>
           <div className="w-100 d-flex justify-content-between mb-3">
             <Link to="#!" style={{ textDecoration: "none" }} onClick={toggle}>
               Forgot Password?

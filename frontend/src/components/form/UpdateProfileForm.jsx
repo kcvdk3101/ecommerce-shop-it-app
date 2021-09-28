@@ -19,7 +19,7 @@ const UpdateProfileForm = ({
       <h1 className="mb-5">Update Profile</h1>
 
       <FormGroup>
-        <Label htmlFor="email_field">First Name</Label>
+        <Label htmlFor="firstName_field">First Name</Label>
         <Input
           type="text"
           id="firstName_field"
@@ -29,7 +29,7 @@ const UpdateProfileForm = ({
         />
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="email_field">Last Name</Label>
+        <Label htmlFor="lastName_field">Last Name</Label>
         <Input
           type="text"
           id="lastName_field"
