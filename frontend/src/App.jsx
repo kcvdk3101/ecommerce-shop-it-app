@@ -58,52 +58,13 @@ function App({ auth, loadUser }) {
   return (
     <>
       <Header />
-      <Container className="my-4">
-        <Route path="/" component={Home} exact>
-          {user && user.role === "admin" ? (
-            <Redirect to="/dashboard" />
-          ) : (
-            <Home />
-          )}
-        </Route>
-        <Route path="/search/:keyword" component={Search} />
-        <Route path="/product/:id" component={ProductDetails} exact />
-
-        <Route path="/cart" component={Cart} exact />
-        <ProtectedRoute path="/shipping" component={Shipping} />
-        <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />
-        <ProtectedRoute path="/success" component={OrderSuccess} />
-        {stripeApiKey && (
-          <Elements stripe={loadStripe(stripeApiKey)}>
-            <ProtectedRoute path="/payment" component={Payment} />
-          </Elements>
-        )}
-
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route
-          path="/password/reset/:token"
-          component={NewPasswordForm}
-          exact
-        />
-        <ProtectedRoute path="/me" component={Profile} exact />
-        <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
-        <ProtectedRoute
-          path="/password/update"
-          component={UpdatePassword}
-          exact
-        />
-
-        <ProtectedRoute path="/orders/me" component={ListOrders} exact />
-        <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
-      </Container>
-
       <ProtectedRoute
         path="/dashboard"
         isAdmin={true}
         component={Dashboard}
         exact
       />
+
       <ProtectedRoute
         path="/admin/products"
         isAdmin={true}
@@ -152,6 +113,46 @@ function App({ auth, loadUser }) {
         component={ProductReviews}
         exact
       />
+
+      <Container className="my-4">
+        <Route path="/" component={Home} exact>
+          {user && user.role === "admin" ? (
+            <Redirect to="/dashboard" />
+          ) : (
+            <Home />
+          )}
+        </Route>
+        <Route path="/search/:keyword" component={Search} />
+        <Route path="/product/:id" component={ProductDetails} exact />
+
+        <Route path="/cart" component={Cart} exact />
+        <ProtectedRoute path="/shipping" component={Shipping} />
+        <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />
+        <ProtectedRoute path="/success" component={OrderSuccess} />
+        {stripeApiKey && (
+          <Elements stripe={loadStripe(stripeApiKey)}>
+            <ProtectedRoute path="/payment" component={Payment} />
+          </Elements>
+        )}
+
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route
+          path="/password/reset/:token"
+          component={NewPasswordForm}
+          exact
+        />
+        <ProtectedRoute path="/me" component={Profile} exact />
+        <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+        <ProtectedRoute
+          path="/password/update"
+          component={UpdatePassword}
+          exact
+        />
+
+        <ProtectedRoute path="/orders/me" component={ListOrders} exact />
+        <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
+      </Container>
 
       {!loading && (!isAuthenticated || user.role !== "admin") && <Footer />}
     </>

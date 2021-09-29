@@ -40,6 +40,7 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get all products   =>   /api/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.query);
 
   const resPerPage = 6;
   const productsCount = await Product.countDocuments();
@@ -67,7 +68,6 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
 // Get all products (Admin)  =>   /api/v1/admin/products
 exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
-
   const products = await Product.find();
 
   res.status(200).json({

@@ -11,30 +11,31 @@ import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
 
 const ProductsList = ({
+  history,
+  product,
   getAdminProducts,
   deleteProduct,
-  history,
   clearErrors,
-  productsDB,
-  product,
+  products,
 }) => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { loading, error, products } = productsDB;
   const { error: deleteError, isDeleted } = product;
 
   useEffect(() => {
-    dispatch(getAdminProducts());
+    (async function () {
+      return getAdminProducts();
+    })();
 
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
+    if (products.error) {
+      alert.error(products.error);
+      clearErrors();
     }
 
     if (deleteError) {
       alert.error(deleteError);
-      dispatch(clearErrors());
+      clearErrors();
     }
 
     if (isDeleted) {
@@ -45,12 +46,12 @@ const ProductsList = ({
   }, [
     dispatch,
     alert,
-    error,
     deleteError,
     isDeleted,
-    history,
     getAdminProducts,
     clearErrors,
+    products,
+    history,
   ]);
 
   const setProducts = () => {
@@ -84,23 +85,23 @@ const ProductsList = ({
       rows: [],
     };
 
-    products.forEach((product) => {
+    products.products.forEach((p) => {
       data.rows.push({
-        id: product._id,
-        name: product.name,
-        price: `$${product.price}`,
-        stock: product.stock,
+        id: p._id,
+        name: p.name,
+        price: `$${p.price}`,
+        stock: p.stock,
         actions: (
           <Fragment>
             <Link
-              to={`/admin/product/${product._id}`}
+              to={`/admin/product/${p._id}`}
               className="btn btn-primary py-1 px-2"
             >
               <i className="fa fa-pencil"></i>
             </Link>
             <button
               className="btn btn-danger py-1 px-2 ml-2"
-              onClick={() => deleteProductHandler(product._id)}
+              onClick={() => deleteProductHandler(p._id)}
             >
               <i className="fa fa-trash"></i>
             </button>
@@ -113,7 +114,7 @@ const ProductsList = ({
   };
 
   const deleteProductHandler = (id) => {
-    dispatch(deleteProduct(id));
+    deleteProduct(id);
   };
 
   return (
@@ -128,7 +129,7 @@ const ProductsList = ({
           <Fragment>
             <h1 className="my-5">All Products</h1>
 
-            {loading ? (
+            {products.loading ? (
               <Loader />
             ) : (
               <MDBDataTable
@@ -148,7 +149,7 @@ const ProductsList = ({
 
 function mapStateToProps(state) {
   return {
-    productsDB: state.products,
+    products: state.products,
     product: state.product,
   };
 }
