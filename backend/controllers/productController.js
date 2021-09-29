@@ -41,7 +41,7 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 // Get all products   =>   /api/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
-  const resPerPage = 4;
+  const resPerPage = 6;
   const productsCount = await Product.countDocuments();
 
   const apiFeatures = new APIFeatures(Product.find(), req.query)
@@ -53,8 +53,6 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
   apiFeatures.pagination(resPerPage)
   products = await apiFeatures.query;
-
-  console.log(products);
 
 
   res.status(200).json({
@@ -174,7 +172,6 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
 })
 
-
 // Create new review   =>   /api/v1/review
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
@@ -215,7 +212,6 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   })
 
 })
-
 
 // Get Product Reviews   =>   /api/v1/reviews
 exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {

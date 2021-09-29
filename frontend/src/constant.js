@@ -1,5 +1,5 @@
 export const MIN = 1
-export const MAX = 2000
+export const MAX = 5000
 export const CATEGORIES = [
   "Phone", "Laptop", "Tablet", "Watch", "Headphone"
 ]

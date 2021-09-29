@@ -25,8 +25,6 @@ const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0)
 
     const response = await axios.get(link)
 
-    console.log(response);
-
     dispatch({
       type: ALL_PRODUCTS_SUCCESS,
       payload: response.data

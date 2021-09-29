@@ -1,13 +1,4 @@
 /* Cart */
-.cart-item {
-  margin: 1.8rem 0rem;
-  padding: 0rem 0.7rem;
-}
-
-.cart-item a {
-  color: grey;
-}
-
 #delete_cart_item {
   color: red;
   background: white;

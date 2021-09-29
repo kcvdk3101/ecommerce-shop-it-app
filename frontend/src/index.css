@@ -5,7 +5,7 @@
 /* Pages */
 @import url("./css/pages/admin.css");
 @import url("./css/pages/home.css");
-@import url("./css/pages/productDetail.css");
+@import url("./css/pages/productDetails.css");
 @import url("./css/pages/cart.css");
 @import url("./css/pages/checkout.css");
 @import url("./css/pages/profile.css");
@@ -40,6 +40,15 @@ h1 {
 
 a {
   text-decoration: none;
+}
+
+.carousel-control-next-icon {
+  background-image: url("https://snipstock.com/assets/cdn/png/6b18650e29228e0e8f6a28d27e18b063.png");
+}
+
+.carousel-control-prev-icon {
+  transform: scaleX(-1);
+  background-image: url("https://snipstock.com/assets/cdn/png/6b18650e29228e0e8f6a28d27e18b063.png");
 }
 
 /* Confirm Order */

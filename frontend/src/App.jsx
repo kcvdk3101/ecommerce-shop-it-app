@@ -29,7 +29,7 @@ import Header from "./components/layout/Header";
 // Order Imports
 import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
-import ProductDetails from "./components/product/ProductDetails";
+import ProductDetails from "./components/product/details/ProductDetails";
 import ProtectedRoute from "./components/route/ProtectedRoute";
 import Search from "./components/search/Search";
 // Auth or User imports

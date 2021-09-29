@@ -81,7 +81,7 @@ const ListOrders = ({ myOrders, getMyOrders, clearErrors }) => {
     <Fragment>
       <MetaData title={"My Orders"} />
 
-      <h1 className="my-5">My Orders</h1>
+      <h1 className="mb-3">My Orders</h1>
 
       {loading ? (
         <Loader />

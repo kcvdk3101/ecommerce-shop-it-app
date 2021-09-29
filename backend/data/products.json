@@ -1,147 +1,280 @@
 [
-    {
-        "name" : "SanDisk Ultra 128GB SDXC UHS-I Memory Card up to 80MB/s",
-        "price" : "45.89",
-        "description" : "Ultra-fast cards (2) to take better pictures and Full HD videos (1) with your compact to mid-range point-and-shoot cameras and camcorders. With SanDisk Ultra SDXC UHS-I cards you’ll benefit from faster downloads, high capacity, and better performance to capture and store 128GB (5) of high quality pictures and Full HD video (1). Take advantage of ultra-fast read speeds of up to 80MB/s (3) to save time moving photos and videos from the card to your computer. From a leader in flash memory storage, SanDisk Ultra SDXC UHS-I cards are compatible with SDHC and SDXC digital devices, and come with a 10-year limited warranty (6).",
-        "ratings" : 4.5,
-        "images" : [{
-            "public_id" : "products/dsvbpny402gelwugv2le",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg"
-        }],
-        "category" : "Electronics",
-        "seller" : "Ebay",
-        "stock" : 50,
-        "numOfReviews" : 32,
-        "reviews": []
-    },
-    {
-        "name" : "CAN USB FD Adapter (GC-CAN-USB-FD)",
-        "price" : "315.00",
-        "description" : "Monitor a CAN network, write a CAN program and communicate with industrial, medical, automotive or other CAN based device. Connect CAN FD and CAN networks to a computer via USB with the CAN USB FD adapter.",
-        "ratings" : 1.65,
-        "images" : [{
-            "public_id" : "products/61oXGZ60GfL_fixco9",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
-        }],
-        "category" : "Electronics",
-        "seller" : "Amazon",
-        "stock" : 0,
-        "numOfReviews" : 2,
-        "reviews": []
-    },
-    {
-        "name" : "CHARMOUNT Full Motion TV Wall Mount Swivel",
-        "price" : "26.99 ",
-        "description" : "CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3). CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3) CHARMOUNT TV MOUNT UNIVERSAL DESIGN - Has your TV been received? Tilted TV wall mount is for 26 - 55 TVs weight up to 88lbs 40 kg. Our tilt TV mount has a compatible faceplate that fits VESA 75X75mm (3x3).",
-        "ratings" : 3.5,
-        "images" : [{
-            "public_id" : "products/chairmount_nuubea",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1606231285/products/chairmount_nuubea.jpg"
-        }],
-        "category" : "Electronics",
-        "seller" : "Amazon",
-        "stock" : 1,
-        "numOfReviews" : 12,
-        "reviews": []
-    },
-    {
-        "name" : "Bose QuietComfort 35 II Wireless Bluetooth Headphones",
-        "price" : "299.00 ",
-        "description" : "What happens when you clear away the noisy distractions of the world? Concentration goes to the next level. You get deeper into your music, your work, or whatever you want to focus on. That’s the power of Bose QuietComfort 35 wireless headphones II. Put them on and get closer to what you’re most passionate about. And that’s just the beginning. QuietComfort 35 wireless headphones II are now enabled with Bose AR",
-        "ratings" : 4.5,
-        "images" : [{
-            "public_id" : "products/headphones_t2afnb",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1606231281/products/headphones_t2afnb.jpg"
-        }],
-        "category" : "Headphones",
-        "seller" : "Amazon",
-        "stock" : 11,
-        "numOfReviews" : 112,
-        "reviews": []
-    },
-    {
-        "name" : "Apple AirPods with Charging Case (Wired)",
-        "price" : "126.99 ",
-        "description" : "AirPods with Charging Case: More than 24 hours listening time, up to 18 hours talk time; AirPods (single charge): Up to 5 hours listening time, up to 3 hours talk time or 15 minutes in the case equals up to 3 hours listening time or up to 2 hours talk time.",
-        "ratings" : 4.8,
-        "images" : [{
-            "public_id" : "products/airpords_e5cqqr",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1606231282/products/airpords_e5cqqr.jpg"
-        }],
-        "category" : "Electronics",
-        "seller" : "Amazon",
-        "stock" : 122,
-        "numOfReviews" : 2671,
-        "reviews": []
-    },
-    {
-        "name" : "Cable Boom Microphone - Volume Control for Playstation PS4 or Xbox",
-        "price" : "27.99",
-        "description" : "DESIGN INFO - 3.5mm male to 2.5mm male audio cable adapter with Upgraded Flexible, Detachable Boom Mic which also enables rotary Volume Control and Mute Switch. SteelFlex Arm for perfect microphone positioning. INPUT COMPATIBILITY - Devices supporting 3.5mm audio output such as gaming PS4 / Xbox One controller, PC, Laptop, iPhone and Android Phone.",
-        "ratings" : 4.1,
-        "images" : [{
-            "public_id" : "products/eahhtj1bkn1k9gjgd3hn",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1606233125/products/eahhtj1bkn1k9gjgd3hn.jpg"
-        }],
-        "category" : "Accessories",
-        "seller" : "Amazon",
-        "stock" : 1123,
-        "numOfReviews" : 6,
-        "reviews": []
-    },
-    {
-        "name" : "Nikon D3500 W/ AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR Black ",
-        "price" : "496.95",
-        "description" : "You don't need to be a photographer to know a great photo when you see one. And you don't need to be a photographer to take a great photo—you just need the D3500. It's as easy to use as a point-and-shoot, but it takes beautiful DSLR photos and videos that get noticed. It feels outstanding in your hands, sturdy and balanced with controls where you want them. It's compact, durable and versatile, ideal for travel. And it works seamlessly with compatible smartphones, making it easier than ever to share your great photos. Even if you've never picked up a DSLR camera, you can take beautiful pictures with D3500.",
-        "ratings" : 4.7,
-        "images" : [{
-            "public_id" : "products/camera_ridc0i",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1606231283/products/camera_ridc0i.jpg"
-        }],
-        "category" : "Cameras",
-        "seller" : "Amazon",
-        "stock" : 131,
-        "numOfReviews" : 222,
-        "reviews": []
-    },
-    {
-        "name" : "Apple MacBook Air (13-inch, 8GB RAM, 256GB SSD Storage) - Space Gray ",
-        "price" : "949.99",
-        "description" : "Stunning 13.3-inch Retina display with True Tone technology, Backlit Magic Keyboard and Touch ID, Tenth-generation, Intel Core i3 processor, Intel Iris Plus Graphics, Fast SSD storage, 8GB of memory, Stereo speakers with wider stereo sound",
-        "ratings" : 4.9,
-        "images" : [{
-            "public_id" : "products/macbook_o2cj2k",
-            "url" : "https://res.cloudinary.com/bookit/image/upload/v1606231282/products/macbook_o2cj2k.jpg"
-        }],
-        "category" : "Laptops",
-        "seller" : "Amazon",
-        "stock" : 0,
-        "numOfReviews" : 56,
-        "reviews": []
-    },
-    {
-        "name" : "Kauffman Orchards Homegrown McIntosh Apples",
-        "price" : "2.75",
-        "description" : "McIntosh is a pretty red/green apple with white flesh Homegrown in Kauffman's orchard in healthy Lancaster County soil McIntosh apples are famous for snacking, pies, salads, and applesauce Protected with soft, high-density foam for safe shipping to your door Not for sale to California, Oregon, or Washington due to state laws governing fresh produce",
-        "ratings" : 5,
-        "images" : [
-            {
-                "public_id" : "products/wmoa49q9e70ze9xtcra2",
-                "url" : "https://res.cloudinary.com/bookit/image/upload/v1606293153/products/wmoa49q9e70ze9xtcra2.jpg"
-            },
-            {
-                "public_id" : "products/i0k1wdwi5hrpmzwxvsds",
-                "url" : "https://res.cloudinary.com/bookit/image/upload/v1606293152/products/i0k1wdwi5hrpmzwxvsds.jpg" 
-            },
-            {
-                "public_id" : "products/bshmuo9qisfhz4azvnsd",
-                "url" : "https://res.cloudinary.com/bookit/image/upload/v1606293153/products/bshmuo9qisfhz4azvnsd.jpg"
-            }
+  {
+    "name": "Apple MacBook Air M1 256GB 2020",
+    "price": "1226.73",
+    "description": "As a product line with a slim, luxurious and sophisticated design along with an affordable price, MacBook Air has attracted a large number of users to love and choose.One of the latest versions that customers cannot ignore is the MacBook Air M1.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook-air_m1_13825620_01_nb1et9",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632107484/products/laptop/macbook/laptop_macbook-air_m1_13825620_01_nb1et9.jpg"
+      },
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook-air_m1_13825620_02_iz0kbc",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632107484/products/laptop/macbook/laptop_macbook-air_m1_13825620_02_iz0kbc.jpg"
+      },
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook-air_m1_13825620_03_ndc3tx",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632107484/products/laptop/macbook/laptop_macbook-air_m1_13825620_03_ndc3tx.jpg"
+      },
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook_air_m1_13825620_04_boceut",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632729791/products/laptop/macbook/laptop_macbook_air_m1_13825620_04_boceut.jpg"
+      }
     ],
-        "category" : "Food",
-        "seller" : "Kauffman's Fruit Farm & Market",
-        "stock" : 500,
-        "numOfReviews" : 1,
-        "reviews": []
-    }
+    "category": "Laptop",
+    "seller": "Apple Store",
+    "stock": 100,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Apple MacBook Air M1 512GB 2020",
+    "price": "1449.15",
+    "description": "Apple is one of the most famous manufacturers of electronic devices in the world. Each Apple product line launches versions with different internal memory capacities. Coming to the Air M1, Apple also launched the version with the highest capacity, which is the Apple MacBook Air M1 512GB 2020..",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_01_drewwc",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632729956/products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_01_drewwc.jpg"
+      },
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_02_fniqfj",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632729957/products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_02_fniqfj.jpg"
+      },
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_03_yu9kbn",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632729958/products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_03_yu9kbn.jpg"
+      },
+      {
+        "public_id": "products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_04_wel2gm",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632729958/products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_04_wel2gm.jpg"
+      }
+    ],
+    "category": "Laptop",
+    "seller": "Apple Store",
+    "stock": 20,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Laptop ASUS VivoBook 15 A515EA",
+    "price": "675.00",
+    "description": "ASUS VivoBook 15 A515EA laptop is a genuine, quality machine, capable of effectively meeting all office tasks. In addition, the machine is always equipped with an SSD memory drive with the ability to increase fast processing speed to bring interesting experiences to users..",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/laptop/asus/laptop_asus_vivobook_15__15451220_01_v2wqwp",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730353/products/laptop/asus/laptop_asus_vivobook_15__15451220_01_v2wqwp.jpg"
+      },
+      {
+        "public_id": "products/laptop/asus/laptop_asus_vivobook_15__15451220_02_jrcehn",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730353/products/laptop/asus/laptop_asus_vivobook_15__15451220_02_jrcehn.jpg"
+      },
+      {
+        "public_id": "products/laptop/asus/laptop_asus_vivobook_15__15451220_03_ez6iqx",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730353/products/laptop/asus/laptop_asus_vivobook_15__15451220_03_ez6iqx.jpg"
+      },
+      {
+        "public_id": "products/laptop/asus/laptop_asus_vivobook_15__15451220_04_ogzyn5",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730353/products/laptop/asus/laptop_asus_vivobook_15__15451220_04_ogzyn5.jpg"
+      }
+    ],
+    "category": "Laptop",
+    "seller": "ASUS",
+    "stock": 50,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Laptop ASUS ZenBook Flip",
+    "price": "1174.18",
+    "description": "This new ASUS ZenBook has an elegant & premium design, using a sturdy monolithic shell to increase the durability of the machine when used at all times. The weight of only 1.3 kg and the thinness of 13.9 mm make ZenBook Flip 13 convenient for users. Overall ZenBook Flip 13 also has a luxurious gray color.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/laptop/asus/laptop_asus_zenbook_flip_13851220_01_k1lukm",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730354/products/laptop/asus/laptop_asus_zenbook_flip_13851220_01_k1lukm.jpg"
+      },
+      {
+        "public_id": "products/laptop/asus/laptop_asus_zenbook_flip_13851220_02_k5cdls",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730354/products/laptop/asus/laptop_asus_zenbook_flip_13851220_02_k5cdls.jpg"
+      },
+      {
+        "public_id": "products/laptop/asus/laptop_asus_zenbook_flip_13851220_03_nj8ext",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730353/products/laptop/asus/laptop_asus_zenbook_flip_13851220_03_nj8ext.jpg"
+      },
+      {
+        "public_id": "products/laptop/asus/laptop_asus_zenbook_flip_13851220_04_nxrvzh",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730353/products/laptop/asus/laptop_asus_zenbook_flip_13851220_04_nxrvzh.jpg"
+      }
+    ],
+    "category": "Laptop",
+    "seller": "ASUS",
+    "stock": 100,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Apple AirPods Pro Wireless Charge",
+    "price": "299.00",
+    "description": "The AirPods model first appeared in 2016, after many design and configuration upgrades, the genuine bluetooth headset model is increasingly being perfected. Recently, Apple has announced the latest AirPods headset model - Apple Airpods Pro bluetooth headset - with a new design and many new features.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/headphone/apple/headphone_apple_airpods_pro_01_wivvlm",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732448/products/headphone/apple/headphone_apple_airpods_pro_01_wivvlm.jpg"
+      },
+      {
+        "public_id": "products/headphone/apple/headphone_apple_airpods_pro_02_egwmqb",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732448/products/headphone/apple/headphone_apple_airpods_pro_02_egwmqb.jpg"
+      },
+      {
+        "public_id": "products/headphone/apple/headphone_apple_airpods_pro_03_pharlj",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732448/products/headphone/apple/headphone_apple_airpods_pro_03_pharlj.jpg"
+      }
+    ],
+    "category": "Headphone",
+    "seller": "Apple Store",
+    "stock": 200,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Samsung Galaxy Tab S7 Plus",
+    "price": "899.00",
+    "description": "Samsung Corporation has launched Samsung Galaxy Tab S7 Plus tablets. This is considered a tablet equipped with the most modern features and extremely long battery life, helping to solve the worry of battery shortage for all day use..",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_01_uxaxsf",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732004/products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_01_uxaxsf.jpg"
+      },
+      {
+        "public_id": "products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_02_ggbgfv",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732004/products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_02_ggbgfv.jpg"
+      },
+      {
+        "public_id": "products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_03_pfdxil",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732004/products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_03_pfdxil.jpg"
+      },
+      {
+        "public_id": "products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_04_v0ixes",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732004/products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_04_v0ixes.jpg"
+      }
+    ],
+    "category": "Tablet",
+    "seller": "Samsung",
+    "stock": 150,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "iPhone 12 Pro Max 256GB",
+    "price": "1099.00",
+    "description": "With a performance configuration that can be said to be the strongest in 2020 as well as maintain this strength for many more years. Requires high storage capacity of iPhone to avoid lack of space. iPhone 12 Pro Max 256GB will be the best choice for you.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/phone/apple/phone_apple_12_pro_max_256_01_xvstze",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730977/products/phone/apple/phone_apple_12_pro_max_256_01_xvstze.jpg"
+      },
+      {
+        "public_id": "products/phone/apple/phone_apple_12_pro_max_256_02_lip7sx",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730976/products/phone/apple/phone_apple_12_pro_max_256_02_lip7sx.jpg"
+      },
+      {
+        "public_id": "products/phone/apple/phone_apple_12_pro_max_256_03_sy4ciy",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632730976/products/phone/apple/phone_apple_12_pro_max_256_03_sy4ciy.jpg"
+      }
+    ],
+    "category": "Phone",
+    "seller": "Apple Store",
+    "stock": 0,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Samsung Galaxy Z Fold2 5G",
+    "price": "1999.00",
+    "description": "Samsung Z Fold 2 is designed with perfectly curved edges to provide certainty when in use. Similar to the first Galaxy Fold, the second generation continues to be designed with a vertical folding mechanism. Specifically, the device will have 2 screens with a secondary screen size of 6.23 inches and 7.6 inches for the main screen.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/phone/samsung/phone_samsung_galaxy_z_fold2_5g_01_lsnt29",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632731239/products/phone/samsung/phone_samsung_galaxy_z_fold2_5g_01_lsnt29.jpg"
+      },
+      {
+        "public_id": "products/phone/samsung/phone_samsung_galaxy_z_fold2_5g_02_gjw5sj",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632731239/products/phone/samsung/phone_samsung_galaxy_z_fold2_5g_02_gjw5sj.jpg"
+      },
+      {
+        "public_id": "products/phone/samsung/phone_samsung_galaxy_z_fold2_5g_03_alpnvb",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632731240/products/phone/samsung/phone_samsung_galaxy_z_fold2_5g_03_alpnvb.jpg"
+      }
+    ],
+    "category": "Phone",
+    "seller": "Samsung",
+    "stock": 0,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Samsung Galaxy Watch Active 2 (4G) Genuine Aluminum",
+    "price": "165.00",
+    "description": "Samsung Galaxy Watch Active 2 44mm Genuine Aluminum Case is owning a good price with many attractive incentives, installment support, nationwide delivery.",
+    "ratings": 5,
+    "images": [
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_4g_01_mvivom",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_4g_01_mvivom.jpg"
+      },
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_4g_02_fu2voy",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_4g_02_fu2voy.jpg"
+      },
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_4g_03_n4me5l",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_4g_03_n4me5l.jpg"
+      },
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_4g_04_tftzio",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_4g_04_tftzio.jpg"
+      }
+    ],
+    "category": "Watch",
+    "seller": "Samsung",
+    "stock": 500,
+    "numOfReviews": 0,
+    "reviews": []
+  },
+  {
+    "name": "Samsung Galaxy Watch Active 2 (4G) Genuine Steel",
+    "price": "225.00",
+    "description": "Samsung Galaxy Watch Active 2 40mm Steel Case is having a very good price with many attractive offers. Galaxy Watch Active 2 40mm steel case is suitable for users with small hands with a solid design that feels good in the hand.",
+    "ratings": 0,
+    "images": [
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_01_uljzuz",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_01_uljzuz.jpg"
+      },
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_02_o7prkb",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_02_o7prkb.jpg"
+      },
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_03_nvz2y0",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_03_nvz2y0.jpg"
+      },
+      {
+        "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_04_wcv4lv",
+        "url": "https://res.cloudinary.com/khoivuong/image/upload/v1632732271/products/watch/samsung/watch_samsung_galaxy_active_2_04_wcv4lv.jpg"
+      }
+    ],
+    "category": "Watch",
+    "seller": "Samsung",
+    "stock": 300,
+    "numOfReviews": 0,
+    "reviews": []
+  }
 ]

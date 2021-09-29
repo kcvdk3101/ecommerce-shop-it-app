@@ -134,7 +134,6 @@ const Header = ({ logout, auth, cart }) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state.auth);
   return {
     auth: state.auth,
     cart: state.cart,
