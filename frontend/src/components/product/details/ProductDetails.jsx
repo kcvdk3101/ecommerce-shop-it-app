@@ -4,7 +4,7 @@ import { connect, useDispatch } from "react-redux";
 import { Col, Row } from "reactstrap";
 import cartActions from "../../../actions/cartActions";
 import { clearErrors } from "../../../actions/clearErrors";
-import productsAction from "../../../actions/productActions";
+import productActions from "../../../actions/productActions";
 import { NEW_REVIEW_RESET } from "../../../constants/productConstants";
 import ProductDetailsCarousel from "./ProductDetailsCarousel";
 import ProductDetailsDescription from "./ProductDetailsDescription";
@@ -135,6 +135,7 @@ const ProductDetails = ({
               <ProductDetailsDescription
                 user={user}
                 product={product}
+                comment={comment}
                 setComment={setComment}
                 setUserRatings={setUserRatings}
                 quantity={quantity}
@@ -163,8 +164,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getProductDetails: productsAction.getProductDetails,
-  addNewReview: productsAction.newReview,
+  getProductDetails: productActions.getProductDetails,
+  addNewReview: productActions.newReview,
   addItemToCart: cartActions.addItemToCart,
   clearErrors: clearErrors,
 };

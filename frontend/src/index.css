@@ -51,6 +51,18 @@ a {
   background-image: url("https://snipstock.com/assets/cdn/png/6b18650e29228e0e8f6a28d27e18b063.png");
 }
 
+.stockCounter input {
+  border: none;
+  width: 3rem;
+  text-align: center;
+}
+
+.stockCounter input::-webkit-outer-spin-button,
+.stockCounter input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* Confirm Order */
 .order-confirm p,
 .order-details p {

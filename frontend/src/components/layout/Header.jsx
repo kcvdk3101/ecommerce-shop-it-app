@@ -120,7 +120,7 @@ const Header = ({ logout, auth, cart }) => {
                 </Dropdown>
               ) : (
                 !loading && (
-                  <Link to="/login" className="btn bg-warning" id="login_btn">
+                  <Link to="/login" className="btn btn-warning text-white">
                     Login
                   </Link>
                 )

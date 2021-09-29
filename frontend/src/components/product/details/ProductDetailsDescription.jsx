@@ -1,9 +1,10 @@
 import React from "react";
-import { Alert, Button, ListGroup, ListGroupItem } from "reactstrap";
+import { Alert, Button, Input, ListGroup, ListGroupItem } from "reactstrap";
 
 const ProductDetailsDescription = ({
   user,
   product,
+  comment,
   setComment,
   setUserRatings,
   quantity,
@@ -33,23 +34,19 @@ const ProductDetailsDescription = ({
       <ListGroupItem>
         <p className="fw-bold fs-2">${product.price}</p>
         <div className="stockCounter d-inline">
-          <span className="btn btn-danger minus" onClick={decreaseQty}>
+          <Button color="primary" className="py-1 px-2" onClick={decreaseQty}>
             -
-          </span>
+          </Button>
 
-          <input
-            type="number"
-            className="form-control count d-inline"
-            value={quantity}
-          />
+          <Input type="number" className="d-inline" value={quantity} readOnly />
 
-          <span className="btn btn-primary plus" onClick={increaseQty}>
+          <Button color="danger" className="py-1 px-2" onClick={increaseQty}>
             +
-          </span>
+          </Button>
         </div>
         <Button
           color={product.stock <= 0 ? "secondary" : "warning"}
-          className="rounded-pill ms-4 text-white"
+          className="rounded-pill ms-4 px-4 text-white"
           onClick={addToCart}
           disabled={product.stock <= 0}
         >
@@ -138,6 +135,7 @@ const ProductDetailsDescription = ({
                       name="review"
                       id="review"
                       className="form-control mt-3"
+                      value={comment}
                       onChange={(e) => setComment(e.target.value)}
                     ></textarea>
 

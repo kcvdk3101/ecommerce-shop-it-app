@@ -224,7 +224,8 @@ const deleteReview = (id, productId) => async (dispatch) => {
     })
   }
 }
-const productsAction = {
+
+const productActions = {
   getProducts,
   newProduct,
   deleteProduct,
@@ -236,4 +237,4 @@ const productsAction = {
   deleteReview,
 }
 
-export default productsAction
+export default productActions
