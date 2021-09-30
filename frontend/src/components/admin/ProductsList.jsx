@@ -24,9 +24,7 @@ const ProductsList = ({
   const { error: deleteError, isDeleted } = product;
 
   useEffect(() => {
-    (async function () {
-      return getAdminProducts();
-    })();
+    getAdminProducts();
 
     if (products.error) {
       alert.error(products.error);

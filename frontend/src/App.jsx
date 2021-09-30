@@ -58,63 +58,8 @@ function App({ auth, loadUser }) {
   return (
     <>
       <Header />
-      <ProtectedRoute
-        path="/dashboard"
-        isAdmin={true}
-        component={Dashboard}
-        exact
-      />
 
-      <ProtectedRoute
-        path="/admin/products"
-        isAdmin={true}
-        component={ProductsList}
-        exact
-      />
-      <ProtectedRoute
-        path="/admin/product"
-        isAdmin={true}
-        component={NewProduct}
-        exact
-      />
-      <ProtectedRoute
-        path="/admin/product/:id"
-        isAdmin={true}
-        component={UpdateProduct}
-        exact
-      />
-      <ProtectedRoute
-        path="/admin/orders"
-        isAdmin={true}
-        component={OrdersList}
-        exact
-      />
-      <ProtectedRoute
-        path="/admin/order/:id"
-        isAdmin={true}
-        component={ProcessOrder}
-        exact
-      />
-      <ProtectedRoute
-        path="/admin/users"
-        isAdmin={true}
-        component={UsersList}
-        exact
-      />
-      <ProtectedRoute
-        path="/admin/user/:id"
-        isAdmin={true}
-        component={UpdateUser}
-        exact
-      />
-      <ProtectedRoute
-        path="/admin/reviews"
-        isAdmin={true}
-        component={ProductReviews}
-        exact
-      />
-
-      <Container className="my-4">
+      <Container fluid>
         <Route path="/" component={Home} exact>
           {user && user.role === "admin" ? (
             <Redirect to="/dashboard" />
@@ -152,6 +97,62 @@ function App({ auth, loadUser }) {
 
         <ProtectedRoute path="/orders/me" component={ListOrders} exact />
         <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
+
+        <ProtectedRoute
+          path="/dashboard"
+          isAdmin={true}
+          component={Dashboard}
+          exact
+        />
+
+        <ProtectedRoute
+          path="/admin/products"
+          isAdmin={true}
+          component={ProductsList}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/product"
+          isAdmin={true}
+          component={NewProduct}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/product/:id"
+          isAdmin={true}
+          component={UpdateProduct}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/orders"
+          isAdmin={true}
+          component={OrdersList}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/order/:id"
+          isAdmin={true}
+          component={ProcessOrder}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/users"
+          isAdmin={true}
+          component={UsersList}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/user/:id"
+          isAdmin={true}
+          component={UpdateUser}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/reviews"
+          isAdmin={true}
+          component={ProductReviews}
+          exact
+        />
       </Container>
 
       {!loading && (!isAuthenticated || user.role !== "admin") && <Footer />}

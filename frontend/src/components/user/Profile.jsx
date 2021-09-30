@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Button, Col, Row } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Button, Col, Container, Row } from "reactstrap";
+import convertToDateString from "../../utils/convertToDateString";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
-import convertToDateString from "../../utils/convertToDateString";
 
 const Profile = () => {
   const { user, loading } = useSelector((state) => state.auth);
 
   return (
-    <>
+    <Container className="my-4">
       <MetaData title={"Your Profile"} />
       <h1 className="mb-3" style={{ fontFamily: "'Pacifico', cursive" }}>
         My Profile
@@ -83,7 +83,7 @@ const Profile = () => {
           </Col>
         </Row>
       )}
-    </>
+    </Container>
   );
 };
 

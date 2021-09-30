@@ -28,7 +28,7 @@ const ProductDetailsCarousel = ({ product }) => {
       return (
         <CarouselItem key={image._id}>
           <img
-            class="mx-auto d-block rounded w-100"
+            class="mx-auto d-block rounded"
             src={image.url}
             alt={product.name}
           />

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { connect, useDispatch } from "react-redux";
-import { Col, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import productActions from "../../actions/productActions";
 import { CATEGORIES, MAX, MIN, RATINGS } from "../../constant";
 import ProductCardView from "../common/ProductCardView";
@@ -61,7 +61,7 @@ export const Search = ({ productsDB, match, getProducts }) => {
   }
 
   return (
-    <>
+    <Container className="my-4">
       <MetaData title="Search" />
       <Row>
         <Col xs={12} lg={3} className="my-2">
@@ -150,7 +150,7 @@ export const Search = ({ productsDB, match, getProducts }) => {
           </Col>
         )}
       </Row>
-    </>
+    </Container>
   );
 };
 

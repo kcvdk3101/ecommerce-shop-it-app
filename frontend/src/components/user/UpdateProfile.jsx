@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
-import { Col, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import userActions from "../../actions/userActions";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
@@ -66,7 +66,7 @@ const UpdateProfile = ({
     );
   };
   return (
-    <>
+    <Container className="my-4">
       <MetaData title={"Update Profile"} />
       <Row className="d-flex justify-content-center align-items-center">
         <Col xs={12} lg={5}>
@@ -84,7 +84,7 @@ const UpdateProfile = ({
           />
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 

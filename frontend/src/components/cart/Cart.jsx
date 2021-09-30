@@ -3,7 +3,15 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import cartActions from "../../actions/cartActions";
 import MetaData from "../layout/MetaData";
-import { Row, Col, ListGroup, ListGroupItem, Button, Input } from "reactstrap";
+import {
+  Row,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  Button,
+  Input,
+  Container,
+} from "reactstrap";
 
 const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
   const { cartItems } = cart;
@@ -37,7 +45,7 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
   };
 
   return (
-    <>
+    <Container className="my-4">
       <MetaData title={"Your Cart"} />
       {cartItems.length === 0 ? (
         <h2 className="mb-5" style={{ height: "50vh" }}>
@@ -119,21 +127,15 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
               </ListGroup>
             </Col>
 
-            <Col xs={12} lg={3} className="my-4 my-lg-0">
+            <Col xs={12} lg={4} className="my-4 my-lg-0">
               <ListGroup flush className="border py-4 px-4 rounded-3">
                 <ListGroupItem>
                   <h4>Order Summary</h4>
                 </ListGroupItem>
                 <ListGroupItem>
                   <p className="fs-5">
-                    Subtotal:{" "}
-                    <span className="fw-bold float-end">
-                      {totalItems} ({totalItems > 1 ? "Items" : "Item"})
-                    </span>
-                  </p>
-                  <p className="fs-5">
                     Total:{" "}
-                    <span className="fw-bold float-end">
+                    <span className="fw-bold">
                       $
                       {cartItems
                         .reduce(
@@ -141,6 +143,9 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
                           0
                         )
                         .toFixed(2)}
+                    </span>
+                    <span className="fw-bold float-end">
+                      ({totalItems} {totalItems > 1 ? "Items" : "Item"})
                     </span>
                   </p>
                 </ListGroupItem>
@@ -159,7 +164,7 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
           </Row>
         </>
       )}
-    </>
+    </Container>
   );
 };
 

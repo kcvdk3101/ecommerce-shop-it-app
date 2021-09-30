@@ -15,7 +15,7 @@ const UpdateProfileForm = ({
   setEmail,
 }) => {
   return (
-    <Form className="p-5" onSubmit={submitHandler}>
+    <Form className="p-3" onSubmit={submitHandler}>
       <h1 className="mb-5">Update Profile</h1>
 
       <FormGroup>

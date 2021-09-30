@@ -12,7 +12,7 @@ import {
   UPDATE_PRODUCT_SUCCESS
 } from '../constants/productConstants';
 
-
+// Get all products
 const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0) => async (dispatch) => {
   try {
     dispatch({ type: ALL_PRODUCTS_REQUEST })
@@ -38,6 +38,7 @@ const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0)
   }
 }
 
+// Create new product (ADMIN)
 const newProduct = (productData) => async (dispatch) => {
   try {
 
@@ -64,7 +65,7 @@ const newProduct = (productData) => async (dispatch) => {
   }
 }
 
-// Delete product (Admin)
+// Delete product (ADMIN)
 const deleteProduct = (id) => async (dispatch) => {
   try {
 
@@ -112,6 +113,7 @@ const updateProduct = (id, productData) => async (dispatch) => {
   }
 }
 
+// Get product details
 const getProductDetails = (id) => async (dispatch) => {
   try {
 
@@ -132,6 +134,7 @@ const getProductDetails = (id) => async (dispatch) => {
   }
 }
 
+// Create new review
 const newReview = (reviewData) => async (dispatch) => {
   try {
 
@@ -158,6 +161,7 @@ const newReview = (reviewData) => async (dispatch) => {
   }
 }
 
+// Get all products (ADMIN)
 const getAdminProducts = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_PRODUCTS_REQUEST })

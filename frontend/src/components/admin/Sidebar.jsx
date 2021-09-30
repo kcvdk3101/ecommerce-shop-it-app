@@ -8,7 +8,7 @@ const Sidebar = () => {
         <ul className="list-unstyled components">
           <li>
             <Link to="/dashboard">
-              <i className="fa fa-tachometer"></i> Dashboard
+              <ion-icon name="cube"></ion-icon> Dashboard
             </Link>
           </li>
 
@@ -17,9 +17,9 @@ const Sidebar = () => {
               href="#productSubmenu"
               data-toggle="collapse"
               aria-expanded="false"
-              className="dropdown-toggle"
+              class="dropdown-toggle"
             >
-              <i className="fa fa-product-hunt"></i> Products
+              <ion-icon name="logo-dropbox"></ion-icon> Products
             </a>
             <ul className="collapse list-unstyled" id="productSubmenu">
               <li>
