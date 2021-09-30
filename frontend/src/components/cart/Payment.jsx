@@ -6,9 +6,18 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { connect } from "react-redux";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Button,
+} from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import orderActions from "../../actions/orderActions";
 import MetaData from "../layout/MetaData";
@@ -36,9 +45,18 @@ const Payment = ({
   const { user } = auth;
   const { cartItems, shippingInfo } = cart;
   const { error } = newOrder;
+  const order = {
+    orderItems: cartItems,
+    shippingInfo,
+    itemsPrice: 0,
+    shippingPrice: 0,
+    taxPrice: 0,
+    totalPrice: 0,
+  };
 
   const alert = useAlert();
 
+  const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -48,11 +66,6 @@ const Payment = ({
       clearErrors();
     }
   }, [alert, clearErrors, error]);
-
-  const order = {
-    orderItems: cartItems,
-    shippingInfo,
-  };
 
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   if (orderInfo) {
@@ -68,26 +81,20 @@ const Payment = ({
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    document.querySelector("#pay_btn").disabled = true;
-
-    let res;
+    setLoading(true);
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      res = await axios.post("/api/v1/payment/process", paymentData, config);
-
-      const clientSecret = res.data.client_secret;
-
-      console.log(clientSecret);
-
-      if (!stripe || !elements) {
-        return;
-      }
+      const response = await axios.post(
+        "/api/v1/payment/process",
+        paymentData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const clientSecret = response.data.client_secret;
+      //
+      if (!stripe || !elements) return;
 
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -101,9 +108,9 @@ const Payment = ({
 
       if (result.error) {
         alert.error(result.error.message);
-        document.querySelector("#pay_btn").disabled = false;
+        setLoading(false);
       } else {
-        // The payment is processed or not
+        // Check payment
         if (result.paymentIntent.status === "succeeded") {
           order.paymentInfo = {
             id: result.paymentIntent.id,
@@ -111,65 +118,70 @@ const Payment = ({
           };
 
           createOrder(order);
-
+          localStorage.setItem("cartItems", null);
           history.push("/success");
         } else {
           alert.error("There is some issue while payment processing");
         }
       }
     } catch (error) {
-      document.querySelector("#pay_btn").disabled = false;
+      setLoading(false);
       alert.error(error.response.data.message);
     }
   };
 
   return (
-    <Fragment>
+    <Container className="my-4">
       <MetaData title={"Payment"} />
 
       <CheckoutSteps shipping confirmOrder payment />
 
-      <div className="row wrapper">
-        <div className="col-10 col-lg-5">
-          <form className="shadow-lg" onSubmit={submitHandler}>
-            <h1 className="mb-4">Card Info</h1>
-            <div className="form-group">
-              <label htmlFor="card_num_field">Card Number</label>
+      <Row className="d-flex justify-content-center align-items-center">
+        <Col xs={10} lg={5}>
+          <Form onSubmit={submitHandler}>
+            <h1 className="mb-4">Card Information</h1>
+            <FormGroup>
+              <Label htmlFor="card_num_field">Card Number</Label>
               <CardNumberElement
                 type="text"
                 id="card_num_field"
                 className="form-control"
                 options={options}
               />
-            </div>
+            </FormGroup>
 
-            <div className="form-group">
-              <label htmlFor="card_exp_field">Card Expiry</label>
+            <FormGroup>
+              <Label htmlFor="card_exp_field">Card Expiry</Label>
               <CardExpiryElement
                 type="text"
                 id="card_exp_field"
                 className="form-control"
                 options={options}
               />
-            </div>
+            </FormGroup>
 
-            <div className="form-group">
-              <label htmlFor="card_cvc_field">Card CVC</label>
+            <FormGroup>
+              <Label htmlFor="card_cvc_field">Card CVC</Label>
               <CardCvcElement
                 type="text"
                 id="card_cvc_field"
                 className="form-control"
                 options={options}
               />
-            </div>
+            </FormGroup>
 
-            <button id="pay_btn" type="submit" className="btn btn-block py-3">
+            <Button
+              block
+              color="warning"
+              className="py-2 text-white"
+              disabled={loading ? true : false}
+            >
               Pay {` - ${orderInfo && orderInfo.totalPrice}`}
-            </button>
-          </form>
-        </div>
-      </div>
-    </Fragment>
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

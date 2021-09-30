@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import orderActions from "../../actions/orderActions";
 import Loader from "../layout/Loader";
@@ -9,21 +10,17 @@ import MetaData from "../layout/MetaData";
 
 const OrderDetails = ({
   match,
+  auth,
   orderDetails,
   getOrderDetails,
   clearErrors,
 }) => {
   const alert = useAlert();
 
+  const { user } = auth;
   const { loading, error, order = {} } = orderDetails;
-  const {
-    shippingInfo,
-    orderItems,
-    paymentInfo,
-    user,
-    totalPrice,
-    orderStatus,
-  } = order;
+  const { shippingInfo, orderItems, paymentInfo, totalPrice, orderStatus } =
+    order;
 
   useEffect(() => {
     getOrderDetails(match.params.id);
@@ -42,93 +39,86 @@ const OrderDetails = ({
     paymentInfo && paymentInfo.status === "succeeded" ? true : false;
 
   return (
-    <Fragment>
+    <Container className="my-4">
       <MetaData title={"Order Details"} />
 
       {loading ? (
         <Loader />
       ) : (
-        <Fragment>
-          <div className="row d-flex justify-content-between">
-            <div className="col-12 col-lg-8 mt-5 order-details">
-              <h1 className="my-5">Order # {order._id}</h1>
-
-              <h4 className="mb-4">Shipping Info</h4>
-              <p>
-                <b>Name:</b> {user && user.name}
-              </p>
-              <p>
-                <b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}
-              </p>
-              <p className="mb-4">
-                <b>Address:</b>
-                {shippingDetails}
-              </p>
-              <p>
-                <b>Amount:</b> ${totalPrice}
-              </p>
-
-              <hr />
-
-              <h4 className="my-4">Payment</h4>
-              <p className={isPaid ? "greenColor" : "redColor"}>
-                <b>{isPaid ? "PAID" : "NOT PAID"}</b>
-              </p>
-
-              <h4 className="my-4">Order Status:</h4>
-              <p
-                className={
-                  order.orderStatus &&
-                  String(order.orderStatus).includes("Delivered")
-                    ? "greenColor"
-                    : "redColor"
-                }
-              >
-                <b>{orderStatus}</b>
-              </p>
-
-              <h4 className="my-4">Order Items:</h4>
-
-              <hr />
-              <div className="cart-item my-1">
+        <Row className="d-flex justify-content-center">
+          <Col xs={12} lg={8}>
+            <ListGroup flush>
+              <ListGroupItem>
+                <h1 className="my-5">Order # {order._id}</h1>
+                <h4 className="mb-4">Shipping Information</h4>
+                <p>
+                  <b>Name:</b> {user && user.firstName} {user && user.lastName}
+                </p>
+                <p>
+                  <b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}
+                </p>
+                <p className="mb-4">
+                  <b>Address:</b> {shippingDetails}
+                </p>
+                <p>
+                  <b>Amount:</b> ${totalPrice}
+                </p>
+              </ListGroupItem>
+              <ListGroupItem>
+                <h4 className="my-4">Payment</h4>
+                <p className={isPaid ? "text-success" : "text-danger"}>
+                  <b>{isPaid ? "PAID" : "NOT PAID"}</b>
+                </p>
+                <h4 className="my-4">Order Status:</h4>
+                <p
+                  className={
+                    order.orderStatus &&
+                    String(order.orderStatus).includes("Delivered")
+                      ? "text-success"
+                      : "text-danger"
+                  }
+                >
+                  <b>{orderStatus}</b>
+                </p>
+                <h4 className="my-4">Order Items:</h4>
+              </ListGroupItem>
+              <ListGroupItem>
                 {orderItems &&
                   orderItems.map((item) => (
-                    <div key={item.product} className="row my-5">
-                      <div className="col-4 col-lg-2">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          height="45"
-                          width="65"
-                        />
-                      </div>
+                    <Row
+                      key={item.product}
+                      className="d-flex justify-content-center align-items-center"
+                    >
+                      <Col xs={4} lg={2}>
+                        <img src={item.image} alt={item.name} width="100%" />
+                      </Col>
 
-                      <div className="col-5 col-lg-5">
+                      <Col xs={5} lg={5}>
                         <Link to={`/products/${item.product}`}>
                           {item.name}
                         </Link>
-                      </div>
+                      </Col>
 
-                      <div className="col-4 col-lg-2 mt-4 mt-lg-0">
+                      <Col xs={4} lg={2} className="mt-4 mt-lg-0">
                         <p>${item.price}</p>
-                      </div>
+                      </Col>
 
-                      <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                        <p>{item.quantity} Piece(s)</p>
-                      </div>
-                    </div>
+                      <Col xs={4} lg={3} className="mt-4 mt-lg-0">
+                        <p>{item.quantity} item(s)</p>
+                      </Col>
+                    </Row>
                   ))}
-              </div>
-              <hr />
-            </div>
-          </div>
-        </Fragment>
+              </ListGroupItem>
+            </ListGroup>
+          </Col>
+        </Row>
       )}
-    </Fragment>
+    </Container>
   );
 };
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     auth: state.auth,
     orderDetails: state.orderDetails,

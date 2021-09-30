@@ -1,8 +1,9 @@
 import { MDBDataTable } from "mdbreact";
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Container } from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import orderActions from "../../actions/orderActions";
 import Loader from "../layout/Loader";
@@ -78,7 +79,7 @@ const ListOrders = ({ myOrders, getMyOrders, clearErrors }) => {
   };
 
   return (
-    <Fragment>
+    <Container className="my-4">
       <MetaData title={"My Orders"} />
 
       <h1 className="mb-3">My Orders</h1>
@@ -94,7 +95,7 @@ const ListOrders = ({ myOrders, getMyOrders, clearErrors }) => {
           hover
         />
       )}
-    </Fragment>
+    </Container>
   );
 };
 

@@ -31,7 +31,6 @@ import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
 import ProductDetails from "./components/product/details/ProductDetails";
 import ProtectedRoute from "./components/route/ProtectedRoute";
-import Search from "./components/search/Search";
 // Auth or User imports
 import Login from "./components/user/Login";
 import NewPasswordForm from "./components/form/NewPasswordForm";
@@ -39,20 +38,22 @@ import Profile from "./components/user/Profile";
 import Register from "./components/user/Register";
 import UpdatePassword from "./components/user/UpdatePassword";
 import UpdateProfile from "./components/user/UpdateProfile";
+import Search from "./components/search/Search";
 
 function App({ auth, loadUser }) {
   const { user, isAuthenticated, loading } = auth;
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   useEffect(() => {
-    loadUser();
-
-    async function getStripApiKey() {
-      const { data } = await axios.get("/api/v1/stripeapi");
-      setStripeApiKey(data.stripeApiKey);
-    }
-
-    getStripApiKey();
+    (async function () {
+      try {
+        await loadUser();
+        const { data } = await axios.get("/api/v1/stripeApi");
+        setStripeApiKey(data.stripeApiKey);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, [loadUser]);
 
   return (

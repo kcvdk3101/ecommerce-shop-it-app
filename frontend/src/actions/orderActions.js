@@ -21,6 +21,7 @@ import {
   ORDER_DETAILS_FAIL,
 } from '../constants/orderConstants'
 
+// Create new order
 const createOrder = (order) => async (dispatch, getState) => {
   try {
 
@@ -91,16 +92,12 @@ const getOrderDetails = (id) => async (dispatch) => {
 // Get all orders - ADMIN
 const allOrders = () => async (dispatch) => {
   try {
-
     dispatch({ type: ALL_ORDERS_REQUEST });
-
     const { data } = await axios.get(`/api/v1/admin/orders`)
-
     dispatch({
       type: ALL_ORDERS_SUCCESS,
       payload: data
     })
-
   } catch (error) {
     dispatch({
       type: ALL_ORDERS_FAIL,
@@ -109,7 +106,7 @@ const allOrders = () => async (dispatch) => {
   }
 }
 
-// update order
+// Update order
 const updateOrder = (id, orderData) => async (dispatch) => {
   try {
 
