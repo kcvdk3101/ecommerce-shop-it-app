@@ -45,6 +45,7 @@ const Payment = ({
   const { user } = auth;
   const { cartItems, shippingInfo } = cart;
   const { error } = newOrder;
+
   const order = {
     orderItems: cartItems,
     shippingInfo,
@@ -93,7 +94,6 @@ const Payment = ({
         }
       );
       const clientSecret = response.data.client_secret;
-      //
       if (!stripe || !elements) return;
 
       const result = await stripe.confirmCardPayment(clientSecret, {
@@ -118,7 +118,7 @@ const Payment = ({
           };
 
           createOrder(order);
-          localStorage.setItem("cartItems", null);
+          localStorage.setItem("cartItems", []);
           history.push("/success");
         } else {
           alert.error("There is some issue while payment processing");

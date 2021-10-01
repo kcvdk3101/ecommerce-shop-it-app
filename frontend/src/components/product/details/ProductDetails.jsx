@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
-import { Col, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import cartActions from "../../../actions/cartActions";
 import { clearErrors } from "../../../actions/clearErrors";
 import productActions from "../../../actions/productActions";
@@ -115,6 +115,8 @@ const ProductDetails = ({
 
     formData.set("rating", rating);
     formData.set("comment", comment);
+    formData.set("firstName", user.firstName);
+    formData.set("lastName", user.lastName);
     formData.set("productId", match.params.id);
 
     addNewReview(formData);
@@ -126,7 +128,7 @@ const ProductDetails = ({
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <Container className="my-4">
           <Row className="d-flex my-3 gap-3">
             <Col xs={12} lg={6} className="mt-5">
               {product.images && <ProductDetailsCarousel product={product} />}
@@ -149,7 +151,7 @@ const ProductDetails = ({
           {product.reviews && product.reviews.length > 0 && (
             <ListReviews reviews={product.reviews} />
           )}
-        </>
+        </Container>
       )}
     </>
   );

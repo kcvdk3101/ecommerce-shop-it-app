@@ -2,20 +2,22 @@ import React from "react";
 
 const ListReviews = ({ reviews }) => {
   return (
-    <div class="reviews w-75">
-      <h3>Other's Reviews:</h3>
+    <div className="reviews w-75">
+      <h3>Some Reviews:</h3>
       <hr />
       {reviews &&
         reviews.map((review) => (
-          <div key={review._id} class="review-card my-3">
-            <div class="rating-outer">
+          <div key={review._id} className="review-card my-3">
+            <div className="rating-outer">
               <div
-                class="rating-inner"
+                className="rating-inner"
                 style={{ width: `${(review.rating / 5) * 100}%` }}
               ></div>
             </div>
-            <p class="review_user">by {review.name}</p>
-            <p class="review_comment">{review.comment}</p>
+            <p className="text-black-50 fs-6">
+              by {review.firstName} {review.lastName}
+            </p>
+            <p className="review_comment">{review.comment}</p>
 
             <hr />
           </div>

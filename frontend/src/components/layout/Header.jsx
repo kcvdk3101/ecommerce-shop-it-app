@@ -57,10 +57,13 @@ const Header = ({ logout, auth, cart }) => {
                   className="me-3 flex-shrink-0"
                   style={{ textDecoration: "none" }}
                 >
-                  <span id="cart">
+                  <span className="text-white">
                     Cart
-                    <span className="ms-1 bg-warning" id="cart_count">
-                      {cartItems.length}
+                    <span
+                      className="ms-1 bg-warning py-1 px-2 rounded fw-bold fs-6"
+                      id="cart_count"
+                    >
+                      {!cartItems ? 0 : cartItems.length}
                     </span>
                   </span>
                 </Link>

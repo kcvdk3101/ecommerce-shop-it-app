@@ -137,17 +137,13 @@ const getProductDetails = (id) => async (dispatch) => {
 // Create new review
 const newReview = (reviewData) => async (dispatch) => {
   try {
-
     dispatch({ type: NEW_REVIEW_REQUEST })
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     }
-
     const { data } = await axios.put(`/api/v1/review`, reviewData, config)
-
     dispatch({
       type: NEW_REVIEW_SUCCESS,
       payload: data.success
@@ -165,16 +161,12 @@ const newReview = (reviewData) => async (dispatch) => {
 const getAdminProducts = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_PRODUCTS_REQUEST })
-
     const { data } = await axios.get('/api/v1/admin/products')
-
     dispatch({
       type: ADMIN_PRODUCTS_SUCCESS,
       payload: data.products
     })
-
   } catch (error) {
-
     dispatch({
       type: ADMIN_PRODUCTS_FAIL,
       payload: error.response.data.message

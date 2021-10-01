@@ -17,7 +17,7 @@ const Sidebar = () => {
               href="#productSubmenu"
               data-toggle="collapse"
               aria-expanded="false"
-              class="dropdown-toggle"
+              className="dropdown-toggle"
             >
               <ion-icon name="logo-dropbox"></ion-icon> Products
             </a>

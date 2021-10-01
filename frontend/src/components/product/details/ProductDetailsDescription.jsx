@@ -17,18 +17,18 @@ const ProductDetailsDescription = ({
     <ListGroup flush>
       <ListGroupItem>
         <h2>{product.name}</h2>
-        <p id="category">{product.category}</p>
+        <p className="text-black-50 fs-6">{product.category}</p>
       </ListGroupItem>
       <ListGroupItem>
         <div className="rating-outer">
           <div
             className="rating-inner"
-            style={{ width: `${(product.rate / 5) * 100}%` }}
+            style={{ width: `${(product.ratings / 5) * 100}%` }}
           ></div>
         </div>
         <span id="no_of_reviews">
           ({product.numOfReviews}{" "}
-          {product.numberOfReview > 1 ? "Reviews" : "Review"})
+          {product.numOfReviews > 1 ? "Reviews" : "Review"})
         </span>
       </ListGroupItem>
       <ListGroupItem>
@@ -139,14 +139,15 @@ const ProductDetailsDescription = ({
                       onChange={(e) => setComment(e.target.value)}
                     ></textarea>
 
-                    <button
-                      className="btn my-3 float-right review-btn px-4 text-white"
+                    <Button
+                      color="warning"
+                      className="text-white"
                       data-dismiss="modal"
                       aria-label="Close"
                       onClick={reviewHandler}
                     >
                       Submit
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>

@@ -5,6 +5,7 @@
   display: flex;
   min-width: 100%;
   min-height: 100vh;
+  height: 100%;
 }
 
 #sidebar {
@@ -64,17 +65,6 @@ ul.CTAs a {
   margin-bottom: 5px;
 }
 
-/* Products List Admin */
-#products_table .btn {
-  padding: 0.2rem 0.5rem;
-  margin-left: 0.4rem;
-}
-
-/* Dashboard */
-.card-font-size {
-  font-size: 1.5rem;
-}
-
 /* Reviews */
 .rating {
   margin-top: 10rem;
@@ -105,9 +95,4 @@ ul.CTAs a {
 
 .yellow {
   color: #fdcc0d;
-}
-
-.review_user {
-  font-size: 0.8rem;
-  color: grey;
 }

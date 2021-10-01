@@ -47,8 +47,8 @@ const ListOrders = ({ myOrders, getMyOrders, clearErrors }) => {
           sort: "asc",
         },
         {
-          label: "Actions",
-          field: "actions",
+          label: "Details",
+          field: "details",
           sort: "asc",
         },
       ],
@@ -67,7 +67,7 @@ const ListOrders = ({ myOrders, getMyOrders, clearErrors }) => {
           ) : (
             <p style={{ color: "red" }}>{order.orderStatus}</p>
           ),
-        actions: (
+        details: (
           <Link to={`/order/${order._id}`} className="btn btn-primary">
             <i className="fa fa-eye"></i>
           </Link>
@@ -87,13 +87,7 @@ const ListOrders = ({ myOrders, getMyOrders, clearErrors }) => {
       {loading ? (
         <Loader />
       ) : (
-        <MDBDataTable
-          data={setOrders()}
-          className="px-3"
-          bordered
-          striped
-          hover
-        />
+        <MDBDataTable data={setOrders()} bordered striped hover />
       )}
     </Container>
   );

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
+import { Button, Form, Input, InputGroup, InputGroupAddon } from "reactstrap";
+
 const SearchInput = ({ history }) => {
   const [keyword, setKeyword] = useState("");
-
   const searchHandler = (e) => {
     e.preventDefault();
 
@@ -14,22 +14,21 @@ const SearchInput = ({ history }) => {
   };
 
   return (
-    <form onSubmit={searchHandler}>
-      <div className="input-group">
-        <input
+    <Form onSubmit={searchHandler}>
+      <InputGroup>
+        <Input
           type="text"
           id="search_field"
-          className="form-control"
           placeholder="Enter Product Name ..."
           onChange={(e) => setKeyword(e.target.value)}
         />
-        <div className="input-group-append">
+        <InputGroupAddon addonType="append">
           <Button color="warning" className="text-white">
-            <ion-icon name="search"></ion-icon>
+            <i class="fa fa-search" aria-hidden="true"></i>
           </Button>
-        </div>
-      </div>
-    </form>
+        </InputGroupAddon>
+      </InputGroup>
+    </Form>
   );
 };
 

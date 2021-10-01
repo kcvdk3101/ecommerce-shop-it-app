@@ -1,11 +1,8 @@
 /* Header & Footer */
-@import url("./css/template/header.css");
 @import url("./css/template/footer.css");
 
 /* Pages */
 @import url("./css/pages/admin.css");
-@import url("./css/pages/home.css");
-@import url("./css/pages/productDetails.css");
 @import url("./css/pages/cart.css");
 @import url("./css/pages/checkout.css");
 @import url("./css/pages/profile.css");
@@ -49,6 +46,11 @@ a {
 .carousel-control-prev-icon {
   transform: scaleX(-1);
   background-image: url("https://snipstock.com/assets/cdn/png/6b18650e29228e0e8f6a28d27e18b063.png");
+}
+
+.nav {
+  background-color: #7053e3;
+  padding: 1rem;
 }
 
 .stockCounter input {

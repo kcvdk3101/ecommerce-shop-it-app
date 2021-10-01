@@ -25,7 +25,6 @@ const Dashboard = ({
   getAllOrders,
   getAllUsers,
 }) => {
-  console.log(allUsers);
   const { users } = allUsers;
   const { orders, totalAmount, loading } = allOrders;
 

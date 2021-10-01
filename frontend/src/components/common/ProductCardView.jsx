@@ -1,5 +1,12 @@
 import React from "react";
-import { Card, CardBody, CardImg, CardText, CardTitle } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardImg,
+  CardText,
+  CardTitle,
+} from "reactstrap";
 import { Link } from "react-router-dom";
 
 const ProductCardView = ({ product }) => {
@@ -34,8 +41,10 @@ const ProductCardView = ({ product }) => {
           </div>
         </CardTitle>
         <div className="flex-1">
-          <Link to={`/product/${product._id}`} id="view_btn" className="btn">
-            View Details
+          <Link to={`/product/${product._id}`}>
+            <Button color="warning" block className="py-2 text-white">
+              View Details
+            </Button>
           </Link>
         </div>
       </CardBody>

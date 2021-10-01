@@ -40,8 +40,6 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get all products   =>   /api/v1/products?keyword=apple
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  console.log(req.query);
-
   const resPerPage = 6;
   const productsCount = await Product.countDocuments();
 
@@ -174,12 +172,12 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Create new review   =>   /api/v1/review
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
-
-  const { rating, comment, productId } = req.body;
+  const { rating, comment, productId, firstName, lastName } = req.body;
 
   const review = {
     user: req.user._id,
-    name: req.user.name,
+    firstName: firstName,
+    lastName: lastName,
     rating: Number(rating),
     comment
   }

@@ -1,8 +1,9 @@
 import { MDBDataTable } from "mdbreact";
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { Button, Col, Row } from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import productActions from "../../actions/productActions";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
@@ -21,36 +22,26 @@ const ProductsList = ({
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { error: deleteError, isDeleted } = product;
+  // const { error: deleteError, isDeleted } = product;
 
   useEffect(() => {
     getAdminProducts();
-
-    if (products.error) {
-      alert.error(products.error);
+    if (product.error) {
+      alert.error(product.error);
       clearErrors();
     }
 
-    if (deleteError) {
-      alert.error(deleteError);
-      clearErrors();
-    }
+    // if (deleteError) {
+    //   alert.error(deleteError);
+    //   clearErrors();
+    // }
 
-    if (isDeleted) {
+    if (product.isDeleted) {
       alert.success("Product deleted successfully");
       history.push("/admin/products");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-  }, [
-    dispatch,
-    alert,
-    deleteError,
-    isDeleted,
-    getAdminProducts,
-    clearErrors,
-    products,
-    history,
-  ]);
+  }, [alert, clearErrors, dispatch, getAdminProducts, history, product]);
 
   const setProducts = () => {
     const data = {
@@ -90,20 +81,21 @@ const ProductsList = ({
         price: `$${p.price}`,
         stock: p.stock,
         actions: (
-          <Fragment>
+          <>
             <Link
               to={`/admin/product/${p._id}`}
               className="btn btn-primary py-1 px-2"
             >
               <i className="fa fa-pencil"></i>
             </Link>
-            <button
-              className="btn btn-danger py-1 px-2 ml-2"
+            <Button
+              color="danger"
+              className="p-2 ml-2"
               onClick={() => deleteProductHandler(p._id)}
             >
               <i className="fa fa-trash"></i>
-            </button>
-          </Fragment>
+            </Button>
+          </>
         ),
       });
     });
@@ -116,32 +108,30 @@ const ProductsList = ({
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title={"All Products"} />
-      <div className="row">
-        <div className="col-12 col-md-2">
+      <Row>
+        <Col xs={12} md={2}>
           <Sidebar />
-        </div>
+        </Col>
 
-        <div className="col-12 col-md-10">
-          <Fragment>
-            <h1 className="my-5">All Products</h1>
+        <Col xs={12} md={10}>
+          <h1 className="my-5">All Products</h1>
 
-            {products.loading ? (
-              <Loader />
-            ) : (
-              <MDBDataTable
-                data={setProducts()}
-                className="px-3"
-                bordered
-                striped
-                hover
-              />
-            )}
-          </Fragment>
-        </div>
-      </div>
-    </Fragment>
+          {products.loading ? (
+            <Loader />
+          ) : (
+            <MDBDataTable
+              data={setProducts()}
+              className="px-3"
+              bordered
+              striped
+              hover
+            />
+          )}
+        </Col>
+      </Row>
+    </>
   );
 };
 
