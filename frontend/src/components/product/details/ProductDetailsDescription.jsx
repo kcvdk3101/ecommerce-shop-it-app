@@ -17,7 +17,9 @@ const ProductDetailsDescription = ({
     <ListGroup flush>
       <ListGroupItem>
         <h2>{product.name}</h2>
-        <p className="text-black-50 fs-6">{product.category}</p>
+        <p className="text-black-50 fs-6">
+          {product.category} ({product.brand})
+        </p>
       </ListGroupItem>
       <ListGroupItem>
         <div className="rating-outer">
@@ -26,7 +28,7 @@ const ProductDetailsDescription = ({
             style={{ width: `${(product.ratings / 5) * 100}%` }}
           ></div>
         </div>
-        <span id="no_of_reviews">
+        <span id="no_of_reviews" className="ms-2">
           ({product.numOfReviews}{" "}
           {product.numOfReviews > 1 ? "Reviews" : "Review"})
         </span>

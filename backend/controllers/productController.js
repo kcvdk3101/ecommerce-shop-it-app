@@ -75,14 +75,10 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 
 // Get single product details   =>   /api/v1/product/:id
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
-
   const product = await Product.findById(req.params.id);
-
   if (!product) {
     return next(new ErrorHandler('Product not found', 404));
   }
-
-
   res.status(200).json({
     success: true,
     product
@@ -92,13 +88,10 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Update Product   =>   /api/v1/admin/product/:id
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
-
   let product = await Product.findById(req.params.id);
-
   if (!product) {
     return next(new ErrorHandler('Product not found', 404));
   }
-
   let images = []
   if (typeof req.body.images === 'string') {
     images.push(req.body.images)
@@ -107,14 +100,13 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (images !== undefined) {
-
     // Deleting images associated with the product
     for (let i = 0; i < product.images.length; i++) {
-      const result = await cloudinary.v2.uploader.destroy(product.images[i].public_id)
+      await cloudinary.v2.uploader.destroy(product.images[i].public_id)
     }
 
+    // New update images
     let imagesLinks = [];
-
     for (let i = 0; i < images.length; i++) {
       const result = await cloudinary.v2.uploader.upload(images[i], {
         folder: 'products'
@@ -125,12 +117,8 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         url: result.secure_url
       })
     }
-
-    req.body.images = imagesLinks
-
+    req.body.images = imagesLink
   }
-
-
 
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,

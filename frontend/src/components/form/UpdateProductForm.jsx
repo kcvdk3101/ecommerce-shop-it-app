@@ -1,18 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Row,
-  Spinner,
-} from "reactstrap";
+import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { CATEGORIES } from "../../constant";
 
-const AddNewProductForm = ({
-  newProduct,
+const UpdateProductForm = ({
+  loading,
   name,
   brand,
   price,
@@ -20,20 +11,27 @@ const AddNewProductForm = ({
   category,
   stock,
   seller,
+  oldImages,
   images,
-  handleChangeInput,
-  onChangeImage,
+  setName,
+  setBrand,
+  setPrice,
+  setDescription,
+  setCategory,
+  setStock,
+  setSeller,
+  onChange,
   submitHandler,
 }) => {
-  const isLoading = newProduct.loading ? true : false;
-
+  const isLoading = loading ? true : false;
   return (
     <Form
+      className="p-3"
       onSubmit={submitHandler}
       encType="multipart/form-data"
-      className="p-3"
     >
-      <h1>New Product</h1>
+      <h1>Update Product</h1>
+
       <Row form>
         <Col md={4}>
           <FormGroup>
@@ -41,9 +39,8 @@ const AddNewProductForm = ({
             <Input
               type="text"
               id="name_field"
-              name="name"
               value={name}
-              onChange={handleChangeInput}
+              onChange={(e) => setName(e.target.value)}
               disabled={isLoading}
               required
             />
@@ -55,9 +52,8 @@ const AddNewProductForm = ({
             <Input
               type="text"
               id="brand_field"
-              name="brand"
               value={brand}
-              onChange={handleChangeInput}
+              onChange={(e) => setBrand(e.target.value)}
               disabled={isLoading}
               required
             />
@@ -70,9 +66,8 @@ const AddNewProductForm = ({
               min="1"
               type="number"
               id="price_field"
-              name="price"
               value={price}
-              onChange={handleChangeInput}
+              onChange={(e) => setPrice(e.target.value)}
               disabled={isLoading}
               required
             />
@@ -86,9 +81,8 @@ const AddNewProductForm = ({
           id="description_field"
           className="form-control"
           rows="5"
-          name="description"
           value={description}
-          onChange={handleChangeInput}
+          onChange={(e) => setDescription(e.target.value)}
           disabled={isLoading}
           required
         />
@@ -102,8 +96,7 @@ const AddNewProductForm = ({
               id="category_field"
               className="form-control"
               value={category}
-              name="category"
-              onChange={handleChangeInput}
+              onChange={(e) => setCategory(e.target.value)}
               disabled={isLoading}
               required
             >
@@ -123,9 +116,8 @@ const AddNewProductForm = ({
               min="0"
               type="number"
               id="stock_field"
-              name="stock"
               value={stock}
-              onChange={handleChangeInput}
+              onChange={(e) => setStock(e.target.value)}
               disabled={isLoading}
               required
             />
@@ -137,9 +129,8 @@ const AddNewProductForm = ({
             <Input
               type="text"
               id="seller_field"
-              name="seller"
               value={seller}
-              onChange={handleChangeInput}
+              onChange={(e) => setSeller(e.target.value)}
               disabled={isLoading}
               required
             />
@@ -148,26 +139,37 @@ const AddNewProductForm = ({
       </Row>
 
       <FormGroup>
-        <p htmlFor="customFile">Images</p>
+        <Label>Images</Label>
+
         <div className="custom-file">
-          <input
+          <Input
             type="file"
             name="product_images"
             className="custom-file-input"
             id="customFile"
-            onChange={onChangeImage}
+            onChange={onChange}
             multiple
-            disabled={isLoading}
           />
-          <label className="custom-file-label" htmlFor="customFile">
+          <Label className="custom-file-label" htmlFor="customFile">
             Choose Images
-          </label>
+          </Label>
         </div>
 
-        {images.map((img) => (
+        {oldImages &&
+          oldImages.map((img, index) => (
+            <img
+              key={index}
+              src={img.url}
+              alt={img.url}
+              className="mt-3 mr-2"
+              width="150"
+            />
+          ))}
+
+        {images.map((imgPreview) => (
           <img
-            src={img}
-            key={img}
+            src={imgPreview}
+            key={imgPreview}
             alt="Images Preview"
             className="mt-3 mr-2"
             width="150"
@@ -178,13 +180,13 @@ const AddNewProductForm = ({
       <Button
         color="warning"
         block
-        className="py-3 text-white text-uppercase fw-bold"
-        disabled={newProduct.loading ? true : false}
+        className="py-3 text-white text-uppercase"
+        disabled={loading ? true : false}
       >
-        {newProduct.loading ? <Spinner /> : "create new product"}
+        update product
       </Button>
     </Form>
   );
 };
 
-export default AddNewProductForm;
+export default UpdateProductForm;

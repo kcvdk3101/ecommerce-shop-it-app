@@ -82,15 +82,12 @@ const deleteProduct = (id) => async (dispatch) => {
 // Update Product (ADMIN)
 const updateProduct = (id, productData) => async (dispatch) => {
   try {
-
     dispatch({ type: UPDATE_PRODUCT_REQUEST })
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     }
-
     const { data } = await axios.put(`/api/v1/admin/product/${id}`, productData, config)
 
     dispatch({

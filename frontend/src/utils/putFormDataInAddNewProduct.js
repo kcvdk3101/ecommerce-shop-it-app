@@ -1,12 +1,12 @@
-export default function putFormDataInAddNewProduct(name, brand, price, description, category, stock, seller, images) {
+export default function putFormDataInAddNewProduct(productInfo, images) {
   let formData = new FormData();
-  formData.set("name", name);
-  formData.set("brand", brand);
-  formData.set("price", price);
-  formData.set("description", description);
-  formData.set("category", category);
-  formData.set("stock", stock);
-  formData.set("seller", seller);
+  formData.set("name", productInfo.name);
+  formData.set("brand", productInfo.brand);
+  formData.set("price", productInfo.price);
+  formData.set("description", productInfo.description);
+  formData.set("category", productInfo.category);
+  formData.set("stock", productInfo.stock);
+  formData.set("seller", productInfo.seller);
 
   images.forEach((image) => {
     formData.append("images", image);

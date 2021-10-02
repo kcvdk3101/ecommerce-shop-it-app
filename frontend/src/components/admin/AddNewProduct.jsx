@@ -11,16 +11,16 @@ import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
 
 const AddNewProduct = ({ clearErrors, history, newProduct, addNewProduct }) => {
-  console.log(newProduct);
-  const [name, setName] = useState("");
-  const [brand, setBrand] = useState("");
-  const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [stock, setStock] = useState(0);
-  const [seller, setSeller] = useState("");
+  const [productInfo, setProductInfo] = useState({
+    name: "",
+    brand: "",
+    price: 0,
+    description: "",
+    category: "",
+    stock: 0,
+    seller: "",
+  });
   const [images, setImages] = useState([]);
-  const [imagesPreview, setImagesPreview] = useState([]);
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -40,29 +40,23 @@ const AddNewProduct = ({ clearErrors, history, newProduct, addNewProduct }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addNewProduct(
-      putFormDataInAddNewProduct(
-        name,
-        brand,
-        price,
-        description,
-        category,
-        stock,
-        seller,
-        images
-      )
-    );
+    addNewProduct(putFormDataInAddNewProduct(productInfo, images));
+  };
+
+  const handleChangeInput = (e) => {
+    setProductInfo({
+      ...productInfo,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const onChangeImage = (e) => {
     const files = Array.from(e.target.files);
-    setImagesPreview([]);
     setImages([]);
     files.forEach((file) => {
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.readyState !== 2) return;
-        setImagesPreview((prevArray) => [...prevArray, reader.result]);
         setImages((prevArray) => [...prevArray, reader.result]);
       };
       reader.readAsDataURL(file);
@@ -80,21 +74,15 @@ const AddNewProduct = ({ clearErrors, history, newProduct, addNewProduct }) => {
         <Col xs={12} md={10}>
           <AddNewProductForm
             newProduct={newProduct}
-            name={name}
-            brand={brand}
-            price={price}
-            description={description}
-            category={category}
-            stock={stock}
-            seller={seller}
-            imagesPreview={imagesPreview}
-            setBrand={setBrand}
-            setName={setName}
-            setPrice={setPrice}
-            setDescription={setDescription}
-            setCategory={setCategory}
-            setStock={setStock}
-            setSeller={setSeller}
+            name={productInfo.name}
+            brand={productInfo.brand}
+            price={productInfo.price}
+            description={productInfo.description}
+            category={productInfo.category}
+            stock={productInfo.stock}
+            seller={productInfo.seller}
+            images={images}
+            handleChangeInput={handleChangeInput}
             onChangeImage={onChangeImage}
             submitHandler={submitHandler}
           />

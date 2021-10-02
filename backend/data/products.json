@@ -4,6 +4,7 @@
     "price": "1226.73",
     "description": "As a product line with a slim, luxurious and sophisticated design along with an affordable price, MacBook Air has attracted a large number of users to love and choose.One of the latest versions that customers cannot ignore is the MacBook Air M1.",
     "ratings": 0,
+    "brand": "Apple",
     "images": [
       {
         "public_id": "products/laptop/macbook/laptop_macbook-air_m1_13825620_01_nb1et9",
@@ -33,6 +34,7 @@
     "price": "1449.15",
     "description": "Apple is one of the most famous manufacturers of electronic devices in the world. Each Apple product line launches versions with different internal memory capacities. Coming to the Air M1, Apple also launched the version with the highest capacity, which is the Apple MacBook Air M1 512GB 2020..",
     "ratings": 0,
+    "brand": "Apple",
     "images": [
       {
         "public_id": "products/laptop/macbook/laptop_macbook_air_m1_gold_13851220_01_drewwc",
@@ -62,6 +64,7 @@
     "price": "675.00",
     "description": "ASUS VivoBook 15 A515EA laptop is a genuine, quality machine, capable of effectively meeting all office tasks. In addition, the machine is always equipped with an SSD memory drive with the ability to increase fast processing speed to bring interesting experiences to users..",
     "ratings": 0,
+    "brand": "ASUS",
     "images": [
       {
         "public_id": "products/laptop/asus/laptop_asus_vivobook_15__15451220_01_v2wqwp",
@@ -91,6 +94,7 @@
     "price": "1174.18",
     "description": "This new ASUS ZenBook has an elegant & premium design, using a sturdy monolithic shell to increase the durability of the machine when used at all times. The weight of only 1.3 kg and the thinness of 13.9 mm make ZenBook Flip 13 convenient for users. Overall ZenBook Flip 13 also has a luxurious gray color.",
     "ratings": 0,
+    "brand": "ASUS",
     "images": [
       {
         "public_id": "products/laptop/asus/laptop_asus_zenbook_flip_13851220_01_k1lukm",
@@ -119,6 +123,7 @@
     "name": "Apple AirPods Pro Wireless Charge",
     "price": "299.00",
     "description": "The AirPods model first appeared in 2016, after many design and configuration upgrades, the genuine bluetooth headset model is increasingly being perfected. Recently, Apple has announced the latest AirPods headset model - Apple Airpods Pro bluetooth headset - with a new design and many new features.",
+    "brand": "Apple",
     "ratings": 0,
     "images": [
       {
@@ -145,6 +150,7 @@
     "price": "899.00",
     "description": "Samsung Corporation has launched Samsung Galaxy Tab S7 Plus tablets. This is considered a tablet equipped with the most modern features and extremely long battery life, helping to solve the worry of battery shortage for all day use..",
     "ratings": 0,
+    "brand": "Samsung",
     "images": [
       {
         "public_id": "products/tablet/samsung/tablet_samsung_galaxy_tab_s7_plus_01_uxaxsf",
@@ -174,6 +180,7 @@
     "price": "1099.00",
     "description": "With a performance configuration that can be said to be the strongest in 2020 as well as maintain this strength for many more years. Requires high storage capacity of iPhone to avoid lack of space. iPhone 12 Pro Max 256GB will be the best choice for you.",
     "ratings": 0,
+    "brand": "Apple",
     "images": [
       {
         "public_id": "products/phone/apple/phone_apple_12_pro_max_256_01_xvstze",
@@ -199,6 +206,7 @@
     "price": "1999.00",
     "description": "Samsung Z Fold 2 is designed with perfectly curved edges to provide certainty when in use. Similar to the first Galaxy Fold, the second generation continues to be designed with a vertical folding mechanism. Specifically, the device will have 2 screens with a secondary screen size of 6.23 inches and 7.6 inches for the main screen.",
     "ratings": 0,
+    "brand": "Samsung",
     "images": [
       {
         "public_id": "products/phone/samsung/phone_samsung_galaxy_z_fold2_5g_01_lsnt29",
@@ -224,6 +232,7 @@
     "price": "165.00",
     "description": "Samsung Galaxy Watch Active 2 44mm Genuine Aluminum Case is owning a good price with many attractive incentives, installment support, nationwide delivery.",
     "ratings": 5,
+    "brand": "Samsung",
     "images": [
       {
         "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_4g_01_mvivom",
@@ -253,6 +262,7 @@
     "price": "225.00",
     "description": "Samsung Galaxy Watch Active 2 40mm Steel Case is having a very good price with many attractive offers. Galaxy Watch Active 2 40mm steel case is suitable for users with small hands with a solid design that feels good in the hand.",
     "ratings": 0,
+    "brand": "Samsung",
     "images": [
       {
         "public_id": "products/watch/samsung/watch_samsung_galaxy_active_2_01_uljzuz",
