@@ -76,7 +76,7 @@ const UpdateProduct = ({
     clearErrors,
   ]);
 
-  const onChange = (e) => {
+  const onChangeImage = (e) => {
     const files = Array.from(e.target.files);
     setImages([]);
     files.forEach((file) => {
@@ -134,7 +134,7 @@ const UpdateProduct = ({
             setCategory={setCategory}
             setStock={setStock}
             setSeller={setSeller}
-            onChange={onChange}
+            onChangeImage={onChangeImage}
             submitHandler={submitHandler}
           />
         </Col>

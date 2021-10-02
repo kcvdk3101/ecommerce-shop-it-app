@@ -34,10 +34,9 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
   })
 })
 
-
 // Get single order   =>   /api/v1/order/:id
 exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
-  const order = await Order.findById(req.params.id).populate('user', 'name email')
+  const order = await Order.findById(req.params.id).populate('user', 'firstName lastName email')
 
   if (!order) {
     return next(new ErrorHandler('No Order found with this ID', 404))
@@ -86,24 +85,23 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   }
 
   order.orderItems.forEach(async item => {
-    await updateStock(item.product, item.quantity)
+    console.log(item.product, item.quantity);
+    // await updateStock(item.product, item.quantity)
   })
 
-  order.orderStatus = req.body.status,
-    order.deliveredAt = Date.now()
+  // order.orderStatus = req.body.status,
+  //   order.deliveredAt = Date.now()
 
-  await order.save()
+  // await order.save()
 
-  res.status(200).json({
-    success: true,
-  })
+  // res.status(200).json({
+  //   success: true,
+  // })
 })
 
 async function updateStock(id, quantity) {
   const product = await Product.findById(id);
-
   product.stock = product.stock - quantity;
-
   await product.save({ validateBeforeSave: false })
 }
 

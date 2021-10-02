@@ -239,13 +239,11 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 // Get all users   =>   /api/v1/admin/users
 exports.allUsers = catchAsyncErrors(async (req, res, next) => {
   const users = await User.find();
-
   res.status(200).json({
     success: true,
     users
   })
 })
-
 
 // Get user details   =>   /api/v1/admin/user/:id
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
@@ -262,12 +260,12 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 // Update user profile   =>   /api/v1/admin/user/:id
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     role: req.body.role
   }
-
-  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+  await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false
@@ -281,7 +279,6 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
 // Delete user   =>   /api/v1/admin/user/:id
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
-
   if (!user) return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
 
   // Remove avatar from cloudinary

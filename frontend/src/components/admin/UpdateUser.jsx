@@ -6,6 +6,7 @@ import userActions from "../../actions/userActions";
 import { UPDATE_USER_RESET } from "../../constants/userConstants";
 import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
+import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const UpdateUser = ({
   history,
@@ -16,23 +17,25 @@ const UpdateUser = ({
   getUserDetails,
   updateUser,
 }) => {
+  const userId = match.params.id;
+
   const { error, isUpdated } = userDB;
   const { user } = userDetails;
 
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
-
-  const userId = match.params.id;
 
   useEffect(() => {
     if (user && user._id !== userId) {
       getUserDetails(userId);
     } else {
-      setName(user.name);
+      setFirstName(user.firstName);
+      setLastName(user.lastName);
       setEmail(user.email);
       setRole(user.role);
     }
@@ -67,7 +70,8 @@ const UpdateUser = ({
     e.preventDefault();
 
     const formData = new FormData();
-    formData.set("name", name);
+    formData.set("firstName", firstName);
+    formData.set("lastName", lastName);
     formData.set("email", email);
     formData.set("role", role);
 
@@ -75,34 +79,51 @@ const UpdateUser = ({
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title={`Update User`} />
-      <div className="row">
-        <div className="col-12 col-md-2">
+      <Row>
+        <Col xs={12} md={2}>
           <Sidebar />
-        </div>
+        </Col>
 
-        <div className="col-12 col-md-10">
-          <div className="row wrapper">
-            <div className="col-10 col-lg-5">
-              <form className="shadow-lg" onSubmit={submitHandler}>
-                <h1 className="mt-2 mb-5">Update User</h1>
+        <Col xs={12} md={10}>
+          <Form onSubmit={submitHandler}>
+            <h1 className="mt-5">Update User</h1>
 
-                <div className="form-group">
-                  <label htmlFor="name_field">Name</label>
-                  <input
-                    type="name"
-                    id="name_field"
+            <Row form>
+              <Col xs={6}>
+                <FormGroup>
+                  <Label htmlFor="firstName_field">First Name</Label>
+                  <Input
+                    type="text"
+                    id="firstName_field"
                     className="form-control"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    name="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
-                </div>
+                </FormGroup>
+              </Col>
+              <Col xs={6}>
+                <FormGroup>
+                  <Label htmlFor="lastName_field">Last Name</Label>
+                  <Input
+                    type="text"
+                    id="lastName_field"
+                    className="form-control"
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
 
-                <div className="form-group">
-                  <label htmlFor="email_field">Email</label>
-                  <input
+            <Row form>
+              <Col xs={6}>
+                <FormGroup>
+                  <Label htmlFor="email_field">Email</Label>
+                  <Input
                     type="email"
                     id="email_field"
                     className="form-control"
@@ -110,12 +131,13 @@ const UpdateUser = ({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="role_field">Role</label>
-
-                  <select
+                </FormGroup>
+              </Col>
+              <Col xs={6}>
+                <FormGroup>
+                  <Label htmlFor="role_field">Role</Label>
+                  <Input
+                    type="select"
                     id="role_field"
                     className="form-control"
                     name="role"
@@ -124,21 +146,18 @@ const UpdateUser = ({
                   >
                     <option value="user">user</option>
                     <option value="admin">admin</option>
-                  </select>
-                </div>
+                  </Input>
+                </FormGroup>
+              </Col>
+            </Row>
 
-                <button
-                  type="submit"
-                  className="btn update-btn btn-block mt-4 mb-3"
-                >
-                  Update
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Fragment>
+            <Button color="warning" className="text-white">
+              Update
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </>
   );
 };
 

@@ -69,9 +69,7 @@ const getOrderDetails = (id) => async (dispatch) => {
   try {
 
     dispatch({ type: ORDER_DETAILS_REQUEST });
-
     const { data } = await axios.get(`/api/v1/order/${id}`)
-
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
       payload: data.order
@@ -105,15 +103,12 @@ const allOrders = () => async (dispatch) => {
 // Update order
 const updateOrder = (id, orderData) => async (dispatch) => {
   try {
-
     dispatch({ type: UPDATE_ORDER_REQUEST })
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     }
-
     const { data } = await axios.put(`/api/v1/admin/order/${id}`, orderData, config)
 
     dispatch({

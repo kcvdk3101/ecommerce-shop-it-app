@@ -54,7 +54,7 @@ const ProductReviews = ({
   ]);
 
   const deleteReviewHandler = (id) => {
-    dispatch(deleteReview(id, productId));
+    deleteReview(id, productId);
   };
 
   const submitHandler = (e) => {

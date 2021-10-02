@@ -77,7 +77,7 @@ const UsersList = ({
     users.forEach((user) => {
       data.rows.push({
         id: user._id,
-        name: user.name,
+        name: `${user.firstName} ${user.lastName}`,
         email: user.email,
         role: user.role,
 

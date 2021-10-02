@@ -1,4 +1,13 @@
-export default function putFormDataInUpdateProduct(name, brand, price, description, category, stock, seller, images) {
+export default function putFormDataInUpdateProduct(
+  name,
+  brand,
+  price,
+  description,
+  category,
+  stock,
+  seller,
+  images
+) {
   let formData = new FormData();
   formData.set("name", name);
   formData.set("brand", brand);

@@ -9,6 +9,7 @@ import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
+import { Row, Col } from "reactstrap";
 
 const OrdersList = ({
   history,
@@ -18,26 +19,31 @@ const OrdersList = ({
   deleteOrder,
   clearErrors,
 }) => {
-  const { loading, error, orders } = allOrders;
-  const { isDeleted } = order;
-
   const alert = useAlert();
   const dispatch = useDispatch();
 
   useEffect(() => {
     getAllOrders();
 
-    if (error) {
-      alert.error(error);
+    if (allOrders.error) {
+      alert.error(allOrders.error);
       clearErrors();
     }
 
-    if (isDeleted) {
+    if (order.isDeleted) {
       alert.success("Order deleted successfully");
       history.push("/admin/orders");
       dispatch({ type: DELETE_ORDER_RESET });
     }
-  }, [dispatch, alert, error, isDeleted, history, getAllOrders, clearErrors]);
+  }, [
+    dispatch,
+    alert,
+    order,
+    history,
+    getAllOrders,
+    clearErrors,
+    allOrders.error,
+  ]);
 
   const deleteOrderHandler = (id) => {
     deleteOrder(id);
@@ -52,8 +58,8 @@ const OrdersList = ({
           sort: "asc",
         },
         {
-          label: "No of Items",
-          field: "numofItems",
+          label: "Number of Items",
+          field: "numOfItems",
           sort: "asc",
         },
         {
@@ -74,10 +80,10 @@ const OrdersList = ({
       rows: [],
     };
 
-    orders.forEach((order) => {
+    allOrders.orders.forEach((order) => {
       data.rows.push({
         id: order._id,
-        numofItems: order.orderItems.length,
+        numOfItems: order.orderItems.length,
         amount: `$${order.totalPrice}`,
         status:
           order.orderStatus &&
@@ -109,32 +115,30 @@ const OrdersList = ({
   };
 
   return (
-    <Fragment>
+    <>
       <MetaData title={"All Orders"} />
-      <div className="row">
-        <div className="col-12 col-md-2">
+      <Row>
+        <Col xs={12} md={2}>
           <Sidebar />
-        </div>
+        </Col>
 
-        <div className="col-12 col-md-10">
-          <Fragment>
-            <h1 className="my-5">All Orders</h1>
+        <Col xs={12} md={10}>
+          <h1 className="mt-5">All Orders</h1>
 
-            {loading ? (
-              <Loader />
-            ) : (
-              <MDBDataTable
-                data={setOrders()}
-                className="px-3"
-                bordered
-                striped
-                hover
-              />
-            )}
-          </Fragment>
-        </div>
-      </div>
-    </Fragment>
+          {allOrders.loading ? (
+            <Loader />
+          ) : (
+            <MDBDataTable
+              data={setOrders()}
+              className="px-3"
+              bordered
+              striped
+              hover
+            />
+          )}
+        </Col>
+      </Row>
+    </>
   );
 };
 

@@ -115,7 +115,7 @@ const ProductsList = ({
         </Col>
 
         <Col xs={12} md={10}>
-          <h1 className="my-5">All Products</h1>
+          <h1 className="mt-5">All Products</h1>
 
           {products.loading ? (
             <Loader />

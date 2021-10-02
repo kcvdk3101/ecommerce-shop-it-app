@@ -109,7 +109,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     let imagesLinks = [];
     for (let i = 0; i < images.length; i++) {
       const result = await cloudinary.v2.uploader.upload(images[i], {
-        folder: 'products'
+        folder: `products/${req.body.category.toLowerCase()}/${req.body.brand.toLowerCase()}`
       });
 
       imagesLinks.push({

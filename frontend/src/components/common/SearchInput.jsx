@@ -14,7 +14,7 @@ const SearchInput = ({ history }) => {
   };
 
   return (
-    <Form onSubmit={searchHandler}>
+    <Form onSubmit={searchHandler} className="w-75">
       <InputGroup>
         <Input
           type="text"

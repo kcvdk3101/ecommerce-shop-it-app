@@ -20,7 +20,7 @@ const UpdateProductForm = ({
   setCategory,
   setStock,
   setSeller,
-  onChange,
+  onChangeImage,
   submitHandler,
 }) => {
   const isLoading = loading ? true : false;
@@ -147,7 +147,7 @@ const UpdateProductForm = ({
             name="product_images"
             className="custom-file-input"
             id="customFile"
-            onChange={onChange}
+            onChange={onChangeImage}
             multiple
           />
           <Label className="custom-file-label" htmlFor="customFile">
