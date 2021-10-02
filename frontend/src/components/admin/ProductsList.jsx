@@ -22,26 +22,25 @@ const ProductsList = ({
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  // const { error: deleteError, isDeleted } = product;
-
+  const { error } = products;
   useEffect(() => {
     getAdminProducts();
-    if (product.error) {
-      alert.error(product.error);
+    if (error) {
+      alert.error(error);
       clearErrors();
     }
 
-    // if (deleteError) {
-    //   alert.error(deleteError);
-    //   clearErrors();
-    // }
+    if (product.deleteError) {
+      alert.error(product.deleteError);
+      clearErrors();
+    }
 
     if (product.isDeleted) {
       alert.success("Product deleted successfully");
       history.push("/admin/products");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-  }, [alert, clearErrors, dispatch, getAdminProducts, history, product]);
+  }, [alert, clearErrors, dispatch, error, getAdminProducts, history, product]);
 
   const setProducts = () => {
     const data = {
@@ -90,7 +89,7 @@ const ProductsList = ({
             </Link>
             <Button
               color="danger"
-              className="p-2 ml-2"
+              className="py-1 px-2 ms-2"
               onClick={() => deleteProductHandler(p._id)}
             >
               <i className="fa fa-trash"></i>
@@ -136,6 +135,7 @@ const ProductsList = ({
 };
 
 function mapStateToProps(state) {
+  console.log(state.product);
   return {
     products: state.products,
     product: state.product,

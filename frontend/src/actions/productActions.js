@@ -41,17 +41,13 @@ const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0)
 // Create new product (ADMIN)
 const newProduct = (productData) => async (dispatch) => {
   try {
-
     dispatch({ type: NEW_PRODUCT_REQUEST })
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     }
-
     const { data } = await axios.post(`/api/v1/admin/product/new`, productData, config)
-
     dispatch({
       type: NEW_PRODUCT_SUCCESS,
       payload: data
@@ -68,11 +64,8 @@ const newProduct = (productData) => async (dispatch) => {
 // Delete product (ADMIN)
 const deleteProduct = (id) => async (dispatch) => {
   try {
-
     dispatch({ type: DELETE_PRODUCT_REQUEST })
-
     const { data } = await axios.delete(`/api/v1/admin/product/${id}`)
-
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
       payload: data.success

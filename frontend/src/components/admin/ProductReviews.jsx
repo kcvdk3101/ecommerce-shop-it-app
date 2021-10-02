@@ -26,16 +26,16 @@ const ProductReviews = ({
   useEffect(() => {
     if (error) {
       alert.error(error);
-      dispatch(clearErrors());
+      clearErrors();
     }
 
     if (deleteError) {
       alert.error(deleteError);
-      dispatch(clearErrors());
+      clearErrors();
     }
 
     if (productId !== "") {
-      dispatch(getProductReviews(productId));
+      getProductReviews(productId);
     }
 
     if (isDeleted) {
@@ -59,7 +59,7 @@ const ProductReviews = ({
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(getProductReviews(productId));
+    getProductReviews(productId);
   };
 
   const setReviews = () => {

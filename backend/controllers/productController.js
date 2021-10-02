@@ -6,7 +6,6 @@ const cloudinary = require('cloudinary')
 
 // Create new product   =>   /api/v1/admin/product/new
 exports.newProduct = catchAsyncErrors(async (req, res, next) => {
-
   let images = []
   if (typeof req.body.images === 'string') {
     images.push(req.body.images)
@@ -15,10 +14,9 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   let imagesLinks = [];
-
   for (let i = 0; i < images.length; i++) {
     const result = await cloudinary.v2.uploader.upload(images[i], {
-      folder: 'products'
+      folder: `products/${req.body.category.toLowerCase()}/${req.body.brand.toLowerCase()}`
     });
 
     imagesLinks.push({
@@ -158,7 +156,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
   // Deleting images associated with the product
   for (let i = 0; i < product.images.length; i++) {
-    const result = await cloudinary.v2.uploader.destroy(product.images[i].public_id)
+    await cloudinary.v2.uploader.destroy(product.images[i].public_id)
   }
 
   await product.remove();

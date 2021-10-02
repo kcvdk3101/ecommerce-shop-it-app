@@ -24,7 +24,7 @@ const SearchInput = ({ history }) => {
         />
         <InputGroupAddon addonType="append">
           <Button color="warning" className="text-white">
-            <i class="fa fa-search" aria-hidden="true"></i>
+            <i className="fa fa-search" aria-hidden="true"></i>
           </Button>
         </InputGroupAddon>
       </InputGroup>

@@ -48,7 +48,7 @@ const NewPasswordForm = ({
     formData.set("password", password);
     formData.set("confirmPassword", confirmPassword);
 
-    // match.params.token is reset password token
+    //  match.params.token is reset password token
     resetPassword(match.params.token, formData);
   };
 

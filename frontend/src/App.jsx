@@ -9,7 +9,7 @@ import { Container } from "reactstrap";
 import userActions from "./actions/userActions";
 // Admin Imports
 import Dashboard from "./components/admin/Dashboard";
-import NewProduct from "./components/admin/NewProduct";
+import AddNewProduct from "./components/admin/AddNewProduct";
 import OrdersList from "./components/admin/OrdersList";
 import ProcessOrder from "./components/admin/ProcessOrder";
 import ProductReviews from "./components/admin/ProductReviews";
@@ -61,7 +61,7 @@ function App({ auth, loadUser }) {
       <Header />
 
       <Container fluid>
-        <Route path="/" component={Home} exact>
+        <Route path="/" exact>
           {user && user.role === "admin" ? (
             <Redirect to="/dashboard" />
           ) : (
@@ -115,7 +115,7 @@ function App({ auth, loadUser }) {
         <ProtectedRoute
           path="/admin/product"
           isAdmin={true}
-          component={NewProduct}
+          component={AddNewProduct}
           exact
         />
         <ProtectedRoute
