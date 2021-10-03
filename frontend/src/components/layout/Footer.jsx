@@ -4,23 +4,23 @@ import { Link } from "react-router-dom";
 
 const socials = [
   {
-    icon: <ion-icon name="logo-facebook"></ion-icon>,
+    icon: <i className="fa fa-facebook-official"></i>,
     path: "https://www.facebook.com/",
   },
   {
-    icon: <ion-icon name="logo-instagram"></ion-icon>,
+    icon: <i className="fa fa-instagram"></i>,
     path: "https://www.instagram.com/",
   },
   {
-    icon: <ion-icon name="logo-github"></ion-icon>,
+    icon: <i className="fa fa-github"></i>,
     path: "https://www.github.com/",
   },
   {
-    icon: <ion-icon name="logo-google"></ion-icon>,
+    icon: <i className="fa fa-google"></i>,
     path: "https://www.google.com/",
   },
   {
-    icon: <ion-icon name="logo-twitter"></ion-icon>,
+    icon: <i className="fa fa-twitter"></i>,
     path: "https://www.twitter.com/",
   },
 ];

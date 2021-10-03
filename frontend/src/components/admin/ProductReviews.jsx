@@ -7,6 +7,7 @@ import productActions from "../../actions/productActions";
 import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
 import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
+import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const ProductReviews = ({
   getProductReviews,
@@ -16,7 +17,6 @@ const ProductReviews = ({
   clearErrors,
 }) => {
   const { error, reviews } = productReviews;
-  const { isDeleted, error: deleteError } = review;
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -28,17 +28,14 @@ const ProductReviews = ({
       alert.error(error);
       clearErrors();
     }
-
-    if (deleteError) {
-      alert.error(deleteError);
+    if (review.deleteError) {
+      alert.error(review.deleteError);
       clearErrors();
     }
-
     if (productId !== "") {
       getProductReviews(productId);
     }
-
-    if (isDeleted) {
+    if (review.isDeleted) {
       alert.success("Review deleted successfully");
       dispatch({ type: DELETE_REVIEW_RESET });
     }
@@ -47,20 +44,10 @@ const ProductReviews = ({
     alert,
     error,
     productId,
-    isDeleted,
-    deleteError,
+    review,
     getProductReviews,
     clearErrors,
   ]);
-
-  const deleteReviewHandler = (id) => {
-    deleteReview(id, productId);
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    getProductReviews(productId);
-  };
 
   const setReviews = () => {
     const data = {
@@ -98,15 +85,16 @@ const ProductReviews = ({
         id: review._id,
         rating: review.rating,
         comment: review.comment,
-        user: review.name,
+        user: `${review.firstName} ${review.lastName}`,
 
         actions: (
-          <button
-            className="btn btn-danger py-1 px-2 ml-2"
+          <Button
+            color="danger"
+            className="py-1 px-2 ml-2"
             onClick={() => deleteReviewHandler(review._id)}
           >
             <i className="fa fa-trash"></i>
-          </button>
+          </Button>
         ),
       });
     });
@@ -114,55 +102,62 @@ const ProductReviews = ({
     return data;
   };
 
+  const deleteReviewHandler = (id) => {
+    deleteReview(id, productId);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    getProductReviews(productId);
+  };
+
   return (
     <>
       <MetaData title={"Product Reviews"} />
-      <div className="row">
-        <div className="col-12 col-md-2">
+      <Row>
+        <Col xs={12} md={2}>
           <Sidebar />
-        </div>
+        </Col>
 
-        <div className="col-12 col-md-10">
-          <Fragment>
-            <div className="row justify-content-center mt-5">
-              <div className="col-5">
-                <form onSubmit={submitHandler}>
-                  <div className="form-group">
-                    <label htmlFor="productId_field">Enter Product ID</label>
-                    <input
-                      type="text"
-                      id="productId_field"
-                      className="form-control"
-                      value={productId}
-                      onChange={(e) => setProductId(e.target.value)}
-                    />
-                  </div>
+        <Col xs={12} md={10}>
+          <Row className="justify-content-center mt-5">
+            <Col xs={5}>
+              <Form onSubmit={submitHandler}>
+                <FormGroup>
+                  <Label htmlFor="productId_field">Enter Product ID</Label>
+                  <Input
+                    type="text"
+                    id="productId_field"
+                    className="form-control"
+                    value={productId}
+                    onChange={(e) => setProductId(e.target.value)}
+                  />
+                </FormGroup>
 
-                  <button
-                    id="search_button"
-                    type="submit"
-                    className="btn btn-primary btn-block py-2"
-                  >
-                    SEARCH
-                  </button>
-                </form>
-              </div>
-            </div>
+                <Button
+                  color="warning"
+                  block
+                  className="text-white text-uppercase py-2"
+                >
+                  search
+                </Button>
+              </Form>
+            </Col>
+          </Row>
 
-            {reviews && reviews.length > 0 ? (
-              <MDBDataTable
-                data={setReviews()}
-                className="px-3"
-                bordered
-                striped
-                hover
-              />
-            ) : (
-              <p className="mt-5 text-center">No Reviews.</p>
-            )}
-          </Fragment>
-        </div>
-      </div>
+          {reviews && reviews.length > 0 ? (
+            <MDBDataTable
+              data={setReviews()}
+              className="px-3"
+              bordered
+              striped
+              hover
+            />
+          ) : (
+            <p className="mt-5 text-center">No Reviews.</p>
+          )}
+        </Col>
+      </Row>
     </>
   );
 };

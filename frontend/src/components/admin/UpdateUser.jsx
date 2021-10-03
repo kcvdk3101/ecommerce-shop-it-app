@@ -87,74 +87,78 @@ const UpdateUser = ({
         </Col>
 
         <Col xs={12} md={10}>
-          <Form onSubmit={submitHandler}>
-            <h1 className="mt-5">Update User</h1>
+          <Row className="justify-content-center">
+            <Col xs={7}>
+              <Form onSubmit={submitHandler}>
+                <h1 className="my-5">Update User</h1>
 
-            <Row form>
-              <Col xs={6}>
-                <FormGroup>
-                  <Label htmlFor="firstName_field">First Name</Label>
-                  <Input
-                    type="text"
-                    id="firstName_field"
-                    className="form-control"
-                    name="firstName"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </FormGroup>
-              </Col>
-              <Col xs={6}>
-                <FormGroup>
-                  <Label htmlFor="lastName_field">Last Name</Label>
-                  <Input
-                    type="text"
-                    id="lastName_field"
-                    className="form-control"
-                    name="lastName"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
+                <Row form>
+                  <Col xs={6}>
+                    <FormGroup>
+                      <Label htmlFor="firstName_field">First Name</Label>
+                      <Input
+                        type="text"
+                        id="firstName_field"
+                        className="form-control"
+                        name="firstName"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col xs={6}>
+                    <FormGroup>
+                      <Label htmlFor="lastName_field">Last Name</Label>
+                      <Input
+                        type="text"
+                        id="lastName_field"
+                        className="form-control"
+                        name="lastName"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-            <Row form>
-              <Col xs={6}>
-                <FormGroup>
-                  <Label htmlFor="email_field">Email</Label>
-                  <Input
-                    type="email"
-                    id="email_field"
-                    className="form-control"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </FormGroup>
-              </Col>
-              <Col xs={6}>
-                <FormGroup>
-                  <Label htmlFor="role_field">Role</Label>
-                  <Input
-                    type="select"
-                    id="role_field"
-                    className="form-control"
-                    name="role"
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                  >
-                    <option value="user">user</option>
-                    <option value="admin">admin</option>
-                  </Input>
-                </FormGroup>
-              </Col>
-            </Row>
+                <Row form>
+                  <Col xs={6}>
+                    <FormGroup>
+                      <Label htmlFor="email_field">Email</Label>
+                      <Input
+                        type="email"
+                        id="email_field"
+                        className="form-control"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col xs={6}>
+                    <FormGroup>
+                      <Label htmlFor="role_field">Role</Label>
+                      <Input
+                        type="select"
+                        id="role_field"
+                        className="form-control"
+                        name="role"
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                      >
+                        <option value="user">user</option>
+                        <option value="admin">admin</option>
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-            <Button color="warning" className="text-white">
-              Update
-            </Button>
-          </Form>
+                <Button color="warning" block className="text-white">
+                  Update
+                </Button>
+              </Form>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </>

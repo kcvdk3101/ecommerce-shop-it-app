@@ -35,7 +35,10 @@ const ProductCardView = ({ product }) => {
                   }}
                 ></div>
               </div>
-              <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
+              <span className="ms-2">
+                ({product.numOfReviews}{" "}
+                {product.numOfReviews > 1 ? "Reviews" : "Review"})
+              </span>
             </div>
             <CardText>${product.price}</CardText>
           </div>

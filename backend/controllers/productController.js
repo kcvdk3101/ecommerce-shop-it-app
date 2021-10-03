@@ -135,9 +135,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Delete Product   =>   /api/v1/admin/product/:id
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
-
   const product = await Product.findById(req.params.id);
-
   if (!product) {
     return next(new ErrorHandler('Product not found', 404));
   }
@@ -209,14 +207,10 @@ exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
 
 // Delete Product Review   =>   /api/v1/reviews
 exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
-
   const product = await Product.findById(req.query.productId);
-
   const reviews = product.reviews.filter(review => review._id.toString() !== req.query.id.toString());
-
   const numOfReviews = reviews.length;
-
-  const ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / reviews.length
+  const ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / numOfReviews
 
   await Product.findByIdAndUpdate(req.query.productId, {
     reviews,

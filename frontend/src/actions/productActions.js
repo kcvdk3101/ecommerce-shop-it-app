@@ -189,20 +189,13 @@ const getProductReviews = (id) => async (dispatch) => {
 // Delete product review
 const deleteReview = (id, productId) => async (dispatch) => {
   try {
-
     dispatch({ type: DELETE_REVIEW_REQUEST })
-
     const { data } = await axios.delete(`/api/v1/reviews?id=${id}&productId=${productId}`)
-
     dispatch({
       type: DELETE_REVIEW_SUCCESS,
       payload: data.success
     })
-
   } catch (error) {
-
-    console.log(error.response);
-
     dispatch({
       type: DELETE_REVIEW_FAIL,
       payload: error.response.data.message

@@ -1,22 +1,22 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import {
+  Button,
+  Col,
+  FormGroup,
+  Input,
+  ListGroup,
+  ListGroupItem,
+  Row,
+} from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import orderActions from "../../actions/orderActions";
+import { STATUS_ORDER } from "../../constant";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
-import {
-  Row,
-  Col,
-  FormGroup,
-  ListGroup,
-  ListGroupItem,
-  Input,
-} from "reactstrap";
-import { STATUS_ORDER } from "../../constant";
 
 const ProcessOrder = ({
   match,
@@ -66,7 +66,7 @@ const ProcessOrder = ({
 
   const shippingDetails =
     shippingInfo &&
-    `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`;
+    `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.country}`;
   const isPaid =
     paymentInfo && paymentInfo.status === "succeeded" ? true : false;
 
@@ -82,9 +82,9 @@ const ProcessOrder = ({
           {loading ? (
             <Loader />
           ) : (
-            <Row className="d-flex justify-content-around">
-              <Col xs={12} lg={7} className="order-details">
-                <h1 className="mt-5">Order # {order._id}</h1>
+            <Row className="d-flex justify-content-around my-5">
+              <Col xs={12} lg={7}>
+                <h1>Order #{order._id}</h1>
                 <ListGroup flush>
                   <ListGroupItem>
                     <h4 className="mb-4">Shipping Info</h4>
@@ -96,7 +96,7 @@ const ProcessOrder = ({
                       <b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}
                     </p>
                     <p>
-                      <b>Address:</b>
+                      <b>Address: </b>
                       {shippingDetails}
                     </p>
                     <p>
@@ -114,7 +114,7 @@ const ProcessOrder = ({
                     </p>
 
                     <h4 className="my-4">Stripe ID</h4>
-                    <p>
+                    <p className="text-muted">
                       <b>{paymentInfo && paymentInfo.id}</b>
                     </p>
 
@@ -148,17 +148,21 @@ const ProcessOrder = ({
                             </Col>
 
                             <Col xs={5} lg={5}>
-                              <Link to={`/products/${item.product}`}>
-                                {item.name}
-                              </Link>
+                              <p>
+                                <b>{item.name}</b>
+                              </p>
                             </Col>
 
                             <Col xs={4} lg={2} className="mt-4 mt-lg-0">
-                              <p>${item.price}</p>
+                              <p>
+                                <b>${item.price}</b>
+                              </p>
                             </Col>
 
                             <Col xs={4} lg={3} className="mt-4 mt-lg-0">
-                              <p>{item.quantity} Piece(s)</p>
+                              <p>
+                                <b>{item.quantity}</b> Piece(s)
+                              </p>
                             </Col>
                           </Row>
                         ))}
@@ -168,7 +172,7 @@ const ProcessOrder = ({
               </Col>
 
               <Col xs={12} lg={3}>
-                <h4 className="mt-5">Status</h4>
+                <h4>Status</h4>
 
                 <FormGroup>
                   <Input
@@ -186,12 +190,14 @@ const ProcessOrder = ({
                   </Input>
                 </FormGroup>
 
-                <button
-                  className="btn btn-primary btn-block"
+                <Button
+                  color="warning"
+                  block
+                  className="text-white text-uppercase"
                   onClick={() => updateOrderHandler(order._id)}
                 >
                   Update Status
-                </button>
+                </Button>
               </Col>
             </Row>
           )}

@@ -43,7 +43,7 @@ const ConfirmOrder = ({ history, auth, cart }) => {
       <CheckoutSteps shipping confirmOrder />
 
       <Row className="d-flex justify-content-between">
-        <Col xs={12} lg={8} className="order-confirm">
+        <Col xs={12} lg={8}>
           <h4 className="mb-3">Shipping Info</h4>
           <p>
             <b>Name:</b> {user.firstName} {user.lastName}

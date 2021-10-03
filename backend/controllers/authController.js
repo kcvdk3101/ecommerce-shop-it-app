@@ -154,7 +154,6 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
 // Reset Password   =>  /api/v1/password/reset/:token
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
-
   // Hash URL token
   const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
 
@@ -164,7 +163,6 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   })
 
   if (!user) return next(new ErrorHandler('Password reset token is invalid or has been expired', 400))
-
   if (req.body.password !== req.body.confirmPassword) return next(new ErrorHandler('Password does not match', 400))
 
   //Hash password
@@ -179,7 +177,6 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
   sendToken(user, 200, res)
-
 })
 
 // Get currently logged in user details   =>   /api/v1/me
