@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useAlert } from "react-alert";
+import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { UPDATE_USER_RESET } from "../../actions/actionTypes/userActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import userActions from "../../actions/userActions";
-import { UPDATE_USER_RESET } from "../../constants/userConstants";
-import MetaData from "../layout/MetaData";
+import MetaData from "../common/MetaData";
 import Sidebar from "./Sidebar";
-import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const UpdateUser = ({
   history,
@@ -18,11 +18,8 @@ const UpdateUser = ({
   updateUser,
 }) => {
   const userId = match.params.id;
-
-  const { error, isUpdated } = userDB;
   const { user } = userDetails;
 
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   const [firstName, setFirstName] = useState("");
@@ -39,14 +36,12 @@ const UpdateUser = ({
       setEmail(user.email);
       setRole(user.role);
     }
-
-    if (error) {
-      alert.error(error);
+    if (userDB.error) {
+      toast.error(userDB.error);
       clearErrors();
     }
-
-    if (isUpdated) {
-      alert.success("User updated successfully");
+    if (userDB.isUpdated) {
+      toast.success("User updated successfully");
 
       history.push("/admin/users");
 
@@ -54,17 +49,7 @@ const UpdateUser = ({
         type: UPDATE_USER_RESET,
       });
     }
-  }, [
-    dispatch,
-    alert,
-    error,
-    history,
-    isUpdated,
-    userId,
-    user,
-    getUserDetails,
-    clearErrors,
-  ]);
+  }, [dispatch, userDB, history, userId, user, getUserDetails, clearErrors]);
 
   const submitHandler = (e) => {
     e.preventDefault();

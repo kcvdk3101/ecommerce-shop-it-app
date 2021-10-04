@@ -10,7 +10,7 @@ import {
   NEW_REVIEW_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS, UPDATE_PRODUCT_FAIL, UPDATE_PRODUCT_REQUEST,
   UPDATE_PRODUCT_SUCCESS
-} from '../constants/productConstants';
+} from './actionTypes/productActionTypes';
 
 // Get all products
 const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0) => async (dispatch) => {

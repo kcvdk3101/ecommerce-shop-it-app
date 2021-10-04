@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { Col, Row } from "reactstrap";
+import { NEW_PRODUCT_RESET } from "../../actions/actionTypes/productActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import productActions from "../../actions/productActions";
-import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import putFormDataInAddNewProduct from "../../utils/putFormDataInAddNewProduct";
+import MetaData from "../common/MetaData";
 import AddNewProductForm from "../form/AddNewProductForm";
-import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
 
 const AddNewProduct = ({ clearErrors, history, newProduct, addNewProduct }) => {
@@ -21,22 +21,20 @@ const AddNewProduct = ({ clearErrors, history, newProduct, addNewProduct }) => {
     seller: "",
   });
   const [images, setImages] = useState([]);
-
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (newProduct.error) {
-      alert.error(newProduct.error);
+      toast.error(newProduct.error);
       clearErrors();
     }
 
     if (newProduct.success) {
-      alert.success("Product created successfully");
+      toast.success("Product created successfully");
       dispatch({ type: NEW_PRODUCT_RESET });
       history.push("/admin/products");
     }
-  }, [dispatch, alert, newProduct, history, clearErrors]);
+  }, [dispatch, newProduct, history, clearErrors]);
 
   const submitHandler = (e) => {
     e.preventDefault();

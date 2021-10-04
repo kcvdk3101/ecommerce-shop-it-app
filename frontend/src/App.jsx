@@ -1,15 +1,14 @@
-// Payment
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import { Container } from "reactstrap";
 import userActions from "./actions/userActions";
-// Admin Imports
-import Dashboard from "./components/admin/Dashboard";
 import AddNewProduct from "./components/admin/AddNewProduct";
+import Dashboard from "./components/admin/Dashboard";
 import OrdersList from "./components/admin/OrdersList";
 import ProcessOrder from "./components/admin/ProcessOrder";
 import ProductReviews from "./components/admin/ProductReviews";
@@ -17,28 +16,25 @@ import ProductsList from "./components/admin/ProductsList";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import UpdateUser from "./components/admin/UpdateUser";
 import UsersList from "./components/admin/UsersList";
-// Cart Imports
-import Cart from "./components/cart/Cart";
-import ConfirmOrder from "./components/cart/ConfirmOrder";
-import OrderSuccess from "./components/cart/OrderSuccess";
-import Payment from "./components/cart/Payment";
-import Shipping from "./components/cart/Shipping";
+import NewPasswordForm from "./components/form/NewPasswordForm";
 import Home from "./components/Home";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
-// Order Imports
-import ListOrders from "./components/order/ListOrders";
-import OrderDetails from "./components/order/OrderDetails";
+import Cart from "./components/pages/cart/Cart";
+import ConfirmOrder from "./components/pages/cart/ConfirmOrder";
+import OrderSuccess from "./components/pages/cart/OrderSuccess";
+import Payment from "./components/pages/cart/Payment";
+import Shipping from "./components/pages/cart/Shipping";
+import ListOrders from "./components/pages/order/ListOrders";
+import OrderDetails from "./components/pages/order/OrderDetails";
+import Search from "./components/pages/search/Search";
+import Login from "./components/pages/user/Login";
+import Profile from "./components/pages/user/Profile";
+import Register from "./components/pages/user/Register";
+import UpdatePassword from "./components/pages/user/UpdatePassword";
+import UpdateProfile from "./components/pages/user/UpdateProfile";
 import ProductDetails from "./components/product/details/ProductDetails";
 import ProtectedRoute from "./components/route/ProtectedRoute";
-// Auth or User imports
-import Login from "./components/user/Login";
-import NewPasswordForm from "./components/form/NewPasswordForm";
-import Profile from "./components/user/Profile";
-import Register from "./components/user/Register";
-import UpdatePassword from "./components/user/UpdatePassword";
-import UpdateProfile from "./components/user/UpdateProfile";
-import Search from "./components/search/Search";
 
 function App({ auth, loadUser }) {
   const { user, isAuthenticated, loading } = auth;
@@ -51,7 +47,7 @@ function App({ auth, loadUser }) {
         const { data } = await axios.get("/api/v1/stripeApi");
         setStripeApiKey(data.stripeApiKey);
       } catch (error) {
-        console.log(error);
+        toast.warning(error.message);
       }
     })();
   }, [loadUser]);
@@ -157,6 +153,19 @@ function App({ auth, loadUser }) {
       </Container>
 
       {!loading && (!isAuthenticated || user.role !== "admin") && <Footer />}
+
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 }

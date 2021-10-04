@@ -1,7 +1,7 @@
 import "rc-slider/assets/index.css";
 import React from "react";
 import { Container } from "reactstrap";
-import MetaData from "./layout/MetaData";
+import MetaData from "./common/MetaData";
 
 const Home = () => {
   return (

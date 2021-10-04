@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import MetaData from "../layout/MetaData";
+import MetaData from "../../common/MetaData";
 
 const OrderSuccess = () => {
   return (
     <Container className="my-4">
       <MetaData title={"Order Success"} />
-
       <Row className="d-flex justify-content-center align-items-center text-center">
         <Col xs={5}>
           <img
-            class="my-5 img-fluid mx-auto"
+            className="my-5 img-fluid mx-auto"
             src="/images/order_success.png"
             alt="Order Success"
             width="200"

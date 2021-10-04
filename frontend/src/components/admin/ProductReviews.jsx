@@ -1,13 +1,13 @@
 import { MDBDataTable } from "mdbreact";
-import React, { Fragment, useEffect, useState } from "react";
-import { useAlert } from "react-alert";
+import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { DELETE_REVIEW_RESET } from "../../actions/actionTypes/productActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import productActions from "../../actions/productActions";
-import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
-import MetaData from "../layout/MetaData";
+import MetaData from "../common/MetaData";
 import Sidebar from "./Sidebar";
-import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const ProductReviews = ({
   getProductReviews,
@@ -17,37 +17,26 @@ const ProductReviews = ({
   clearErrors,
 }) => {
   const { error, reviews } = productReviews;
-
-  const alert = useAlert();
   const dispatch = useDispatch();
-
   const [productId, setProductId] = useState("");
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
     if (review.deleteError) {
-      alert.error(review.deleteError);
+      toast.error(review.deleteError);
       clearErrors();
     }
     if (productId !== "") {
       getProductReviews(productId);
     }
     if (review.isDeleted) {
-      alert.success("Review deleted successfully");
+      toast.success("Review deleted successfully");
       dispatch({ type: DELETE_REVIEW_RESET });
     }
-  }, [
-    dispatch,
-    alert,
-    error,
-    productId,
-    review,
-    getProductReviews,
-    clearErrors,
-  ]);
+  }, [dispatch, error, productId, review, getProductReviews, clearErrors]);
 
   const setReviews = () => {
     const data = {

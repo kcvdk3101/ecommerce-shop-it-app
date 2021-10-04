@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import orderActions from "../../actions/orderActions";
 import productActions from "../../actions/productActions";
 import userActions from "../../actions/userActions";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import Loader from "../common/Loader";
+import MetaData from "../common/MetaData";
 import Sidebar from "./Sidebar";
 import {
   Row,

@@ -8,7 +8,7 @@ import {
   ListGroupItem,
   Row,
 } from "reactstrap";
-import MetaData from "../layout/MetaData";
+import MetaData from "../../common/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 
 const ConfirmOrder = ({ history, auth, cart }) => {
@@ -20,7 +20,8 @@ const ConfirmOrder = ({ history, auth, cart }) => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const shippingPrice = itemsPrice > 200 ? 0 : 25;
+  const shippingPrice = itemsPrice > 200 ? 20 : 30;
+  // Tax 5%
   const taxPrice = Number((0.05 * itemsPrice).toFixed(2));
   const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2);
 
@@ -31,7 +32,6 @@ const ConfirmOrder = ({ history, auth, cart }) => {
       taxPrice,
       totalPrice,
     };
-
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
     history.push("/payment");
   };
@@ -44,45 +44,40 @@ const ConfirmOrder = ({ history, auth, cart }) => {
 
       <Row className="d-flex justify-content-between">
         <Col xs={12} lg={8}>
-          <h4 className="mb-3">Shipping Info</h4>
+          <h3 className="mb-3">Shipping Information</h3>
           <p>
             <b>Name:</b> {user.firstName} {user.lastName}
           </p>
           <p>
-            <b>Phone:</b> {shippingInfo.phoneNo}
+            <b>Phone:</b> {shippingInfo.phoneNumber}
           </p>
           <p>
             <b>Address:</b>{" "}
             {`${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.country}`}
           </p>
-          <p className="mb-4">
-            <b>Postal Code:</b> {shippingInfo.postalCode}
-          </p>
 
-          {cartItems.map((item) => (
-            <>
-              <hr />
-              <div className="text-muted my-5 px-3" key={item.product}>
-                <Row>
+          <ListGroup flush className="my-5">
+            {cartItems.map((cartItem, index) => (
+              <ListGroupItem key={index} className="my-1">
+                <Row className="justify-content-center align-items-center">
                   <Col xs={4} lg={2}>
-                    <img src={item.image} alt="Laptop" width="100%" />
+                    <img src={cartItem.image} alt="Laptop" width="100%" />
                   </Col>
 
                   <Col xs={5} lg={6}>
-                    <p className="fw-bold fs-5">{item.name}</p>
+                    <p className="fw-bold fs-5">{cartItem.name}</p>
                   </Col>
 
                   <Col xs={4} lg={4} className="mt-4 mt-lg-0">
                     <p>
-                      {item.quantity} x ${item.price} ={" "}
-                      <b>${(item.quantity * item.price).toFixed(2)}</b>
+                      {cartItem.quantity} x ${cartItem.price} ={" "}
+                      <b>${(cartItem.quantity * cartItem.price).toFixed(2)}</b>
                     </p>
                   </Col>
                 </Row>
-              </div>
-              <hr />
-            </>
-          ))}
+              </ListGroupItem>
+            ))}
+          </ListGroup>
         </Col>
 
         <Col xs={12} lg={3} className="my-4">

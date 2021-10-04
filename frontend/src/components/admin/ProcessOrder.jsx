@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import {
   Button,
   Col,
@@ -10,12 +10,12 @@ import {
   ListGroupItem,
   Row,
 } from "reactstrap";
+import { UPDATE_ORDER_RESET } from "../../actions/actionTypes/orderActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import orderActions from "../../actions/orderActions";
 import { STATUS_ORDER } from "../../constant";
-import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import Loader from "../common/Loader";
+import MetaData from "../common/MetaData";
 import Sidebar from "./Sidebar";
 
 const ProcessOrder = ({
@@ -36,10 +36,6 @@ const ProcessOrder = ({
     totalPrice,
     orderStatus,
   } = order;
-
-  console.log(order);
-
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   const [status, setStatus] = useState("");
@@ -48,15 +44,15 @@ const ProcessOrder = ({
     getOrderDetails(orderId);
 
     if (orderDB.error) {
-      alert.error(orderDB.error);
+      toast.error(orderDB.error);
       clearErrors();
     }
 
     if (orderDB.isUpdated) {
-      alert.success("Order updated successfully");
+      toast.success("Order updated successfully");
       dispatch({ type: UPDATE_ORDER_RESET });
     }
-  }, [dispatch, alert, orderDB, orderId, getOrderDetails, clearErrors]);
+  }, [dispatch, orderDB, orderId, getOrderDetails, clearErrors]);
 
   const updateOrderHandler = (id) => {
     const formData = new FormData();

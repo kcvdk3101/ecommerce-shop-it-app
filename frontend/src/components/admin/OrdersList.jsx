@@ -1,15 +1,15 @@
 import { MDBDataTable } from "mdbreact";
 import React, { Fragment, useEffect } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Col, Row } from "reactstrap";
+import { DELETE_ORDER_RESET } from "../../actions/actionTypes/orderActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import orderActions from "../../actions/orderActions";
-import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import Loader from "../common/Loader";
+import MetaData from "../common/MetaData";
 import Sidebar from "./Sidebar";
-import { Row, Col } from "reactstrap";
 
 const OrdersList = ({
   history,
@@ -19,31 +19,20 @@ const OrdersList = ({
   deleteOrder,
   clearErrors,
 }) => {
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   useEffect(() => {
     getAllOrders();
-
     if (allOrders.error) {
-      alert.error(allOrders.error);
+      toast.error(allOrders.error);
       clearErrors();
     }
-
     if (order.isDeleted) {
-      alert.success("Order deleted successfully");
+      toast.success("Order deleted successfully");
       history.push("/admin/orders");
       dispatch({ type: DELETE_ORDER_RESET });
     }
-  }, [
-    dispatch,
-    alert,
-    order,
-    history,
-    getAllOrders,
-    clearErrors,
-    allOrders.error,
-  ]);
+  }, [dispatch, order, history, getAllOrders, clearErrors, allOrders.error]);
 
   const deleteOrderHandler = (id) => {
     deleteOrder(id);

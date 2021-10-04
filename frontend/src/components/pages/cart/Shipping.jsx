@@ -2,25 +2,31 @@ import { countries } from "countries-list";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
-import cartActions from "../../actions/cartActions";
-import ShippingForm from "../form/ShippingForm";
-import MetaData from "../layout/MetaData";
+import cartActions from "../../../actions/cartActions";
+import ShippingForm from "../../form/ShippingForm";
+import MetaData from "../../common/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 
 const Shipping = ({ history, cart, saveShippingInfo }) => {
   const countriesList = Object.values(countries);
-
   const { shippingInfo } = cart;
 
-  const [address, setAddress] = useState(shippingInfo.address);
-  const [city, setCity] = useState(shippingInfo.city);
-  const [postalCode, setPostalCode] = useState(shippingInfo.postalCode);
-  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
-  const [country, setCountry] = useState(shippingInfo.country);
+  const [shippingData, setShippingData] = useState({
+    address: shippingInfo.address,
+    city: shippingInfo.city,
+    phoneNumber: shippingInfo.phoneNumber,
+    country: shippingInfo.country,
+  });
+
+  const handleChangeInput = (e) =>
+    setShippingData({
+      ...shippingData,
+      [e.target.name]: e.target.value,
+    });
 
   const submitHandler = (e) => {
     e.preventDefault();
-    saveShippingInfo({ address, city, phoneNo, postalCode, country });
+    saveShippingInfo({ ...shippingData });
     history.push("/confirm");
   };
 
@@ -34,16 +40,11 @@ const Shipping = ({ history, cart, saveShippingInfo }) => {
         <Col xs={10} lg={5}>
           <ShippingForm
             countriesList={countriesList}
-            address={address}
-            city={city}
-            phoneNo={phoneNo}
-            postalCode={postalCode}
-            country={country}
-            setAddress={setAddress}
-            setCity={setCity}
-            setPhoneNo={setPhoneNo}
-            setPostalCode={setPostalCode}
-            setCountry={setCountry}
+            address={shippingData.address}
+            city={shippingData.city}
+            phoneNumber={shippingData.phoneNumber}
+            country={shippingData.country}
+            handleChangeInput={handleChangeInput}
             submitHandler={submitHandler}
           />
         </Col>

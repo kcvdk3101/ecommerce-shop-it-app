@@ -1,14 +1,14 @@
 import { MDBDataTable } from "mdbreact";
 import React, { useEffect } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Button, Col, Row } from "reactstrap";
+import { DELETE_PRODUCT_RESET } from "../../actions/actionTypes/productActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import productActions from "../../actions/productActions";
-import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import Loader from "../common/Loader";
+import MetaData from "../common/MetaData";
 import Sidebar from "./Sidebar";
 
 const ProductsList = ({
@@ -19,28 +19,27 @@ const ProductsList = ({
   clearErrors,
   products,
 }) => {
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   const { error } = products;
   useEffect(() => {
     getAdminProducts();
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
 
     if (product.deleteError) {
-      alert.error(product.deleteError);
+      toast.error(product.deleteError);
       clearErrors();
     }
 
     if (product.isDeleted) {
-      alert.success("Product deleted successfully");
+      toast.success("Product deleted successfully");
       history.push("/admin/products");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-  }, [alert, clearErrors, dispatch, error, getAdminProducts, history, product]);
+  }, [clearErrors, dispatch, error, getAdminProducts, history, product]);
 
   const setProducts = () => {
     const data = {

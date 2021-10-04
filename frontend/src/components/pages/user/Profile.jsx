@@ -1,14 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Col, Container, Row } from "reactstrap";
-import convertToDateString from "../../utils/convertToDateString";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import convertToDateString from "../../../utils/convertToDateString";
+import Loader from "../../common/Loader";
+import MetaData from "../../common/MetaData";
 
-const Profile = () => {
-  const { user, loading } = useSelector((state) => state.auth);
-
+const Profile = ({ auth }) => {
+  const { user, loading } = auth;
   return (
     <Container className="my-4">
       <MetaData title={"Your Profile"} />
@@ -87,4 +86,12 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

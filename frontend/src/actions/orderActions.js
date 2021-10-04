@@ -19,7 +19,7 @@ import {
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
   ORDER_DETAILS_FAIL,
-} from '../constants/orderConstants'
+} from './actionTypes/orderActionTypes'
 
 // Create new order
 const createOrder = (order) => async (dispatch, getState) => {

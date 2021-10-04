@@ -19,9 +19,8 @@ const LoginForm = ({
   submitHandler,
   loading,
   email,
-  setEmail,
   password,
-  setPassword,
+  handleChangeInput,
 }) => {
   const [modal, setModal] = useState(false);
 
@@ -38,7 +37,7 @@ const LoginForm = ({
               name="email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChangeInput}
               disabled={loading ? true : false}
             />
           </FormGroup>
@@ -49,7 +48,7 @@ const LoginForm = ({
               name="password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChangeInput}
               disabled={loading ? true : false}
             />
           </FormGroup>

@@ -1,14 +1,14 @@
 import Slider from "rc-slider";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import { Col, Container, Row } from "reactstrap";
-import productActions from "../../actions/productActions";
-import { CATEGORIES, MAX, MIN, RATINGS } from "../../constant";
-import ProductCardView from "../common/ProductCardView";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import productActions from "../../../actions/productActions";
+import { CATEGORIES, MAX, MIN, RATINGS } from "../../../constant";
+import Loader from "../../common/Loader";
+import MetaData from "../../common/MetaData";
+import ProductCardView from "../../common/ProductCardView";
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -30,26 +30,12 @@ export const Search = ({ productsDB, match, getProducts }) => {
   const [category, setCategory] = useState("");
   const [rating, setRating] = useState(0);
 
-  const alert = useAlert();
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (error) {
-      return alert.error(error);
+      toast.error(error);
     }
-
     getProducts(keyword, currentPage, price, category, rating);
-  }, [
-    dispatch,
-    alert,
-    error,
-    keyword,
-    currentPage,
-    price,
-    category,
-    rating,
-    getProducts,
-  ]);
+  }, [error, keyword, currentPage, price, category, rating, getProducts]);
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
@@ -155,7 +141,6 @@ export const Search = ({ productsDB, match, getProducts }) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state.products);
   return {
     productsDB: state.products,
   };

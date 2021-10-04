@@ -19,9 +19,9 @@ import {
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
   ORDER_DETAILS_FAIL,
-} from '../constants/orderConstants'
+} from '../actions/actionTypes/orderActionTypes'
 
-import { CLEAR_ERRORS } from '../constants/clearErrorConstant';
+import { CLEAR_ERRORS } from '../actions/actionTypes/clearErrorActionTypes';
 
 export const newOrderReducer = (state = {}, action) => {
   switch (action.type) {

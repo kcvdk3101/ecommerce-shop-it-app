@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import { Button, Form, FormGroup, Input, Label, Spinner } from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import userActions from "../../actions/userActions";
@@ -11,21 +11,18 @@ const ForgotPasswordForm = ({
   forgotUserPassword,
 }) => {
   const { error, loading, message } = forgotPassword;
-
-  const alert = useAlert();
-
   const [email, setEmail] = useState("");
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
 
     if (message) {
-      alert.success(message);
+      toast.success(message);
     }
-  }, [error, message, clearErrors, alert]);
+  }, [error, message, clearErrors]);
 
   const submitHandler = (e) => {
     e.preventDefault();

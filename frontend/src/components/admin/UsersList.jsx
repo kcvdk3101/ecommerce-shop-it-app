@@ -1,13 +1,13 @@
 import { MDBDataTable } from "mdbreact";
 import React, { Fragment, useEffect } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { DELETE_USER_RESET } from "../../actions/actionTypes/userActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import userActions from "../../actions/userActions";
-import { DELETE_USER_RESET } from "../../constants/userConstants";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import Loader from "../common/Loader";
+import MetaData from "../common/MetaData";
 import Sidebar from "./Sidebar";
 
 const UsersList = ({
@@ -20,24 +20,22 @@ const UsersList = ({
 }) => {
   const { loading, error, users } = allUsers;
   const { isDeleted } = user;
-
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   useEffect(() => {
     getAllUsers();
 
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
 
     if (isDeleted) {
-      alert.success("User deleted successfully");
+      toast.success("User deleted successfully");
       history.push("/admin/users");
       dispatch({ type: DELETE_USER_RESET });
     }
-  }, [dispatch, alert, error, isDeleted, history, getAllUsers, clearErrors]);
+  }, [dispatch, error, isDeleted, history, getAllUsers, clearErrors]);
 
   const deleteUserHandler = (id) => {
     deleteUser(id);

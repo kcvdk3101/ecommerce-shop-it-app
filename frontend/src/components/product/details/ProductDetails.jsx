@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { Col, Container, Row } from "reactstrap";
+import { NEW_REVIEW_RESET } from "../../../actions/actionTypes/productActionTypes";
 import cartActions from "../../../actions/cartActions";
 import { clearErrors } from "../../../actions/clearErrors";
 import productActions from "../../../actions/productActions";
-import { NEW_REVIEW_RESET } from "../../../constants/productConstants";
+import Loader from "../../common/Loader";
+import MetaData from "../../common/MetaData";
+import ListReviews from "../../review/ListReviews";
 import ProductDetailsCarousel from "./ProductDetailsCarousel";
 import ProductDetailsDescription from "./ProductDetailsDescription";
-import Loader from "../../layout/Loader";
-import MetaData from "../../layout/MetaData";
-import ListReviews from "../../review/ListReviews";
 
 const ProductDetails = ({
   productDetails,
@@ -24,43 +24,39 @@ const ProductDetails = ({
 }) => {
   const { loading, error, product } = productDetails;
   const { user } = auth;
-  const { error: reviewError, success } = newReview;
 
   const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   useEffect(() => {
     getProductDetails(match.params.id);
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
-    if (reviewError) {
-      alert.error(reviewError);
+    if (newReview.reviewError) {
+      toast.error(newReview.reviewError);
       clearErrors();
     }
-    if (success) {
-      alert.success("Review posted successfully");
+    if (newReview.success) {
+      toast.success("Review posted successfully");
       dispatch({ type: NEW_REVIEW_RESET });
     }
   }, [
     dispatch,
-    alert,
     error,
-    reviewError,
+    newReview,
     match.params.id,
-    success,
     getProductDetails,
     clearErrors,
   ]);
 
   const addToCart = () => {
     addItemToCart(match.params.id, quantity);
-    alert.success("Item Added to Cart");
+    toast.success("Item Added to Cart");
   };
 
   const increaseQty = () => {

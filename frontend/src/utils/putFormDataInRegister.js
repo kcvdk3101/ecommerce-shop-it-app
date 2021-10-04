@@ -1,17 +1,13 @@
 export default function putFormDataInRegister(
-  firstName,
-  lastName,
-  email,
-  password,
-  confirmPassword,
+  user,
   avatar
 ) {
   let formData = new FormData();
-  formData.set("firstName", firstName);
-  formData.set("lastName", lastName);
-  formData.set("email", email);
-  formData.set("password", password);
-  formData.set("confirmPassword", confirmPassword);
+  formData.set("firstName", user.firstName);
+  formData.set("lastName", user.lastName);
+  formData.set("email", user.email);
+  formData.set("password", user.password);
+  formData.set("confirmPassword", user.confirmPassword);
   formData.set("avatar", avatar);
 
   return formData;

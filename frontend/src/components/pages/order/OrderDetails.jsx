@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
-import { clearErrors } from "../../actions/clearErrors";
-import orderActions from "../../actions/orderActions";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import { toast } from "react-toastify";
+import { Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
+import { clearErrors } from "../../../actions/clearErrors";
+import orderActions from "../../../actions/orderActions";
+import Loader from "../../common/Loader";
+import MetaData from "../../common/MetaData";
 
 const OrderDetails = ({
   match,
@@ -15,8 +15,6 @@ const OrderDetails = ({
   getOrderDetails,
   clearErrors,
 }) => {
-  const alert = useAlert();
-
   const { user } = auth;
   const { loading, error, order = {} } = orderDetails;
   const { shippingInfo, orderItems, paymentInfo, totalPrice, orderStatus } =
@@ -24,12 +22,11 @@ const OrderDetails = ({
 
   useEffect(() => {
     getOrderDetails(match.params.id);
-
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
-  }, [alert, clearErrors, error, getOrderDetails, match.params.id]);
+  }, [clearErrors, error, getOrderDetails, match.params.id]);
 
   const shippingDetails =
     shippingInfo &&

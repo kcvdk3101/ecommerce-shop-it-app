@@ -1,4 +1,4 @@
-import { CLEAR_ERRORS } from '../constants/clearErrorConstant'
+import { CLEAR_ERRORS } from '../actions/actionTypes/clearErrorActionTypes'
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -39,7 +39,7 @@ import {
   DELETE_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
-} from '../constants/userConstants'
+} from '../actions/actionTypes/userActionTypes'
 
 export const authReducer = (state = { user: {} }, action) => {
   switch (action.type) {

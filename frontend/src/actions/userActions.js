@@ -36,7 +36,7 @@ import {
   DELETE_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
-} from '../constants/userConstants'
+} from './actionTypes/userActionTypes'
 
 // Login
 const login = (email, password) => async (dispatch) => {

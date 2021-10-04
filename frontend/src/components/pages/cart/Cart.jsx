@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import cartActions from "../../actions/cartActions";
-import MetaData from "../layout/MetaData";
+import cartActions from "../../../actions/cartActions";
+import MetaData from "../../common/MetaData";
 import {
   Row,
   Col,
@@ -54,7 +54,10 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
       ) : (
         <>
           <h2 className="mb-5">
-            Your Cart: <b>{cartItems.length} items</b>
+            Your Cart:{" "}
+            <b>
+              {cartItems.length} {cartItems.length > 1 ? "items" : "item"}
+            </b>
           </h2>
 
           <Row className="d-flex justify-content-between">
@@ -115,11 +118,10 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
                       </Col>
 
                       <Col xs={4} lg={1} className="mt-4 mt-lg-0">
-                        <ion-icon
-                          id="delete_cart_item"
-                          name="trash"
+                        <i
+                          className="fa fa-trash text-danger fs-4"
                           onClick={() => removeCartItemHandler(item.product)}
-                        ></ion-icon>
+                        ></i>
                       </Col>
                     </Row>
                   </ListGroupItem>

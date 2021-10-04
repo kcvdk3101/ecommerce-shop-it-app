@@ -1,19 +1,19 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useAlert } from "react-alert";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import {
   Button,
   Col,
-  Row,
   Form,
   FormGroup,
-  Label,
   Input,
+  Label,
+  Row,
   Spinner,
 } from "reactstrap";
 import { clearErrors } from "../../actions/clearErrors";
 import userActions from "../../actions/userActions";
-import MetaData from "../layout/MetaData";
+import MetaData from "../common/MetaData";
 
 const NewPasswordForm = ({
   history,
@@ -24,22 +24,20 @@ const NewPasswordForm = ({
 }) => {
   const { error, success, loading } = forgotPassword;
 
-  const alert = useAlert();
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
 
     if (success) {
-      alert.success("Password updated successfully");
+      toast.success("Password updated successfully");
       history.push("/login");
     }
-  }, [alert, error, success, history, clearErrors]);
+  }, [error, success, history, clearErrors]);
 
   const submitHandler = (e) => {
     e.preventDefault();

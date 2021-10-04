@@ -1,27 +1,24 @@
 import { MDBDataTable } from "mdbreact";
 import React, { useEffect } from "react";
-import { useAlert } from "react-alert";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Container } from "reactstrap";
-import { clearErrors } from "../../actions/clearErrors";
-import orderActions from "../../actions/orderActions";
-import Loader from "../layout/Loader";
-import MetaData from "../layout/MetaData";
+import { clearErrors } from "../../../actions/clearErrors";
+import orderActions from "../../../actions/orderActions";
+import Loader from "../../common/Loader";
+import MetaData from "../../common/MetaData";
 
 const ListOrders = ({ myOrders, getMyOrders, clearErrors }) => {
   const { loading, error, orders } = myOrders;
 
-  const alert = useAlert();
-
   useEffect(() => {
     getMyOrders();
-
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
-  }, [alert, error, getMyOrders, clearErrors]);
+  }, [error, getMyOrders, clearErrors]);
 
   const setOrders = () => {
     const data = {

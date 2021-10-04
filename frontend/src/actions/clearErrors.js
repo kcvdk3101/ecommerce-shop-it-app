@@ -1,4 +1,4 @@
-import { CLEAR_ERRORS } from "../constants/clearErrorConstant"
+import { CLEAR_ERRORS } from "./actionTypes/clearErrorActionTypes"
 
 // Clear Errors
 export const clearErrors = () => async (dispatch) => {

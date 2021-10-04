@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { Col, Row } from "reactstrap";
+import { UPDATE_PRODUCT_RESET } from "../../actions/actionTypes/productActionTypes";
 import { clearErrors } from "../../actions/clearErrors";
 import productActions from "../../actions/productActions";
-import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 import putFormDataInUpdateProduct from "../../utils/putFormDataInUpdateProduct";
+import MetaData from "../common/MetaData";
 import UpdateProductForm from "../form/UpdateProductForm";
-import MetaData from "../layout/MetaData";
 import Sidebar from "./Sidebar";
 
 const UpdateProduct = ({
@@ -19,7 +19,6 @@ const UpdateProduct = ({
   getProductDetails,
   clearErrors,
 }) => {
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -51,23 +50,22 @@ const UpdateProduct = ({
     }
 
     if (productDetails.error) {
-      alert.error(productDetails.error);
+      toast.error(productDetails.error);
       clearErrors();
     }
 
     if (productDB.updateError) {
-      alert.error(productDB.updateError);
+      toast.error(productDB.updateError);
       clearErrors();
     }
 
     if (productDB.isUpdated) {
       history.push("/admin/products");
-      alert.success("Product updated successfully");
+      toast.success("Product updated successfully");
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
   }, [
     dispatch,
-    alert,
     history,
     match.params.id,
     productDetails,

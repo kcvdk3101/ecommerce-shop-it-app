@@ -31,8 +31,8 @@ import {
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_RESET,
   DELETE_REVIEW_FAIL,
-} from '../constants/productConstants'
-import { CLEAR_ERRORS } from '../constants/clearErrorConstant';
+} from '../actions/actionTypes/productActionTypes'
+import { CLEAR_ERRORS } from '../actions/actionTypes/clearErrorActionTypes';
 
 export const productsReducer = (state = { products: [] }, action) => {
   switch (action.type) {

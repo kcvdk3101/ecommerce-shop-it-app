@@ -5,14 +5,9 @@ const ShippingForm = ({
   countriesList,
   address,
   city,
-  phoneNo,
-  postalCode,
+  phoneNumber,
   country,
-  setAddress,
-  setCity,
-  setPhoneNo,
-  setPostalCode,
-  setCountry,
+  handleChangeInput,
   submitHandler,
 }) => {
   return (
@@ -24,7 +19,9 @@ const ShippingForm = ({
           type="text"
           id="address_field"
           value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          name="address"
+          onChange={handleChangeInput}
+          // onChange={(e) => setAddress(e.target.value)}
           required
         />
       </FormGroup>
@@ -35,7 +32,9 @@ const ShippingForm = ({
           type="text"
           id="city_field"
           value={city}
-          onChange={(e) => setCity(e.target.value)}
+          name="city"
+          onChange={handleChangeInput}
+          // onChange={(e) => setCity(e.target.value)}
           required
         />
       </FormGroup>
@@ -45,19 +44,10 @@ const ShippingForm = ({
         <Input
           type="phone"
           id="phone_field"
-          value={phoneNo}
-          onChange={(e) => setPhoneNo(e.target.value)}
-          required
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <Label htmlFor="postal_code_field">Postal Code</Label>
-        <Input
-          type="number"
-          id="postal_code_field"
-          value={postalCode}
-          onChange={(e) => setPostalCode(e.target.value)}
+          value={phoneNumber}
+          name="phoneNumber"
+          onChange={handleChangeInput}
+          // onChange={(e) => setPhoneNo(e.target.value)}
           required
         />
       </FormGroup>
@@ -67,9 +57,10 @@ const ShippingForm = ({
         <Input
           id="country_field"
           type="select"
-          name="select"
           value={country}
-          onChange={(e) => setCountry(e.target.value)}
+          name="country"
+          onChange={handleChangeInput}
+          // onChange={(e) => setCountry(e.target.value)}
           required
         >
           {countriesList.map((country) => (

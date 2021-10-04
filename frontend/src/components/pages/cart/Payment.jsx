@@ -7,20 +7,20 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import {
-  Container,
-  Row,
+  Button,
   Col,
+  Container,
   Form,
   FormGroup,
   Label,
-  Button,
+  Row,
 } from "reactstrap";
-import { clearErrors } from "../../actions/clearErrors";
-import orderActions from "../../actions/orderActions";
-import MetaData from "../layout/MetaData";
+import { clearErrors } from "../../../actions/clearErrors";
+import orderActions from "../../../actions/orderActions";
+import MetaData from "../../common/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 
 const options = {
@@ -55,18 +55,16 @@ const Payment = ({
     totalPrice: 0,
   };
 
-  const alert = useAlert();
-
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
-  }, [alert, clearErrors, error]);
+  }, [clearErrors, error]);
 
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   if (orderInfo) {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect } from "react-redux";
-import { clearErrors } from "../../actions/clearErrors";
-import userActions from "../../actions/userActions";
-import putFormDataInRegister from "../../utils/putFormDataInRegister";
-import RegisterForm from "../form/RegisterForm";
-import MetaData from "../layout/MetaData";
+import { toast } from "react-toastify";
+import { clearErrors } from "../../../actions/clearErrors";
+import userActions from "../../../actions/userActions";
+import putFormDataInRegister from "../../../utils/putFormDataInRegister";
+import MetaData from "../../common/MetaData";
+import RegisterForm from "../../form/RegisterForm";
 
 const Register = ({ history, clearErrors, auth, register }) => {
   const { isAuthenticated, error, loading } = auth;
@@ -16,24 +16,18 @@ const Register = ({ history, clearErrors, auth, register }) => {
     password: "",
     confirmPassword: "",
   });
-
-  const { firstName, lastName, email, password, confirmPassword } = user;
-
   const [avatar, setAvatar] = useState("/images/avatars_default.png");
-
-  const alert = useAlert();
 
   useEffect(() => {
     if (isAuthenticated) {
+      toast.success("Register successfully !");
       history.push("/");
-      alert.success("Register successfully !");
     }
-
     if (error) {
-      alert.error(error);
+      toast.error(error);
       clearErrors();
     }
-  }, [alert, isAuthenticated, error, history, clearErrors]);
+  }, [isAuthenticated, error, history, clearErrors]);
 
   const handleChangeInput = (name, changedInput) => {
     setUser((prev) => ({ ...prev, [name]: changedInput }));
@@ -51,17 +45,7 @@ const Register = ({ history, clearErrors, auth, register }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    register(
-      putFormDataInRegister(
-        firstName,
-        lastName,
-        email,
-        password,
-        confirmPassword,
-        avatar
-      )
-    );
+    register(putFormDataInRegister(user, avatar));
   };
 
   return (
@@ -72,11 +56,11 @@ const Register = ({ history, clearErrors, auth, register }) => {
         loading={loading}
         avatar={avatar}
         onAvatarChange={onAvatarChange}
-        firstName={firstName}
-        lastName={lastName}
-        email={email}
-        password={password}
-        confirmPassword={confirmPassword}
+        firstName={user.firstName}
+        lastName={user.lastName}
+        email={user.email}
+        password={user.password}
+        confirmPassword={user.confirmPassword}
         handleChangeInput={handleChangeInput}
       />
     </>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useAlert } from "react-alert";
 import { connect, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { Col, Container, Row } from "reactstrap";
-import { clearErrors } from "../../actions/clearErrors";
-import userActions from "../../actions/userActions";
-import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
-import putFormDataInUpdateProfile from "../../utils/putFormDataInUpdateProfile";
-import UpdateProfileForm from "../form/UpdateProfileForm";
-import MetaData from "../layout/MetaData";
+import { UPDATE_PROFILE_RESET } from "../../../actions/actionTypes/userActionTypes";
+import { clearErrors } from "../../../actions/clearErrors";
+import userActions from "../../../actions/userActions";
+import putFormDataInUpdateProfile from "../../../utils/putFormDataInUpdateProfile";
+import MetaData from "../../common/MetaData";
+import UpdateProfileForm from "../../form/UpdateProfileForm";
 
 const UpdateProfile = ({
   history,
@@ -18,14 +18,13 @@ const UpdateProfile = ({
   auth,
 }) => {
   const { user } = auth;
-  const { error, isUpdated, loading } = userUpdate;
+  const { loading } = userUpdate;
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("");
 
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,19 +34,19 @@ const UpdateProfile = ({
       setEmail(user.email);
       setAvatar(user.avatar.url);
     }
-    if (error) {
-      alert.error(error);
+    if (userUpdate.error) {
+      toast.error(userUpdate.error);
       clearErrors();
     }
-    if (isUpdated) {
-      alert.success("User updated successfully");
+    if (userUpdate.isUpdated) {
+      toast.success("User updated successfully");
       loadUser();
       history.push("/me");
       dispatch({
         type: UPDATE_PROFILE_RESET,
       });
     }
-  }, [dispatch, alert, error, history, isUpdated, user, clearErrors, loadUser]);
+  }, [dispatch, userUpdate, history, user, clearErrors, loadUser]);
 
   const onAvatarChange = (e) => {
     if (e.target.name !== "avatar") return;
@@ -68,7 +67,7 @@ const UpdateProfile = ({
   return (
     <Container className="my-4">
       <MetaData title={"Update Profile"} />
-      <Row className="d-flex justify-content-center align-items-center">
+      <Row className="justify-content-center">
         <Col xs={12} lg={5}>
           <UpdateProfileForm
             loading={loading}
