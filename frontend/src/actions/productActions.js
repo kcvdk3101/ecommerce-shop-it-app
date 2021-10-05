@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   ADMIN_PRODUCTS_FAIL, ADMIN_PRODUCTS_REQUEST,
-  ADMIN_PRODUCTS_SUCCESS, ALL_PRODUCTS_FAIL, ALL_PRODUCTS_REQUEST,
+  ADMIN_PRODUCTS_SUCCESS, ALL_PRODUCTS_BY_CONDITIONS_FAIL, ALL_PRODUCTS_BY_CONDITIONS_REQUEST, ALL_PRODUCTS_BY_CONDITIONS_SUCCESS, ALL_PRODUCTS_FAIL, ALL_PRODUCTS_REQUEST,
   ALL_PRODUCTS_SUCCESS, DELETE_PRODUCT_FAIL, DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_SUCCESS, DELETE_REVIEW_FAIL, DELETE_REVIEW_REQUEST,
   DELETE_REVIEW_SUCCESS, GET_REVIEWS_FAIL, GET_REVIEWS_REQUEST,
@@ -13,18 +13,10 @@ import {
 } from './actionTypes/productActionTypes';
 
 // Get all products
-const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0) => async (dispatch) => {
+const getProducts = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_PRODUCTS_REQUEST })
-
-    let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`
-
-    if (category) {
-      link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}&ratings[gte]=${rating}`
-    }
-
-    const response = await axios.get(link)
-
+    const response = await axios.get("/api/v1/products")
     dispatch({
       type: ALL_PRODUCTS_SUCCESS,
       payload: response.data
@@ -33,6 +25,30 @@ const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0)
   } catch (error) {
     dispatch({
       type: ALL_PRODUCTS_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
+
+// Get all products by conditions
+const getProductsByConditions = (keyword = '', currentPage = 1, price, category, ratings = 0) => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_PRODUCTS_BY_CONDITIONS_REQUEST })
+    let link = `/api/v1/products/search?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${ratings}`
+    if (category) {
+      link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}&ratings[gte]=${ratings}`
+    }
+
+    const response = await axios.get(link)
+
+    dispatch({
+      type: ALL_PRODUCTS_BY_CONDITIONS_SUCCESS,
+      payload: response.data
+    })
+
+  } catch (error) {
+    dispatch({
+      type: ALL_PRODUCTS_BY_CONDITIONS_FAIL,
       payload: error.response.data.message
     })
   }
@@ -205,6 +221,7 @@ const deleteReview = (id, productId) => async (dispatch) => {
 
 const productActions = {
   getProducts,
+  getProductsByConditions,
   newProduct,
   deleteProduct,
   updateProduct,

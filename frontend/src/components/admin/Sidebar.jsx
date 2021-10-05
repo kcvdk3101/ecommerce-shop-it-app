@@ -8,7 +8,7 @@ const Sidebar = () => {
         <ul className="list-unstyled components">
           <li>
             <Link to="/dashboard">
-              <i class="fa fa-slack"></i> Dashboard
+              <i className="fa fa-slack"></i> Dashboard
             </Link>
           </li>
 
@@ -19,7 +19,7 @@ const Sidebar = () => {
               aria-expanded="false"
               className="dropdown-toggle"
             >
-              <i class="fa fa-product-hunt"></i> Products
+              <i className="fa fa-product-hunt"></i> Products
             </a>
             <ul className="collapse list-unstyled" id="productSubmenu">
               <li>

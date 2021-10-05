@@ -22,7 +22,11 @@ const ProductCardView = ({ product }) => {
           tag="h4"
           className="card_title flex-shrink-0 d-flex flex-column align-items-between"
         >
-          <Link className="flex-shrink-0" to={`/product/${product._id}`}>
+          <Link
+            className="flex-shrink-0 "
+            to={`/product/${product._id}`}
+            style={{ minHeight: "100px", maxHeight: "100px" }}
+          >
             {product.name}
           </Link>
           <div className="flex-1 mt-auto">

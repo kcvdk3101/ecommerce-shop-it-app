@@ -13,13 +13,14 @@ import ProductCardView from "../../common/ProductCardView";
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-export const Search = ({ productsDB, match, getProducts }) => {
+export const Search = ({ productsDB, match, getProductsByConditions }) => {
   const {
     loading,
-    products,
     error,
+    products,
     productsCount,
     resPerPage,
+    // filteredProduct,
     filteredProductsCount,
   } = productsDB;
 
@@ -28,14 +29,22 @@ export const Search = ({ productsDB, match, getProducts }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([MIN, MAX]);
   const [category, setCategory] = useState("");
-  const [rating, setRating] = useState(0);
+  const [ratings, setRatings] = useState(0);
 
   useEffect(() => {
     if (error) {
       toast.error(error);
     }
-    getProducts(keyword, currentPage, price, category, rating);
-  }, [error, keyword, currentPage, price, category, rating, getProducts]);
+    getProductsByConditions(keyword, currentPage, price, category, ratings);
+  }, [
+    error,
+    keyword,
+    currentPage,
+    price,
+    category,
+    ratings,
+    getProductsByConditions,
+  ]);
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
@@ -89,7 +98,7 @@ export const Search = ({ productsDB, match, getProducts }) => {
                 key={star}
                 className="my-2"
                 style={{ cursor: "pointer" }}
-                onClick={() => setRating(star)}
+                onClick={() => setRatings(star)}
               >
                 <div className="rating-outer">
                   <div
@@ -147,7 +156,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  getProducts: productActions.getProducts,
+  getProductsByConditions: productActions.getProductsByConditions,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
