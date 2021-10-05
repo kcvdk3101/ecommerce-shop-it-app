@@ -11,7 +11,7 @@ const {
   createProductReview,
   getProductReviews,
   deleteReview
-} = require('../controllers/productController')
+} = require('../controllers/product.controller')
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 

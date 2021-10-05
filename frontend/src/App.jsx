@@ -34,7 +34,7 @@ import Register from "./components/pages/user/Register";
 import UpdatePassword from "./components/pages/user/UpdatePassword";
 import UpdateProfile from "./components/pages/user/UpdateProfile";
 import ProductDetails from "./components/product/details/ProductDetails";
-import ProtectedRoute from "./components/route/ProtectedRoute";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 
 function App({ auth, loadUser }) {
   const { user, isAuthenticated, loading } = auth;

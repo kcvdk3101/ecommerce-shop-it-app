@@ -8,7 +8,7 @@ import { clearErrors } from "../../../actions/clearErrors";
 import productActions from "../../../actions/productActions";
 import Loader from "../../common/Loader";
 import MetaData from "../../common/MetaData";
-import ListReviews from "../../review/ListReviews";
+import ListReviews from "./ListReviews";
 import ProductDetailsCarousel from "./ProductDetailsCarousel";
 import ProductDetailsDescription from "./ProductDetailsDescription";
 

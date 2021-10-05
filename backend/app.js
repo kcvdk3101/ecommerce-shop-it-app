@@ -18,10 +18,10 @@ app.use(fileUpload());
 
 
 // Import all routes
-const products = require('./routes/product');
-const auth = require('./routes/auth');
-const payment = require('./routes/payment');
-const order = require('./routes/order');
+const products = require('./routes/product.route');
+const auth = require('./routes/auth.route');
+const payment = require('./routes/payment.route');
+const order = require('./routes/order.route');
 
 
 app.use('/api/v1', products)

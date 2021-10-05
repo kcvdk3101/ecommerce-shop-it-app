@@ -1,5 +1,5 @@
 require('dotenv').config({ path: 'backend/config/config.env' })
-const User = require('../models/user');
+const User = require('../models/user.model');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/jwtToken');
