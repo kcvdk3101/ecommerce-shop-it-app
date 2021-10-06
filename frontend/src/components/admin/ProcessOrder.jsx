@@ -83,13 +83,13 @@ const ProcessOrder = ({
                 <h1>Order #{order._id}</h1>
                 <ListGroup flush>
                   <ListGroupItem>
-                    <h4 className="mb-4">Shipping Info</h4>
+                    <h4 className="mb-4">Shipping Information</h4>
                     <p>
                       <b>Name:</b> {user && user.firstName}{" "}
                       {user && user.lastName}
                     </p>
                     <p>
-                      <b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}
+                      <b>Phone:</b> {shippingInfo && shippingInfo.phoneNumber}
                     </p>
                     <p>
                       <b>Address: </b>
@@ -128,41 +128,40 @@ const ProcessOrder = ({
                   </ListGroupItem>
                   <ListGroupItem>
                     <h4 className="my-4">Order Items:</h4>
-                    <div>
+                    <ListGroup flush>
                       {orderItems &&
                         orderItems.map((item) => (
-                          <Row
-                            key={item.product}
-                            className="justify-content-center align-items-center"
-                          >
-                            <Col xs={4} lg={2}>
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                width="100%"
-                              />
-                            </Col>
+                          <ListGroupItem key={item.product}>
+                            <Row className="justify-content-center align-items-center">
+                              <Col xs={4} lg={2}>
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  width="100%"
+                                />
+                              </Col>
 
-                            <Col xs={5} lg={5}>
-                              <p>
-                                <b>{item.name}</b>
-                              </p>
-                            </Col>
+                              <Col xs={5} lg={5}>
+                                <p>
+                                  <b>{item.name}</b>
+                                </p>
+                              </Col>
 
-                            <Col xs={4} lg={2} className="mt-4 mt-lg-0">
-                              <p>
-                                <b>${item.price}</b>
-                              </p>
-                            </Col>
+                              <Col xs={4} lg={2} className="mt-4 mt-lg-0">
+                                <p>
+                                  <b>${item.price}</b>
+                                </p>
+                              </Col>
 
-                            <Col xs={4} lg={3} className="mt-4 mt-lg-0">
-                              <p>
-                                <b>{item.quantity}</b> Piece(s)
-                              </p>
-                            </Col>
-                          </Row>
+                              <Col xs={4} lg={3} className="mt-4 mt-lg-0">
+                                <p>
+                                  <b>{item.quantity}</b> Piece(s)
+                                </p>
+                              </Col>
+                            </Row>
+                          </ListGroupItem>
                         ))}
-                    </div>
+                    </ListGroup>
                   </ListGroupItem>
                 </ListGroup>
               </Col>

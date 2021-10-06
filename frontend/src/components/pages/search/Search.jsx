@@ -4,6 +4,7 @@ import Pagination from "react-js-pagination";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { Col, Container, Row } from "reactstrap";
+import cartActions from "../../../actions/cartActions";
 import productActions from "../../../actions/productActions";
 import { CATEGORIES, MAX, MIN, RATINGS } from "../../../constant";
 import Loader from "../../common/Loader";
@@ -13,14 +14,19 @@ import ProductCardView from "../../common/ProductCardView";
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
-export const Search = ({ productsDB, match, getProductsByConditions }) => {
+export const Search = ({
+  productsDB,
+  match,
+  getProductsByConditions,
+  addItemToCart,
+}) => {
+  console.log(productsDB);
   const {
     loading,
     error,
     products,
     productsCount,
     resPerPage,
-    // filteredProduct,
     filteredProductsCount,
   } = productsDB;
 
@@ -55,13 +61,18 @@ export const Search = ({ productsDB, match, getProductsByConditions }) => {
     count = filteredProductsCount;
   }
 
+  const addToCart = (productId) => {
+    addItemToCart(productId, 1);
+    toast.success("Item Added to Cart");
+  };
+
   return (
     <Container className="my-4">
       <MetaData title="Search" />
       <Row>
         <Col xs={12} lg={3} className="my-2">
           <h3>Filter by</h3>
-          <h4> Price</h4>
+          <h4>Price</h4>
           <div>
             <Range
               min={MIN}
@@ -79,6 +90,13 @@ export const Search = ({ productsDB, match, getProductsByConditions }) => {
           <hr className="my-5" />
           <h4>Category</h4>
           <div>
+            <h5
+              className="my-2"
+              style={{ cursor: "pointer" }}
+              onClick={() => setCategory(undefined)}
+            >
+              All
+            </h5>
             {CATEGORIES.map((c, i) => (
               <h5
                 key={i}
@@ -116,7 +134,7 @@ export const Search = ({ productsDB, match, getProductsByConditions }) => {
           <Loader />
         ) : (
           <Col xs={12} lg={9}>
-            {resPerPage < count && (
+            {resPerPage <= count && (
               <Row>
                 <Col xs={12}>
                   <Pagination
@@ -138,7 +156,7 @@ export const Search = ({ productsDB, match, getProductsByConditions }) => {
               {products &&
                 products.map((product) => (
                   <Col key={product._id} xs={12} md={6} lg={4} className="my-2">
-                    <ProductCardView product={product} />
+                    <ProductCardView product={product} addToCart={addToCart} />
                   </Col>
                 ))}
             </Row>
@@ -157,6 +175,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   getProductsByConditions: productActions.getProductsByConditions,
+  addItemToCart: cartActions.addItemToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

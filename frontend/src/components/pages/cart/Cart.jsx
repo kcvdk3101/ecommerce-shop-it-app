@@ -12,6 +12,7 @@ import {
   Input,
   Container,
 } from "reactstrap";
+import EmptyCart from "../../common/EmptyCart";
 
 const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
   const { cartItems } = cart;
@@ -48,9 +49,7 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
     <Container className="my-4">
       <MetaData title={"Your Cart"} />
       {cartItems.length === 0 ? (
-        <h2 className="mb-5" style={{ height: "50vh" }}>
-          Your Cart is Empty
-        </h2>
+        <EmptyCart />
       ) : (
         <>
           <h2 className="mb-5">

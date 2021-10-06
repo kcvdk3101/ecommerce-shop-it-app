@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import MetaData from "../../common/MetaData";
 
@@ -17,7 +16,7 @@ const OrderSuccess = () => {
             height="200"
           />
           <h2>Your Order has been placed successfully.</h2>
-          <Link to="/orders/me">Go to Orders</Link>
+          <a href="/orders/me">Go to Orders</a>
         </Col>
       </Row>
     </Container>

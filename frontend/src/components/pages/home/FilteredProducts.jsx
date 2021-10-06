@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import { Button, ButtonGroup, Col, Row } from "reactstrap";
+import cartActions from "../../../actions/cartActions";
 import ProductCardView from "../../common/ProductCardView";
 
-const FilteredProducts = ({ title, filteredProducts }) => {
+const FilteredProducts = ({ title, filteredProducts, addItemToCart }) => {
   const [productIndex, setProductIndex] = useState(0);
 
   //show 1st 4 images
@@ -20,6 +23,11 @@ const FilteredProducts = ({ title, filteredProducts }) => {
     const prevIndex =
       productIndex === 0 ? firstFourProducts.length - 1 : productIndex - 1;
     setProductIndex(prevIndex);
+  };
+
+  const addToCart = (productId) => {
+    addItemToCart(productId, 1);
+    toast.success("Item Added to Cart");
   };
 
   return (
@@ -47,7 +55,7 @@ const FilteredProducts = ({ title, filteredProducts }) => {
               className="me-5"
               style={{ width: "300px", height: "450px" }}
             >
-              <ProductCardView product={product} />
+              <ProductCardView product={product} addToCart={addToCart} />
             </div>
           ))}
         </Col>
@@ -56,4 +64,12 @@ const FilteredProducts = ({ title, filteredProducts }) => {
   );
 };
 
-export default FilteredProducts;
+function mapStateToProps(state) {
+  return {};
+}
+
+const mapDispatchToProps = {
+  addItemToCart: cartActions.addItemToCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilteredProducts);

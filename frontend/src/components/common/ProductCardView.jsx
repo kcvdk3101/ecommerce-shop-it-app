@@ -10,7 +10,7 @@ import {
   Row,
 } from "reactstrap";
 
-const ProductCardView = ({ product }) => {
+const ProductCardView = ({ product, addToCart }) => {
   return (
     <Card className="card d-flex rounded">
       <CardImg
@@ -48,7 +48,11 @@ const ProductCardView = ({ product }) => {
             <Row>
               <Col>${product.price}</Col>
               <Col className="d-flex justify-content-end">
-                <Button color="danger" className="rounded-pill">
+                <Button
+                  color="danger"
+                  className="rounded-pill add_icon"
+                  onClick={() => addToCart(product._id)}
+                >
                   <i className="fa fa-plus"></i>
                 </Button>
               </Col>

@@ -20,6 +20,7 @@ import {
 } from "reactstrap";
 import { clearErrors } from "../../../actions/clearErrors";
 import orderActions from "../../../actions/orderActions";
+import { config } from "../../../constant";
 import MetaData from "../../common/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 
@@ -85,11 +86,7 @@ const Payment = ({
       const response = await axios.post(
         "/api/v1/payment/process",
         paymentData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        config
       );
       const clientSecret = response.data.client_secret;
       if (!stripe || !elements) return;
@@ -106,7 +103,6 @@ const Payment = ({
 
       if (result.error) {
         toast.error(result.error.message);
-        setLoading(false);
       } else {
         // Check payment
         if (result.paymentIntent.status === "succeeded") {

@@ -134,7 +134,6 @@ const ProductsList = ({
 };
 
 function mapStateToProps(state) {
-  console.log(state.product);
   return {
     products: state.products,
     product: state.product,

@@ -48,11 +48,11 @@ a {
 }
 
 .carousel-prev-icon {
-  margin-left: -120px;
+  margin-left: -100px;
 }
 
 .carousel-next-icon {
-  margin-right: -120px;
+  margin-right: -100px;
 }
 
 .nav {
@@ -74,4 +74,13 @@ a {
 .stockCounter input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.add_icon:hover > i {
+  display: none;
+}
+
+.add_icon:hover::before {
+  content: "Add to cart";
+  font-family: sans-serif;
 }

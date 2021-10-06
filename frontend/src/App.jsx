@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { Container } from "reactstrap";
 import userActions from "./actions/userActions";
 import AddNewProduct from "./components/admin/AddNewProduct";
@@ -16,8 +16,8 @@ import ProductsList from "./components/admin/ProductsList";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import UpdateUser from "./components/admin/UpdateUser";
 import UsersList from "./components/admin/UsersList";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 import NewPasswordForm from "./components/form/NewPasswordForm";
-import Home from "./components/pages/home/Home";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import Cart from "./components/pages/cart/Cart";
@@ -25,6 +25,7 @@ import ConfirmOrder from "./components/pages/cart/ConfirmOrder";
 import OrderSuccess from "./components/pages/cart/OrderSuccess";
 import Payment from "./components/pages/cart/Payment";
 import Shipping from "./components/pages/cart/Shipping";
+import Home from "./components/pages/home/Home";
 import ListOrders from "./components/pages/order/ListOrders";
 import OrderDetails from "./components/pages/order/OrderDetails";
 import Search from "./components/pages/search/Search";
@@ -34,7 +35,6 @@ import Register from "./components/pages/user/Register";
 import UpdatePassword from "./components/pages/user/UpdatePassword";
 import UpdateProfile from "./components/pages/user/UpdateProfile";
 import ProductDetails from "./components/product/details/ProductDetails";
-import ProtectedRoute from "./components/common/ProtectedRoute";
 
 function App({ auth, loadUser }) {
   const { user, isAuthenticated, loading } = auth;
@@ -47,7 +47,7 @@ function App({ auth, loadUser }) {
         const response = await axios.get("/api/v1/stripeApi");
         setStripeApiKey(response.data.stripeApiKey);
       } catch (error) {
-        toast.warning(error.message);
+        console.log(error.message);
       }
     })();
   }, [loadUser]);
