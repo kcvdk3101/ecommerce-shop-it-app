@@ -120,6 +120,7 @@ const Cart = ({ history, cart, addItemToCart, removeItemFromCart }) => {
                       <Col xs={4} lg={1} className="mt-4 mt-lg-0">
                         <i
                           className="fa fa-trash text-danger fs-4"
+                          style={{ cursor: "pointer" }}
                           onClick={() => removeCartItemHandler(item.product)}
                         ></i>
                       </Col>

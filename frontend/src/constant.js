@@ -3,7 +3,7 @@ export const MIN = 1
 export const MAX = 5000
 export const STATUS_ORDER = ["Processing", "Shipped", "Delivered"]
 export const CATEGORIES = [
-  "Phone", "Laptop", "Tablet", "Watch", "Headphone"
+  "Laptop", "Phone", "Tablet", "Watch", "Headphone"
 ]
 export const RATINGS = [5, 4, 3, 2, 1]
 

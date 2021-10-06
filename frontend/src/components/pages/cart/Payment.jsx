@@ -105,7 +105,7 @@ const Payment = ({
       });
 
       if (result.error) {
-        alert.error(result.error.message);
+        toast.error(result.error.message);
         setLoading(false);
       } else {
         // Check payment
@@ -119,12 +119,12 @@ const Payment = ({
           localStorage.setItem("cartItems", []);
           history.push("/success");
         } else {
-          alert.error("There is some issue while payment processing");
+          toast.error("There is some issue while payment processing");
         }
       }
     } catch (error) {
       setLoading(false);
-      alert.error(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 

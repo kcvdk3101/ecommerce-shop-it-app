@@ -1,17 +1,4 @@
 /* Checkout Steps */
-.checkout-progress div {
-  box-sizing: border-box;
-}
-
-.checkout-progress {
-  display: block;
-  clear: both;
-  margin: 20px auto;
-  width: auto;
-  font-family: sans-serif;
-  overflow: auto;
-}
-
 .step {
   margin: 0;
   border: 0;

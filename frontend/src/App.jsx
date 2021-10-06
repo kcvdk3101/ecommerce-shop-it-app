@@ -44,8 +44,8 @@ function App({ auth, loadUser }) {
     (async function () {
       try {
         await loadUser();
-        const { data } = await axios.get("/api/v1/stripeApi");
-        setStripeApiKey(data.stripeApiKey);
+        const response = await axios.get("/api/v1/stripeApi");
+        setStripeApiKey(response.data.stripeApiKey);
       } catch (error) {
         toast.warning(error.message);
       }

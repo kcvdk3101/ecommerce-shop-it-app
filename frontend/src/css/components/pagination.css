@@ -1,13 +1,13 @@
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #ffc107;
+  border-color: #ffc107;
 }
 
 .page-link {
-  color: #fa9c23;
+  color: #ffc107;
 }
 
 .page-link:hover {
-  color: #fa9c23;
+  color: #ffc107;
 }

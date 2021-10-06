@@ -54,8 +54,8 @@ const NewPasswordForm = ({
     <>
       <MetaData title={"New Password Reset"} />
 
-      <Row className="d-flex justify-content-center align-items-center">
-        <Col xs={12} lg={5}>
+      <Row className="d-flex justify-content-center align-items-center my-5">
+        <Col xs={12} lg={4}>
           <Form onSubmit={submitHandler}>
             <h1 className="mb-3">New Password</h1>
 
@@ -84,7 +84,7 @@ const NewPasswordForm = ({
             <Button
               color="warning"
               block
-              className="text-white py-2 text-uppercase"
+              className="text-white py-2 text-uppercase fw-bold"
               disabled={loading ? true : false}
             >
               {loading ? <Spinner color="light" /> : "Set Password"}
