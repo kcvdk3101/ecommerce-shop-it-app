@@ -6,14 +6,16 @@ import {
   CardImg,
   CardText,
   CardTitle,
+  Col,
+  Row,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const ProductCardView = ({ product }) => {
   return (
-    <Card className="card d-flex p-2 rounded">
+    <Card className="card d-flex rounded">
       <CardImg
-        className="flex-shirk-0 mx-auto"
+        className="flex-shirk-0 mx-auto p-1"
         src={product.images[0].url}
         style={{ height: 170, objectFit: "scale-down" }}
       />
@@ -25,12 +27,12 @@ const ProductCardView = ({ product }) => {
           <Link
             className="flex-shrink-0 "
             to={`/product/${product._id}`}
-            style={{ minHeight: "100px", maxHeight: "100px" }}
+            style={{ minHeight: 100, maxHeight: 100 }}
           >
             {product.name}
           </Link>
           <div className="flex-1 mt-auto">
-            <div className="ratings">
+            <div className="ratings my-2">
               <div className="rating-outer">
                 <div
                   className="rating-inner"
@@ -39,12 +41,21 @@ const ProductCardView = ({ product }) => {
                   }}
                 ></div>
               </div>
-              <span className="ms-2">
+              <span className="ms-2 fs-6">
                 ({product.numOfReviews}{" "}
                 {product.numOfReviews > 1 ? "Reviews" : "Review"})
               </span>
             </div>
-            <CardText>${product.price}</CardText>
+            <CardText>
+              <Row>
+                <Col>${product.price}</Col>
+                <Col className="d-flex justify-content-end">
+                  <Button color="danger" className="rounded-pill">
+                    <i className="fa fa-plus"></i>
+                  </Button>
+                </Col>
+              </Row>
+            </CardText>
           </div>
         </CardTitle>
         <div className="flex-1">

@@ -17,7 +17,7 @@ import UpdateProduct from "./components/admin/UpdateProduct";
 import UpdateUser from "./components/admin/UpdateUser";
 import UsersList from "./components/admin/UsersList";
 import NewPasswordForm from "./components/form/NewPasswordForm";
-import Home from "./components/Home";
+import Home from "./components/pages/home/Home";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import Cart from "./components/pages/cart/Cart";
