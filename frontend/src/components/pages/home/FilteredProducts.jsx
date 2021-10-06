@@ -23,10 +23,10 @@ const FilteredProducts = ({ title, filteredProducts }) => {
   };
 
   return (
-    <div className="my-5">
+    <div className="mt-5">
       <Row>
         <Col>
-          <h3>{title}</h3>
+          <h1>{title}</h1>
         </Col>
         <Col className="d-flex justify-content-end">
           <ButtonGroup>

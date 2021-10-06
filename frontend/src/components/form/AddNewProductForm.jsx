@@ -68,6 +68,7 @@ const AddNewProductForm = ({
             <Label htmlFor="price_field">Price</Label>
             <Input
               min="1"
+              inputMode="decimal"
               type="number"
               id="price_field"
               name="price"

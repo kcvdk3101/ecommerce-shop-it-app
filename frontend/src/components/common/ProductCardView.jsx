@@ -1,15 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
   CardBody,
   CardImg,
-  CardText,
   CardTitle,
   Col,
   Row,
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 const ProductCardView = ({ product }) => {
   return (
@@ -46,16 +45,14 @@ const ProductCardView = ({ product }) => {
                 {product.numOfReviews > 1 ? "Reviews" : "Review"})
               </span>
             </div>
-            <CardText>
-              <Row>
-                <Col>${product.price}</Col>
-                <Col className="d-flex justify-content-end">
-                  <Button color="danger" className="rounded-pill">
-                    <i className="fa fa-plus"></i>
-                  </Button>
-                </Col>
-              </Row>
-            </CardText>
+            <Row>
+              <Col>${product.price}</Col>
+              <Col className="d-flex justify-content-end">
+                <Button color="danger" className="rounded-pill">
+                  <i className="fa fa-plus"></i>
+                </Button>
+              </Col>
+            </Row>
           </div>
         </CardTitle>
         <div className="flex-1">
