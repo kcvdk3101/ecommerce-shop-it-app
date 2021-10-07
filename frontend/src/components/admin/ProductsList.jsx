@@ -20,8 +20,9 @@ const ProductsList = ({
   products,
 }) => {
   const dispatch = useDispatch();
+  const { loading, error } = products;
+  const { error: deleteError, isDeleted } = product;
 
-  const { error } = products;
   useEffect(() => {
     getAdminProducts();
     if (error) {
@@ -29,17 +30,26 @@ const ProductsList = ({
       clearErrors();
     }
 
-    if (product.deleteError) {
-      toast.error(product.deleteError);
+    if (deleteError) {
+      toast.error(deleteError);
       clearErrors();
     }
 
-    if (product.isDeleted) {
+    if (isDeleted) {
       toast.success("Product deleted successfully");
       history.push("/admin/products");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-  }, [clearErrors, dispatch, error, getAdminProducts, history, product]);
+  }, [
+    clearErrors,
+    deleteError,
+    dispatch,
+    error,
+    getAdminProducts,
+    history,
+    isDeleted,
+    product,
+  ]);
 
   const setProducts = () => {
     const data = {
@@ -101,8 +111,12 @@ const ProductsList = ({
     return data;
   };
 
-  const deleteProductHandler = (id) => {
-    deleteProduct(id);
+  const deleteProductHandler = async (id) => {
+    try {
+      await deleteProduct(id);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -116,7 +130,7 @@ const ProductsList = ({
         <Col xs={12} md={10}>
           <h1 className="mt-5">All Products</h1>
 
-          {products.loading ? (
+          {loading ? (
             <Loader />
           ) : (
             <MDBDataTable

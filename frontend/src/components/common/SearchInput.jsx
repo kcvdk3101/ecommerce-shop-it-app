@@ -21,6 +21,7 @@ const SearchInput = ({ history }) => {
           id="search_field"
           placeholder="Enter Product Name ..."
           onChange={(e) => setKeyword(e.target.value)}
+          required
         />
         <InputGroupAddon addonType="append">
           <Button color="warning" className="text-white">

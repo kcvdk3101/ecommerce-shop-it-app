@@ -1,5 +1,14 @@
 import React from "react";
-import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import {
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  Spinner,
+} from "reactstrap";
 import { CATEGORIES } from "../../constant";
 
 const UpdateProductForm = ({
@@ -183,7 +192,7 @@ const UpdateProductForm = ({
         className="py-3 text-white text-uppercase"
         disabled={loading ? true : false}
       >
-        update product
+        {loading ? <Spinner /> : "update product"}
       </Button>
     </Form>
   );

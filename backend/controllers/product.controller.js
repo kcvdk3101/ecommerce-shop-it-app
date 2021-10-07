@@ -39,12 +39,9 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 // Get all products   =>   /api/v1/products
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
   const productsCount = await Product.countDocuments();
-
   const apiFeatures = new APIFeatures(Product.find(), req.query)
     .filter()
-
   let products = await apiFeatures.query;
-
   res.status(200).json({
     success: true,
     productsCount,
@@ -80,7 +77,6 @@ exports.getProductsByConditions = catchAsyncErrors(async (req, res, next) => {
 // Get all products (Admin)  =>   /api/v1/admin/products
 exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
   const products = await Product.find();
-
   res.status(200).json({
     success: true,
     products
@@ -104,35 +100,36 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
 // Update Product   =>   /api/v1/admin/product/:id
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
+
   if (!product) {
     return next(new ErrorHandler('Product not found', 404));
   }
-  let images = []
+  let newImages = []
   if (typeof req.body.images === 'string') {
-    images.push(req.body.images)
+    newImages.push(req.body.images)
   } else {
-    images = req.body.images
+    newImages = req.body.images
   }
 
-  if (images !== undefined) {
+  if (newImages !== undefined) {
     // Deleting images associated with the product
     for (let i = 0; i < product.images.length; i++) {
       await cloudinary.v2.uploader.destroy(product.images[i].public_id)
     }
 
     // New update images
-    let imagesLinks = [];
-    for (let i = 0; i < images.length; i++) {
-      const result = await cloudinary.v2.uploader.upload(images[i], {
+    let newImagesLinks = [];
+    for (let i = 0; i < newImages.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(newImages[i], {
         folder: `products/${req.body.category.toLowerCase()}/${req.body.brand.toLowerCase()}`
       });
 
-      imagesLinks.push({
+      newImagesLinks.push({
         public_id: result.public_id,
         url: result.secure_url
       })
     }
-    req.body.images = imagesLink
+    req.body.images = newImagesLinks
   }
 
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {

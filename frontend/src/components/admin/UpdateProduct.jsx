@@ -21,6 +21,9 @@ const UpdateProduct = ({
 }) => {
   const dispatch = useDispatch();
 
+  const { product, error } = productDetails;
+  const { loading, error: updateError, isUpdated } = productDB;
+
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState(0);
@@ -28,38 +31,35 @@ const UpdateProduct = ({
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
   const [seller, setSeller] = useState("");
-  const [oldImages, setOldImages] = useState([]);
-
   const [images, setImages] = useState([]);
 
+  const [oldImages, setOldImages] = useState([]);
+
   useEffect(() => {
-    if (
-      productDetails.product &&
-      productDetails.product._id !== match.params.id
-    ) {
+    if (product && product._id !== match.params.id) {
       getProductDetails(match.params.id);
     } else {
-      setName(productDetails.product.name);
-      setBrand(productDetails.product.brand);
-      setPrice(productDetails.product.price);
-      setDescription(productDetails.product.description);
-      setCategory(productDetails.product.category);
-      setSeller(productDetails.product.seller);
-      setStock(productDetails.product.stock);
-      setOldImages(productDetails.product.images);
+      setName(product.name);
+      setBrand(product.brand);
+      setPrice(product.price);
+      setDescription(product.description);
+      setCategory(product.category);
+      setSeller(product.seller);
+      setStock(product.stock);
+      setOldImages(product.images);
     }
 
-    if (productDetails.error) {
-      toast.error(productDetails.error);
+    if (error) {
+      toast.error(error);
       clearErrors();
     }
 
-    if (productDB.updateError) {
-      toast.error(productDB.updateError);
+    if (updateError) {
+      toast.error(updateError);
       clearErrors();
     }
 
-    if (productDB.isUpdated) {
+    if (isUpdated) {
       history.push("/admin/products");
       toast.success("Product updated successfully");
       dispatch({ type: UPDATE_PRODUCT_RESET });
@@ -68,15 +68,18 @@ const UpdateProduct = ({
     dispatch,
     history,
     match.params.id,
-    productDetails,
-    productDB,
     getProductDetails,
     clearErrors,
+    product,
+    error,
+    updateError,
+    isUpdated,
   ]);
 
   const onChangeImage = (e) => {
     const files = Array.from(e.target.files);
     setImages([]);
+    setOldImages([]);
     files.forEach((file) => {
       const reader = new FileReader();
       reader.onload = () => {
@@ -91,7 +94,7 @@ const UpdateProduct = ({
   const submitHandler = (e) => {
     e.preventDefault();
     updateProduct(
-      productDetails.product._id,
+      product._id,
       putFormDataInUpdateProduct(
         name,
         brand,
@@ -115,7 +118,7 @@ const UpdateProduct = ({
 
         <Col xs={12} md={10}>
           <UpdateProductForm
-            loading={productDB.loading}
+            loading={loading}
             name={name}
             brand={brand}
             price={price}
@@ -145,7 +148,6 @@ function mapStateToProps(state) {
   return {
     productDB: state.product,
     productDetails: state.productDetails,
-    newProduct: state.newProduct,
   };
 }
 

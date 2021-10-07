@@ -35,8 +35,9 @@ import Register from "./components/pages/user/Register";
 import UpdatePassword from "./components/pages/user/UpdatePassword";
 import UpdateProfile from "./components/pages/user/UpdateProfile";
 import ProductDetails from "./components/product/details/ProductDetails";
+import { clearErrors } from "./actions/clearErrors";
 
-function App({ auth, loadUser }) {
+function App({ auth, loadUser, clearErrors }) {
   const { user, isAuthenticated, loading } = auth;
   const [stripeApiKey, setStripeApiKey] = useState("");
 
@@ -50,7 +51,10 @@ function App({ auth, loadUser }) {
         console.log(error.message);
       }
     })();
-  }, [loadUser]);
+    return () => {
+      clearErrors();
+    };
+  }, [clearErrors, loadUser]);
 
   return (
     <>
@@ -178,6 +182,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   loadUser: userActions.loadUser,
+  clearErrors: clearErrors,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
