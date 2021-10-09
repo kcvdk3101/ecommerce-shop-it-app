@@ -40,6 +40,8 @@ const ProcessOrder = ({
 
   const [status, setStatus] = useState("");
 
+  console.log(shippingInfo);
+
   useEffect(() => {
     getOrderDetails(orderId);
 
@@ -65,6 +67,9 @@ const ProcessOrder = ({
     `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.country}`;
   const isPaid =
     paymentInfo && paymentInfo.status === "succeeded" ? true : false;
+
+  const isDelivered =
+    order.orderStatus && String(order.orderStatus).includes("Delivered");
 
   return (
     <>
@@ -117,10 +122,7 @@ const ProcessOrder = ({
                     <h4 className="my-4">Order Status:</h4>
                     <p
                       className={`fs-5 ${
-                        order.orderStatus &&
-                        String(order.orderStatus).includes("Delivered")
-                          ? "text-success"
-                          : "text-danger"
+                        isDelivered ? "text-success" : "text-danger"
                       }`}
                     >
                       <b>{orderStatus}</b>
@@ -176,6 +178,7 @@ const ProcessOrder = ({
                     name="status"
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
+                    disabled={isDelivered ? true : false}
                   >
                     {STATUS_ORDER.map((s, i) => (
                       <option key={i} value={s}>
@@ -186,10 +189,11 @@ const ProcessOrder = ({
                 </FormGroup>
 
                 <Button
-                  color="warning"
+                  color={isDelivered ? "secondary" : "warning"}
                   block
-                  className="text-white text-uppercase"
+                  className="text-white text-uppercase fw-bold"
                   onClick={() => updateOrderHandler(order._id)}
+                  disabled={isDelivered ? true : false}
                 >
                   Update Status
                 </Button>

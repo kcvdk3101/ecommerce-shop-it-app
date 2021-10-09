@@ -2,9 +2,11 @@ import {
   CardCvcElement,
   CardExpiryElement,
   CardNumberElement,
+  Elements,
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -59,8 +61,17 @@ const Payment = ({
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
   useEffect(() => {
+    (async function () {
+      try {
+        const response = await axios.get("/api/v1/stripeApi");
+        setStripeApiKey(response.data.stripeApiKey);
+      } catch (error) {
+        console.log(error.message);
+      }
+    })();
     if (error) {
       toast.error(error);
       clearErrors();
@@ -125,57 +136,63 @@ const Payment = ({
   };
 
   return (
-    <Container className="my-4">
-      <MetaData title={"Payment"} />
+    <>
+      {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+          <Container className="my-4">
+            <MetaData title={"Payment"} />
 
-      <CheckoutSteps shipping confirmOrder payment />
+            <CheckoutSteps shipping confirmOrder payment />
 
-      <Row className="d-flex justify-content-center align-items-center">
-        <Col xs={10} lg={5}>
-          <Form onSubmit={submitHandler}>
-            <h1 className="mb-4">Card Information</h1>
-            <FormGroup>
-              <Label htmlFor="card_num_field">Card Number</Label>
-              <CardNumberElement
-                type="text"
-                id="card_num_field"
-                className="form-control"
-                options={options}
-              />
-            </FormGroup>
+            <Row className="d-flex justify-content-center align-items-center">
+              <Col xs={10} lg={5}>
+                <Form onSubmit={submitHandler}>
+                  <h1 className="mb-4">Card Information</h1>
+                  <FormGroup>
+                    <Label htmlFor="card_num_field">Card Number</Label>
+                    <CardNumberElement
+                      type="text"
+                      id="card_num_field"
+                      className="form-control"
+                      options={options}
+                    />
+                  </FormGroup>
 
-            <FormGroup>
-              <Label htmlFor="card_exp_field">Card Expiry</Label>
-              <CardExpiryElement
-                type="text"
-                id="card_exp_field"
-                className="form-control"
-                options={options}
-              />
-            </FormGroup>
+                  <FormGroup>
+                    <Label htmlFor="card_exp_field">Card Expiry</Label>
+                    <CardExpiryElement
+                      type="text"
+                      id="card_exp_field"
+                      className="form-control"
+                      options={options}
+                    />
+                  </FormGroup>
 
-            <FormGroup>
-              <Label htmlFor="card_cvc_field">Card CVC</Label>
-              <CardCvcElement
-                type="text"
-                id="card_cvc_field"
-                className="form-control"
-                options={options}
-              />
-            </FormGroup>
+                  <FormGroup>
+                    <Label htmlFor="card_cvc_field">Card CVC</Label>
+                    <CardCvcElement
+                      type="text"
+                      id="card_cvc_field"
+                      className="form-control"
+                      options={options}
+                    />
+                  </FormGroup>
 
-            <Button
-              block
-              color="warning"
-              className="py-2 text-white"
-              disabled={loading ? true : false}
-            >
-              Pay {` - ${orderInfo && orderInfo.totalPrice}`}
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+                  <Button
+                    block
+                    color="warning"
+                    className="py-2 text-white"
+                    disabled={loading ? true : false}
+                  >
+                    Pay {` - ${orderInfo && orderInfo.totalPrice}`}
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </Elements>
+      )}
+    </>
   );
 };
 

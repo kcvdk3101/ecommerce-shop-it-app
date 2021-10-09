@@ -1,11 +1,9 @@
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Container } from "reactstrap";
+import { clearErrors } from "./actions/clearErrors";
 import userActions from "./actions/userActions";
 import AddNewProduct from "./components/admin/AddNewProduct";
 import Dashboard from "./components/admin/Dashboard";
@@ -35,22 +33,12 @@ import Register from "./components/pages/user/Register";
 import UpdatePassword from "./components/pages/user/UpdatePassword";
 import UpdateProfile from "./components/pages/user/UpdateProfile";
 import ProductDetails from "./components/product/details/ProductDetails";
-import { clearErrors } from "./actions/clearErrors";
 
 function App({ auth, loadUser, clearErrors }) {
   const { user, isAuthenticated, loading } = auth;
-  const [stripeApiKey, setStripeApiKey] = useState("");
 
   useEffect(() => {
-    (async function () {
-      try {
-        await loadUser();
-        const response = await axios.get("/api/v1/stripeApi");
-        setStripeApiKey(response.data.stripeApiKey);
-      } catch (error) {
-        console.log(error.message);
-      }
-    })();
+    loadUser();
     return () => {
       clearErrors();
     };
@@ -75,11 +63,7 @@ function App({ auth, loadUser, clearErrors }) {
         <ProtectedRoute path="/shipping" component={Shipping} />
         <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />
         <ProtectedRoute path="/success" component={OrderSuccess} />
-        {stripeApiKey && (
-          <Elements stripe={loadStripe(stripeApiKey)}>
-            <ProtectedRoute path="/payment" component={Payment} />
-          </Elements>
-        )}
+        <ProtectedRoute path="/payment" component={Payment} />
 
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />

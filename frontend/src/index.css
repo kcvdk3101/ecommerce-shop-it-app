@@ -38,6 +38,15 @@ a {
   text-decoration: none;
 }
 
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 5px 15px 50px #f1f1f1;
+}
+
 .carousel-control-next-icon {
   background-image: url("https://snipstock.com/assets/cdn/png/6b18650e29228e0e8f6a28d27e18b063.png");
 }

@@ -13,7 +13,7 @@ import {
 } from './actionTypes/productActionTypes';
 
 // Get all products by conditions
-const getProductsByConditions = (keyword = '', currentPage = 1, price, category, ratings = 0) => async (dispatch) => {
+const getProductsByConditions = (keyword, currentPage = 1, price, category, ratings = 0) => async (dispatch) => {
   try {
     dispatch({ type: ALL_PRODUCTS_BY_CONDITIONS_REQUEST })
     let link = `/api/v1/products/search?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${ratings}`

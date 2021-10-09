@@ -1,5 +1,5 @@
 import { MDBDataTable } from "mdbreact";
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -82,7 +82,7 @@ const OrdersList = ({
             <p style={{ color: "red" }}>{order.orderStatus}</p>
           ),
         actions: (
-          <Fragment>
+          <>
             <Link
               to={`/admin/order/${order._id}`}
               className="btn btn-primary py-1 px-2"
@@ -95,7 +95,7 @@ const OrdersList = ({
             >
               <i className="fa fa-trash"></i>
             </button>
-          </Fragment>
+          </>
         ),
       });
     });

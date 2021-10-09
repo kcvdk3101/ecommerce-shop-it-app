@@ -20,7 +20,6 @@ export const Search = ({
   getProductsByConditions,
   addItemToCart,
 }) => {
-  console.log(productsDB);
   const {
     loading,
     error,

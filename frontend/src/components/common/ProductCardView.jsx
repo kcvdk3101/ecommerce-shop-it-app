@@ -12,7 +12,7 @@ import {
 
 const ProductCardView = ({ product, addToCart }) => {
   return (
-    <Card className="card d-flex rounded">
+    <Card className="card d-flex rounded-3">
       <CardImg
         className="flex-shirk-0 mx-auto p-1"
         src={product.images[0].url}
@@ -21,7 +21,7 @@ const ProductCardView = ({ product, addToCart }) => {
       <CardBody className="flex-1 d-flex flex-column justify-content-around">
         <CardTitle
           tag="h4"
-          className="card_title flex-shrink-0 d-flex flex-column align-items-between"
+          className="flex-shrink-0 d-flex flex-column align-items-between"
         >
           <Link
             className="flex-shrink-0 "
